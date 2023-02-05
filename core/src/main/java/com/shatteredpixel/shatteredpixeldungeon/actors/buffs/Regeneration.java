@@ -34,7 +34,7 @@ public class Regeneration extends Buff {
 		actPriority = HERO_PRIO - 1;
 	}
 	
-	private static final float REGENERATION_DELAY = 10;
+	private static final float REGENERATION_DELAY = 5;
 	
 	@Override
 	public boolean act() {
@@ -43,7 +43,7 @@ public class Regeneration extends Buff {
 			if (target.HP < regencap() && !((Hero)target).isStarving()) {
 				LockedFloor lock = target.buff(LockedFloor.class);
 				if (lock == null || lock.regenOn()) {
-					target.HP += 1;
+					target.HP += 2;
 					if (target.HP == regencap()) {
 						((Hero) target).resting = false;
 					}
@@ -57,7 +57,7 @@ public class Regeneration extends Buff {
 				if (regenBuff.isCursed()) {
 					delay *= 1.5f;
 				} else {
-					delay -= regenBuff.itemLevel()*0.9f;
+					delay -= regenBuff.itemLevel()*0.45f;
 					delay /= RingOfEnergy.artifactChargeMultiplier(target);
 				}
 			}

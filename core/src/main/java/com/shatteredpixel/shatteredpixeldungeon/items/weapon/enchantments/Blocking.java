@@ -49,10 +49,10 @@ public class Blocking extends Weapon.Enchantment {
 		// lvl 0 - 10%
 		// lvl 1 ~ 12%
 		// lvl 2 ~ 14%
-		float procChance = (level+4f)/(level+40f) * procChanceMultiplier(attacker);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance){
 			BlockBuff b = Buff.affect(attacker, BlockBuff.class);
-			b.setShield(attacker.HT/10);
+			b.setShield(attacker.HT/5);
 			attacker.sprite.emitter().burst(Speck.factory(Speck.LIGHT), 5);
 		}
 		
@@ -79,7 +79,7 @@ public class Blocking extends Weapon.Enchantment {
 		@Override
 		public void setShield(int shield) {
 			super.setShield(shield);
-			postpone(5f);
+			postpone(2.5f);
 		}
 
 		@Override

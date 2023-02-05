@@ -34,7 +34,11 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.NecromancerSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.SkeletonSprite;
@@ -54,8 +58,8 @@ public class Necromancer extends Mob {
 		EXP = 7;
 		maxLvl = 14;
 		
-		loot = new PotionOfHealing();
-		lootChance = 0.2f; //see lootChance()
+		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
+		lootChance = 0.4f; //see lootChance()
 		
 		properties.add(Property.UNDEAD);
 		
@@ -81,12 +85,12 @@ public class Necromancer extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 5);
+		return Random.NormalIntRange(0, 10);
 	}
 	
 	@Override
 	public float lootChance() {
-		return super.lootChance() * ((6f - Dungeon.LimitedDrops.NECRO_HP.count) / 6f);
+		return super.lootChance() * ((6f - Dungeon.LimitedDrops.NECRO_HP.count) / 1.5f);
 	}
 	
 	@Override
@@ -162,7 +166,7 @@ public class Necromancer extends Mob {
 				sprite.parent.add(new Beam.HealthRay(sprite.center(), mySkeleton.sprite.center()));
 			}
 			
-			mySkeleton.HP = Math.min(mySkeleton.HP + 5, mySkeleton.HT);
+			mySkeleton.HP = Math.min(mySkeleton.HP + 10, mySkeleton.HT);
 			if (mySkeleton.sprite.visible) mySkeleton.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 			
 		//otherwise give it adrenaline
@@ -172,7 +176,7 @@ public class Necromancer extends Mob {
 				sprite.parent.add(new Beam.HealthRay(sprite.center(), mySkeleton.sprite.center()));
 			}
 			
-			Buff.affect(mySkeleton, Adrenaline.class, 3f);
+			Buff.affect(mySkeleton, Adrenaline.class, 6f);
 		}
 		
 		next();
@@ -211,7 +215,7 @@ public class Necromancer extends Mob {
 
 				Char blocker = Actor.findChar(summoningPos);
 				if (blocker.alignment != alignment){
-					blocker.damage( Random.NormalIntRange(2, 10), this );
+					blocker.damage( Random.NormalIntRange(2, 20), this );
 					if (blocker == Dungeon.hero && !blocker.isAlive()){
 						Badges.validateDeathFromEnemyMagic();
 						Dungeon.fail(getClass());
@@ -367,7 +371,7 @@ public class Necromancer extends Mob {
 			maxLvl = -5;
 			
 			//20/25 health to start
-			HP = 20;
+			HP = 40;
 		}
 
 		@Override

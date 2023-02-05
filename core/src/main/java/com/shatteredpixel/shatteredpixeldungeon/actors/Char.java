@@ -191,7 +191,7 @@ public abstract class Char extends Actor {
 			return true;
 		} else if (c instanceof Hero
 				&& alignment == Alignment.ALLY
-				&& Dungeon.level.distance(pos, c.pos) <= 2*Dungeon.hero.pointsInTalent(Talent.ALLY_WARP)){
+				&& Dungeon.level.distance(pos, c.pos) <= 4*Dungeon.hero.pointsInTalent(Talent.ALLY_WARP)){
 			return true;
 		} else {
 			return false;
@@ -387,7 +387,7 @@ public abstract class Char extends Actor {
 			}
 
 			if ( buff(Weakness.class) != null ){
-				dmg *= 0.67f;
+				dmg *= 0.5f;
 			}
 			
 			int effectiveDamage = enemy.defenseProc( this, Math.round(dmg) );
@@ -400,7 +400,7 @@ public abstract class Char extends Actor {
 
 			//vulnerable specifically applies after armor reductions
 			if ( enemy.buff( Vulnerable.class ) != null){
-				effectiveDamage *= 1.33f;
+				effectiveDamage *= 1.5f;
 			}
 			
 			effectiveDamage = attackProc( enemy, effectiveDamage );
@@ -496,16 +496,16 @@ public abstract class Char extends Actor {
 		}
 
 		float acuRoll = Random.Float( acuStat );
-		if (attacker.buff(Bless.class) != null) acuRoll *= 1.25f;
-		if (attacker.buff(  Hex.class) != null) acuRoll *= 0.8f;
+		if (attacker.buff(Bless.class) != null) acuRoll *= 1.5f;
+		if (attacker.buff(  Hex.class) != null) acuRoll *= 0.5f;
 		for (ChampionEnemy buff : attacker.buffs(ChampionEnemy.class)){
 			acuRoll *= buff.evasionAndAccuracyFactor();
 		}
 		acuRoll *= AscensionChallenge.statModifier(attacker);
 		
 		float defRoll = Random.Float( defStat );
-		if (defender.buff(Bless.class) != null) defRoll *= 1.25f;
-		if (defender.buff(  Hex.class) != null) defRoll *= 0.8f;
+		if (defender.buff(Bless.class) != null) defRoll *= 1.5f;
+		if (defender.buff(  Hex.class) != null) defRoll *= 0.5f;
 		for (ChampionEnemy buff : defender.buffs(ChampionEnemy.class)){
 			defRoll *= buff.evasionAndAccuracyFactor();
 		}
@@ -557,10 +557,10 @@ public abstract class Char extends Actor {
 	public float speed() {
 		float speed = baseSpeed;
 		if ( buff( Cripple.class ) != null ) speed /= 2f;
-		if ( buff( Stamina.class ) != null) speed *= 1.5f;
+		if ( buff( Stamina.class ) != null) speed *= 4.5f;
 		if ( buff( Adrenaline.class ) != null) speed *= 2f;
 		if ( buff( Haste.class ) != null) speed *= 3f;
-		if ( buff( Dread.class ) != null) speed *= 2f;
+		if ( buff( Dread.class ) != null) speed *= 10f;
 		return speed;
 	}
 
@@ -639,7 +639,7 @@ public abstract class Char extends Actor {
 			Buff.detach(this, MagicalSleep.class);
 		}
 		if (this.buff(Doom.class) != null && !isImmune(Doom.class)){
-			dmg *= 2;
+			dmg *= 3;
 		}
 		if (alignment != Alignment.ALLY && this.buff(DeathMark.DeathMarkTracker.class) != null){
 			dmg *= 1.25f;

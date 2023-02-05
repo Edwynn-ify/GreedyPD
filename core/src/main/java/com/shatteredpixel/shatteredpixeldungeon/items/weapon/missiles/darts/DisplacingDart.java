@@ -58,7 +58,7 @@ public class DisplacingDart extends TippedDart {
 			for (int pos = 0; pos < Dungeon.level.length(); pos++){
 				if (Dungeon.level.passable[pos]
 						&& PathFinder.distance[pos] >= 8
-						&& PathFinder.distance[pos] <= 10
+						&& PathFinder.distance[pos] <= 20
 						&& (!Char.hasProp(defender, Char.Property.LARGE) || Dungeon.level.openSpace[pos])
 						&& Actor.findChar(pos) == null){
 
@@ -92,7 +92,7 @@ public class DisplacingDart extends TippedDart {
 			if (chosenPos != -1){
 				ScrollOfTeleportation.appear( defender, chosenPos );
 				if (!Dungeon.level.heroFOV[chosenPos]){
-					Buff.affect(attacker, TalismanOfForesight.CharAwareness.class, 5f).charID = defender.id();
+					Buff.affect(attacker, TalismanOfForesight.CharAwareness.class, 10f).charID = defender.id();
 				}
 				Dungeon.level.occupyCell(defender );
 			}

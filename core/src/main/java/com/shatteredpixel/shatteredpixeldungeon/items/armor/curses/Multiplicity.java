@@ -50,7 +50,7 @@ public class Multiplicity extends Armor.Glyph {
 	@Override
 	public int proc(Armor armor, Char attacker, Char defender, int damage) {
 
-		float procChance = 1/20f * procChanceMultiplier(defender);
+		float procChance = 2/5f * procChanceMultiplier(defender);
 		if ( Random.Float() < procChance ) {
 			ArrayList<Integer> spawnPoints = new ArrayList<>();
 

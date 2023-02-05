@@ -64,7 +64,7 @@ public class Healing extends Buff {
 	}
 	
 	private int healingThisTick(){
-		return (int)GameMath.gate(1,
+		return (int)GameMath.gate(2,
 				Math.round(healingLeft * percentHealPerTick) + flatHealPerTick,
 				healingLeft);
 	}

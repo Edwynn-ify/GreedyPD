@@ -46,7 +46,7 @@ public class ChillingTrap extends Trap{
 		
 		for( int i : PathFinder.NEIGHBOURS9) {
 			if (!Dungeon.level.solid[pos + i]) {
-				GameScene.add(Blob.seed(pos + i, 10, Freezing.class));
+				GameScene.add(Blob.seed(pos + i, 30, Freezing.class));
 			}
 		}
 	}

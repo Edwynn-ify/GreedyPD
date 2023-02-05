@@ -73,9 +73,12 @@ public class PitRoom extends SpecialRoom {
 					mainLoot = Generator.random(Generator.Category.RING);
 					break;
 				case 1:
-					mainLoot = Generator.random(Generator.Category.ARTIFACT);
+					mainLoot = Generator.random(Generator.Category.WAND);
 					break;
 				case 2:
+					mainLoot = Generator.random(Generator.Category.ARTIFACT);
+					break;
+				case 3:
 					mainLoot = Generator.random(Random.oneOf(
 							Generator.Category.WEAPON,
 							Generator.Category.ARMOR));
@@ -84,7 +87,7 @@ public class PitRoom extends SpecialRoom {
 		} while ( mainLoot == null || Challenges.isItemBlocked(mainLoot));
 		level.drop(mainLoot, remains).setHauntedIfCursed().type = Heap.Type.SKELETON;
 		
-		int n = Random.IntRange( 1, 2 );
+		int n = Random.IntRange( 1, 6 );
 		for (int i=0; i < n; i++) {
 			level.drop( prize( level ), remains ).setHauntedIfCursed();
 		}
@@ -97,7 +100,9 @@ public class PitRoom extends SpecialRoom {
 			Generator.Category.POTION,
 			Generator.Category.SCROLL,
 			Generator.Category.FOOD,
-			Generator.Category.GOLD
+			Generator.Category.GOLD,
+				Generator.Category.SEED,
+				Generator.Category.STONE
 		) );
 	}
 	

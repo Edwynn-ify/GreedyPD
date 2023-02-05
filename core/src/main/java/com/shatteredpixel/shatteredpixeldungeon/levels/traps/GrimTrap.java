@@ -70,7 +70,7 @@ public class GrimTrap extends Trap {
 			int damage;
 			
 			//almost kill the player
-			if (finalTarget == Dungeon.hero && ((float)finalTarget.HP/finalTarget.HT) >= 0.9f){
+			if (finalTarget == Dungeon.hero && ((float)finalTarget.HP/finalTarget.HT) >= 0.99f){
 				damage = finalTarget.HP-1;
 			//kill 'em
 			} else {

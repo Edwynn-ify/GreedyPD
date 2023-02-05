@@ -31,7 +31,7 @@ import com.watabou.utils.Random;
 
 public class Paralysis extends FlavourBuff {
 
-	public static final float DURATION	= 10f;
+	public static final float DURATION	= 20f;
 
 	{
 		type = buffType.NEGATIVE;

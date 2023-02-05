@@ -1043,10 +1043,10 @@ public abstract class Level implements Bundlable {
 					set(ch.pos, Terrain.FURROWED_GRASS);
 				} else {
 					set(ch.pos, Terrain.HIGH_GRASS);
-					Buff.count(ch, Talent.RejuvenatingStepsFurrow.class, 3 - Dungeon.hero.pointsInTalent(Talent.REJUVENATING_STEPS));
+					Buff.count(ch, Talent.RejuvenatingStepsFurrow.class, 6 - Dungeon.hero.pointsInTalent(Talent.REJUVENATING_STEPS));
 				}
 				GameScene.updateMap(ch.pos);
-				Buff.affect(ch, Talent.RejuvenatingStepsCooldown.class, 15f - 5f*Dungeon.hero.pointsInTalent(Talent.REJUVENATING_STEPS));
+				Buff.affect(ch, Talent.RejuvenatingStepsCooldown.class, 7.5f - 5f*Dungeon.hero.pointsInTalent(Talent.REJUVENATING_STEPS));
 			}
 			
 			if (pit[ch.pos]){
@@ -1200,7 +1200,7 @@ public abstract class Level implements Bundlable {
 			
 			int viewDist = c.viewDistance;
 			if (c instanceof Hero){
-				viewDist *= 1f + 0.25f*((Hero) c).pointsInTalent(Talent.FARSIGHT);
+				viewDist *= 1f + 0.5f*((Hero) c).pointsInTalent(Talent.FARSIGHT);
 			}
 			
 			ShadowCaster.castShadow( cx, cy, fieldOfView, blocking, viewDist );
@@ -1273,7 +1273,7 @@ public abstract class Level implements Bundlable {
 				}
 			} else if (((Hero) c).hasTalent(Talent.HEIGHTENED_SENSES)) {
 				Hero h = (Hero) c;
-				int range = 1+h.pointsInTalent(Talent.HEIGHTENED_SENSES);
+				int range = 2+h.pointsInTalent(Talent.HEIGHTENED_SENSES);
 				for (Mob mob : mobs) {
 					int p = mob.pos;
 					if (!fieldOfView[p] && distance(c.pos, p) <= range) {

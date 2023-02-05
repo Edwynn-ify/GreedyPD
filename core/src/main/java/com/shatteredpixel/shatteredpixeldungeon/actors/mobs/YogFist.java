@@ -26,7 +26,10 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ConfusionGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Fire;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Bleeding;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Blindness;
@@ -59,7 +62,7 @@ import com.watabou.utils.Random;
 public abstract class YogFist extends Mob {
 
 	{
-		HP = HT = 300;
+		HP = HT = 600;
 		defenseSkill = 20;
 
 		viewDistance = Light.DISTANCE;
@@ -78,7 +81,7 @@ public abstract class YogFist extends Mob {
 	protected boolean canRangedInMelee = true;
 
 	protected void incrementRangedCooldown(){
-		rangedCooldown += Random.NormalFloat(8, 12);
+		rangedCooldown += Random.NormalFloat(8, 24);
 	}
 
 	@Override
@@ -153,12 +156,12 @@ public abstract class YogFist extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 18, 36 );
+		return Random.NormalIntRange( 18, 72 );
 	}
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 15);
+		return Random.NormalIntRange(0, 30);
 	}
 
 	{
@@ -299,7 +302,7 @@ public abstract class YogFist extends Mob {
 					grassCells++;
 				}
 			}
-			if (grassCells > 0) dmg = Math.round(dmg * (6-grassCells)/6f);
+			if (grassCells > 0) dmg = Math.round(dmg * (6-grassCells)/3f);
 
 			//can be ignited, but takes no damage from burning
 			if (src.getClass() == Burning.class){
@@ -316,7 +319,7 @@ public abstract class YogFist extends Mob {
 			Invisibility.dispel(this);
 			if (hit( this, enemy, true )) {
 
-				Buff.affect( enemy, Roots.class, 3f );
+				Buff.affect( enemy, Roots.class, 6f );
 
 			} else {
 
@@ -392,7 +395,9 @@ public abstract class YogFist extends Mob {
 		@Override
 		protected void zap() {
 			spend( 1f );
-			GameScene.add(Blob.seed(enemy.pos, 100, ToxicGas.class));
+			GameScene.add(Blob.seed(enemy.pos, 500, ToxicGas.class));
+			GameScene.add(Blob.seed(enemy.pos, 500, StenchGas.class));
+			GameScene.add(Blob.seed(enemy.pos, 500, CorrosiveGas.class));
 		}
 
 		@Override
@@ -424,7 +429,7 @@ public abstract class YogFist extends Mob {
 
 		@Override
 		public int damageRoll() {
-			return Random.NormalIntRange( 22, 44 );
+			return Random.NormalIntRange( 22, 88 );
 		}
 
 		@Override
@@ -443,7 +448,7 @@ public abstract class YogFist extends Mob {
 		@Override
 		protected void zap() {
 			spend( 1f );
-			Buff.affect(enemy, Cripple.class, 4f);
+			Buff.affect(enemy, Cripple.class, 8f);
 		}
 
 	}
@@ -473,8 +478,8 @@ public abstract class YogFist extends Mob {
 			Invisibility.dispel(this);
 			if (hit( this, enemy, true )) {
 
-				enemy.damage( Random.NormalIntRange(10, 20), new LightBeam() );
-				Buff.prolong( enemy, Blindness.class, Blindness.DURATION/2f );
+				enemy.damage( Random.NormalIntRange(10, 40), new LightBeam() );
+				Buff.prolong( enemy, Blindness.class, Blindness.DURATION );
 
 				if (!enemy.isAlive() && enemy == Dungeon.hero) {
 					Badges.validateDeathFromEnemyMagic();
@@ -538,7 +543,7 @@ public abstract class YogFist extends Mob {
 			Invisibility.dispel(this);
 			if (hit( this, enemy, true )) {
 
-				enemy.damage( Random.NormalIntRange(10, 20), new DarkBolt() );
+				enemy.damage( Random.NormalIntRange(10, 40), new DarkBolt() );
 
 				Light l = enemy.buff(Light.class);
 				if (l != null){

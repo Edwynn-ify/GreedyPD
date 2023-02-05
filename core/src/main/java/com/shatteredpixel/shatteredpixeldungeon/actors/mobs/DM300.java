@@ -81,7 +81,7 @@ public class DM300 extends Mob {
 	{
 		spriteClass = DM300Sprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 400 : 300;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 1000 : 500;
 		EXP = 30;
 		defenseSkill = 15;
 
@@ -92,7 +92,7 @@ public class DM300 extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 15, 25 );
+		return Random.NormalIntRange( 15, 50 );
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class DM300 extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 10);
+		return Random.NormalIntRange(0, 30);
 	}
 
 	public int pylonsActivated = 0;
@@ -110,7 +110,7 @@ public class DM300 extends Mob {
 	public boolean chargeAnnounced = false;
 
 	private final int MIN_COOLDOWN = 5;
-	private final int MAX_COOLDOWN = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 7 : 9;
+	private final int MAX_COOLDOWN = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 4 : 7;
 
 	private int turnsSinceLastAbility = -1;
 	private int abilityCooldown = Random.NormalIntRange(MIN_COOLDOWN, MAX_COOLDOWN);
@@ -337,7 +337,7 @@ public class DM300 extends Mob {
 				sprite.emitter().start(SparkParticle.STATIC, 0.05f, 20);
 			}
 
-			Buff.affect(this, Barrier.class).setShield( 30 + (HT - HP)/10);
+			Buff.affect(this, Barrier.class).setShield( 60 + (HT - HP)/5);
 
 		}
 	}
@@ -381,10 +381,10 @@ public class DM300 extends Mob {
 			gasVented += 20*gasMulti;
 		}
 
-		GameScene.add(Blob.seed(trajectory.collisionPos, 100*gasMulti, ToxicGas.class));
+		GameScene.add(Blob.seed(trajectory.collisionPos, 500*gasMulti, ToxicGas.class));
 
-		if (gasVented < 250*gasMulti){
-			int toVentAround = (int)Math.ceil(((250*gasMulti) - gasVented)/8f);
+		if (gasVented < 500*gasMulti){
+			int toVentAround = (int)Math.ceil(((500*gasMulti) - gasVented)/4f);
 			for (int i : PathFinder.NEIGHBOURS8){
 				GameScene.add(Blob.seed(pos+i, toVentAround, ToxicGas.class));
 			}
@@ -506,7 +506,7 @@ public class DM300 extends Mob {
 		((CavesBossLevel)Dungeon.level).activatePylon();
 		pylonsActivated++;
 
-		spend(Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 2f : 3f);
+		spend(Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 2f : 4f);
 		yell(Messages.get(this, "charging"));
 		sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 		((DM300Sprite)sprite).updateChargeState(true);
@@ -545,7 +545,7 @@ public class DM300 extends Mob {
 		Dungeon.level.unseal();
 
 		//60% chance of 2 shards, 30% chance of 3, 10% chance for 4. Average of 2.5
-		int shards = Random.chances(new float[]{0, 0, 6, 3, 1});
+		int shards = Random.chances(new float[]{0, 0, 9, 6, 3});
 		for (int i = 0; i < shards; i++){
 			int ofs;
 			do {

@@ -30,7 +30,7 @@ import com.watabou.noosa.Image;
 
 public class MagicImmune extends FlavourBuff {
 
-	public static final float DURATION = 20f;
+	public static final float DURATION = 40f;
 	
 	{
 		type = buffType.POSITIVE;

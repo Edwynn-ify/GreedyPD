@@ -46,9 +46,9 @@ public class Bandit extends Thief {
 	protected boolean steal( Hero hero ) {
 		if (super.steal( hero )) {
 			
-			Buff.prolong( hero, Blindness.class, Blindness.DURATION/2f );
-			Buff.affect( hero, Poison.class ).set(Random.IntRange(5, 6) );
-			Buff.prolong( hero, Cripple.class, Cripple.DURATION/2f );
+			Buff.prolong( hero, Blindness.class, Blindness.DURATION );
+			Buff.affect( hero, Poison.class ).set(Random.IntRange(5, 12) );
+			Buff.prolong( hero, Cripple.class, Cripple.DURATION );
 			Dungeon.observe();
 			
 			return true;

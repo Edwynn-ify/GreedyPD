@@ -136,7 +136,7 @@ public class SnipersMark extends FlavourBuff implements ActionIndicator.Action {
 		if (cell == -1) return;
 		
 		bow.sniperSpecial = true;
-		bow.sniperSpecialBonusDamage = level*Dungeon.hero.pointsInTalent(Talent.SHARED_UPGRADES)/10f;
+		bow.sniperSpecialBonusDamage = level*Dungeon.hero.pointsInTalent(Talent.SHARED_UPGRADES)/5f;
 		
 		arrow.cast(hero, cell);
 		detach();

@@ -30,7 +30,7 @@ import java.text.DecimalFormat;
 
 public class Chill extends FlavourBuff {
 
-	public static final float DURATION = 10f;
+	public static final float DURATION = 20f;
 
 	{
 		type = buffType.NEGATIVE;
@@ -44,9 +44,9 @@ public class Chill extends FlavourBuff {
 		return super.attachTo(target);
 	}
 
-	//reduces speed by 10% for every turn remaining, capping at 50%
+	//reduces speed by 5% for every turn remaining, capping at 95% (truly punishing unaware players and make handling enemies like a breeze)
 	public float speedFactor(){
-		return Math.max(0.5f, 1 - cooldown()*0.1f);
+		return Math.max(0.95f, 1 - cooldown()*0.05f);
 	}
 
 	@Override

@@ -46,12 +46,12 @@ public class BlizzardBrew extends Brew {
 			Sample.INSTANCE.play( Assets.Sounds.GAS );
 		}
 
-		int centerVolume = 120;
+		int centerVolume = 240;
 		for (int i : PathFinder.NEIGHBOURS8){
 			if (!Dungeon.level.solid[cell+i]){
-				GameScene.add( Blob.seed( cell+i, 120, Blizzard.class ) );
+				GameScene.add( Blob.seed( cell+i, 3000, Blizzard.class ) );
 			} else {
-				centerVolume += 120;
+				centerVolume += 240;
 			}
 		}
 

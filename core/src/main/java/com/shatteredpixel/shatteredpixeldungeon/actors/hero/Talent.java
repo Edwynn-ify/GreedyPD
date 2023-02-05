@@ -166,12 +166,12 @@ public enum Talent {
 			//barrier every 2/1 turns, to a max of 3/5
 			if (((Hero)target).hasTalent(Talent.PROTECTIVE_SHADOWS) && target.invisible > 0){
 				Barrier barrier = Buff.affect(target, Barrier.class);
-				if (barrier.shielding() < 1 + 2*((Hero)target).pointsInTalent(Talent.PROTECTIVE_SHADOWS)) {
-					barrierInc += 0.5f * ((Hero) target).pointsInTalent(Talent.PROTECTIVE_SHADOWS);
+				if (barrier.shielding() < 2 + 4*((Hero)target).pointsInTalent(Talent.PROTECTIVE_SHADOWS)) {
+					barrierInc += 1f * ((Hero) target).pointsInTalent(Talent.PROTECTIVE_SHADOWS);
 				}
 				if (barrierInc >= 1){
 					barrierInc = 0;
-					barrier.incShield(1);
+					barrier.incShield(2);
 				} else {
 					barrier.incShield(0); //resets barrier decay
 				}
@@ -317,11 +317,11 @@ public enum Talent {
 		if (hero.hasTalent(HEARTY_MEAL)){
 			//3/5 HP healed, when hero is below 25% health
 			if (hero.HP <= hero.HT/4) {
-				hero.HP = Math.min(hero.HP + 1 + 2 * hero.pointsInTalent(HEARTY_MEAL), hero.HT);
+				hero.HP = Math.min(hero.HP + 2 + 5 * hero.pointsInTalent(HEARTY_MEAL), hero.HT);
 				hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1+hero.pointsInTalent(HEARTY_MEAL));
 			//2/3 HP healed, when hero is below 50% health
 			} else if (hero.HP <= hero.HT/2){
-				hero.HP = Math.min(hero.HP + 1 + hero.pointsInTalent(HEARTY_MEAL), hero.HT);
+				hero.HP = Math.min(hero.HP + 2 + hero.pointsInTalent(HEARTY_MEAL), hero.HT);
 				hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(HEARTY_MEAL));
 			}
 		}
@@ -332,27 +332,27 @@ public enum Talent {
 		}
 		if (hero.hasTalent(EMPOWERING_MEAL)){
 			//2/3 bonus wand damage for next 3 zaps
-			Buff.affect( hero, WandEmpower.class).set(1 + hero.pointsInTalent(EMPOWERING_MEAL), 3);
+			Buff.affect( hero, WandEmpower.class).set(1 + hero.pointsInTalent(EMPOWERING_MEAL), 6);
 			ScrollOfRecharging.charge( hero );
 		}
 		if (hero.hasTalent(ENERGIZING_MEAL)){
 			//5/8 turns of recharging
-			Buff.prolong( hero, Recharging.class, 2 + 3*(hero.pointsInTalent(ENERGIZING_MEAL)) );
+			Buff.prolong( hero, Recharging.class, 4 + 6*(hero.pointsInTalent(ENERGIZING_MEAL)) );
 			ScrollOfRecharging.charge( hero );
 			SpellSprite.show(hero, SpellSprite.CHARGE);
 		}
 		if (hero.hasTalent(MYSTICAL_MEAL)){
 			//3/5 turns of recharging
 			ArtifactRecharge buff = Buff.affect( hero, ArtifactRecharge.class);
-			if (buff.left() < 1 + 2*(hero.pointsInTalent(MYSTICAL_MEAL))){
-				Buff.affect( hero, ArtifactRecharge.class).set(1 + 2*(hero.pointsInTalent(MYSTICAL_MEAL))).ignoreHornOfPlenty = foodSource instanceof HornOfPlenty;
+			if (buff.left() < 2 + 4*(hero.pointsInTalent(MYSTICAL_MEAL))){
+				Buff.affect( hero, ArtifactRecharge.class).set(2 + 4*(hero.pointsInTalent(MYSTICAL_MEAL)));
 			}
 			ScrollOfRecharging.charge( hero );
 			SpellSprite.show(hero, SpellSprite.CHARGE, 0, 1, 1);
 		}
 		if (hero.hasTalent(INVIGORATING_MEAL)){
 			//effectively 1/2 turns of haste
-			Buff.prolong( hero, Haste.class, 0.67f+hero.pointsInTalent(INVIGORATING_MEAL));
+			Buff.prolong( hero, Haste.class, 1.34f+hero.pointsInTalent(INVIGORATING_MEAL));
 		}
 	}
 
@@ -384,11 +384,11 @@ public enum Talent {
 			if (hero.heroClass == HeroClass.WARRIOR) {
 				BrokenSeal.WarriorShield shield = hero.buff(BrokenSeal.WarriorShield.class);
 				if (shield != null) {
-					int shieldToGive = Math.round(shield.maxShield() * 0.33f * (1 + hero.pointsInTalent(RESTORED_WILLPOWER)));
+					int shieldToGive = Math.round(shield.maxShield() * 0.66f * (2 + hero.pointsInTalent(RESTORED_WILLPOWER)));
 					shield.supercharge(shieldToGive);
 				}
 			} else {
-				int shieldToGive = Math.round( hero.HT * (0.025f * (1+hero.pointsInTalent(RESTORED_WILLPOWER))));
+				int shieldToGive = Math.round( hero.HT * (0.05f * (2+hero.pointsInTalent(RESTORED_WILLPOWER))));
 				Buff.affect(hero, Barrier.class).setShield(shieldToGive);
 			}
 		}
@@ -401,7 +401,7 @@ public enum Talent {
 			for (int cell : grassCells){
 				Char ch = Actor.findChar(cell);
 				if (ch != null && ch.alignment == Char.Alignment.ENEMY){
-					Buff.affect(ch, Roots.class, 1f + hero.pointsInTalent(RESTORED_NATURE));
+					Buff.affect(ch, Roots.class, 2f + hero.pointsInTalent(RESTORED_NATURE));
 				}
 				if (Dungeon.level.map[cell] == Terrain.EMPTY ||
 						Dungeon.level.map[cell] == Terrain.EMBERS ||
@@ -434,24 +434,24 @@ public enum Talent {
 			if (hero.heroClass == HeroClass.MAGE) {
 				MagesStaff staff = hero.belongings.getItem(MagesStaff.class);
 				if (staff != null) {
-					staff.gainCharge(2 + 2 * hero.pointsInTalent(ENERGIZING_UPGRADE), true);
+					staff.gainCharge(4 + 4 * hero.pointsInTalent(ENERGIZING_UPGRADE), true);
 					ScrollOfRecharging.charge(Dungeon.hero);
 					SpellSprite.show(hero, SpellSprite.CHARGE);
 				}
 			} else {
-				Buff.affect(hero, Recharging.class, 4 + 8 * hero.pointsInTalent(ENERGIZING_UPGRADE));
+				Buff.affect(hero, Recharging.class, 8 + 16 * hero.pointsInTalent(ENERGIZING_UPGRADE));
 			}
 		}
 		if (hero.hasTalent(MYSTICAL_UPGRADE)){
 			if (hero.heroClass == HeroClass.ROGUE) {
 				CloakOfShadows cloak = hero.belongings.getItem(CloakOfShadows.class);
 				if (cloak != null) {
-					cloak.overCharge(1 + hero.pointsInTalent(MYSTICAL_UPGRADE));
+					cloak.overCharge(2 + hero.pointsInTalent(MYSTICAL_UPGRADE));
 					ScrollOfRecharging.charge(Dungeon.hero);
 					SpellSprite.show(hero, SpellSprite.CHARGE, 0, 1, 1);
 				}
 			} else {
-				Buff.affect(hero, ArtifactRecharge.class).set( 2 + 4*hero.pointsInTalent(MYSTICAL_UPGRADE) ).ignoreHornOfPlenty = false;
+				Buff.affect(hero, ArtifactRecharge.class).set( 4 + 8*hero.pointsInTalent(MYSTICAL_UPGRADE) ).ignoreHornOfPlenty = false;
 				ScrollOfRecharging.charge(Dungeon.hero);
 				SpellSprite.show(hero, SpellSprite.CHARGE, 0, 1, 1);
 			}
@@ -460,7 +460,7 @@ public enum Talent {
 
 	public static void onArtifactUsed( Hero hero ){
 		if (hero.hasTalent(ENHANCED_RINGS)){
-			Buff.prolong(hero, EnhancedRings.class, 3f*hero.pointsInTalent(ENHANCED_RINGS));
+			Buff.prolong(hero, EnhancedRings.class, 6f*hero.pointsInTalent(ENHANCED_RINGS));
 		}
 	}
 
@@ -487,7 +487,7 @@ public enum Talent {
 	public static void onItemIdentified( Hero hero, Item item ){
 		if (hero.hasTalent(TEST_SUBJECT)){
 			//heal for 2/3 HP
-			hero.HP = Math.min(hero.HP + 1 + hero.pointsInTalent(TEST_SUBJECT), hero.HT);
+			hero.HP = Math.min(hero.HP + 2 + hero.pointsInTalent(TEST_SUBJECT), hero.HT);
 			if (hero.sprite != null) {
 				Emitter e = hero.sprite.emitter();
 				if (e != null) e.burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(TEST_SUBJECT));
@@ -495,7 +495,7 @@ public enum Talent {
 		}
 		if (hero.hasTalent(TESTED_HYPOTHESIS)){
 			//2/3 turns of wand recharging
-			Buff.affect(hero, Recharging.class, 1f + hero.pointsInTalent(TESTED_HYPOTHESIS));
+			Buff.affect(hero, Recharging.class, 2f + hero.pointsInTalent(TESTED_HYPOTHESIS));
 			ScrollOfRecharging.charge(hero);
 		}
 	}
@@ -504,7 +504,7 @@ public enum Talent {
 		if (hero.hasTalent(Talent.SUCKER_PUNCH)
 				&& enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)
 				&& enemy.buff(SuckerPunchTracker.class) == null){
-			dmg += Random.IntRange(hero.pointsInTalent(Talent.SUCKER_PUNCH) , 2);
+			dmg += Random.IntRange(2*hero.pointsInTalent(Talent.SUCKER_PUNCH) , 8);
 			Buff.affect(enemy, SuckerPunchTracker.class);
 		}
 
@@ -512,7 +512,7 @@ public enum Talent {
 			if (hero.belongings.weapon() instanceof MissileWeapon) {
 				Buff.affect(enemy, FollowupStrikeTracker.class);
 			} else if (enemy.buff(FollowupStrikeTracker.class) != null){
-				dmg += 1 + hero.pointsInTalent(FOLLOWUP_STRIKE);
+				dmg += 2 + hero.pointsInTalent(FOLLOWUP_STRIKE)*2;
 				if (!(enemy instanceof Mob) || !((Mob) enemy).surprisedBy(hero)){
 					Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG, 0.75f, 1.2f);
 				}

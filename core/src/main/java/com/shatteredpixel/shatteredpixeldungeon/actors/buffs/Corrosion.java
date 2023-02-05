@@ -33,7 +33,7 @@ import com.watabou.utils.Bundle;
 
 public class Corrosion extends Buff implements Hero.Doom {
 
-	private float damage = 1;
+	private float damage = 2;
 	protected float left;
 
 	//used in specific cases where the source of the corrosion is important for death logic
@@ -101,7 +101,7 @@ public class Corrosion extends Buff implements Hero.Doom {
 			if (damage < (Dungeon.scalingDepth()/2)+2) {
 				damage++;
 			} else {
-				damage += 0.5f;
+				damage += 1.5f;
 			}
 			
 			spend( TICK );

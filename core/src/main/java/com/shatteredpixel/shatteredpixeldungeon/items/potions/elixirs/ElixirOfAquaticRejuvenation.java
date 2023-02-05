@@ -48,7 +48,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 		if (Dungeon.isChallenged(Challenges.NO_HEALING)){
 			PotionOfHealing.pharmacophobiaProc(hero);
 		} else {
-			Buff.affect(hero, AquaHealing.class).set(Math.round(hero.HT * 1.5f));
+			Buff.affect(hero, AquaHealing.class).set(Math.round(hero.HT * 3f));
 		}
 		Talent.onHealingPotionUsed( hero );
 	}
@@ -76,7 +76,7 @@ public class ElixirOfAquaticRejuvenation extends Elixir {
 		public boolean act() {
 			
 			if (!target.flying && Dungeon.level.water[target.pos] && target.HP < target.HT){
-				float healAmt = GameMath.gate( 1, target.HT/50f, left );
+				float healAmt = GameMath.gate( 1, target.HT/25f, left );
 				healAmt = Math.min(healAmt, target.HT - target.HP);
 				if (Random.Float() < (healAmt % 1)){
 					healAmt = (float)Math.ceil(healAmt);

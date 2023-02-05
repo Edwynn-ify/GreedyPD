@@ -46,12 +46,12 @@ public class Blooming extends Weapon.Enchantment {
 		// lvl 0 - 33%
 		// lvl 1 - 50%
 		// lvl 2 - 60%
-		float procChance = (level+1f)/(level+3f) * procChanceMultiplier(attacker);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance) {
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 
-			float plants = (1f + 0.1f*level) * powerMulti;
+			float plants = (1f + 0.2f*level) * powerMulti;
 			if (Random.Float() < plants%1){
 				plants = (float)Math.ceil(plants);
 			} else {

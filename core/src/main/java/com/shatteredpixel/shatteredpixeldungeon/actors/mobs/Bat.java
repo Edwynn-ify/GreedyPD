@@ -24,8 +24,14 @@ package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.HealingDart;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.BatSprite;
 import com.watabou.utils.Random;
 
@@ -43,13 +49,13 @@ public class Bat extends Mob {
 		
 		flying = true;
 		
-		loot = new PotionOfHealing();
-		lootChance = 0.1667f; //by default, see lootChance()
+		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
+		lootChance = 0.4f; //by default, see lootChance()
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 5, 18 );
+		return Random.NormalIntRange( 5, 36 );
 	}
 	
 	@Override
@@ -59,7 +65,7 @@ public class Bat extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 4);
+		return Random.NormalIntRange(0, 8);
 	}
 	
 	@Override
@@ -77,7 +83,7 @@ public class Bat extends Mob {
 	
 	@Override
 	public float lootChance(){
-		return super.lootChance() * ((7f - Dungeon.LimitedDrops.BAT_HP.count) / 7f);
+		return super.lootChance() * ((3.5f - Dungeon.LimitedDrops.BAT_HP.count) / 3.5f);
 	}
 	
 	@Override

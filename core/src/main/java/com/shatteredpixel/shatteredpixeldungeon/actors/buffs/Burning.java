@@ -50,7 +50,7 @@ import java.util.ArrayList;
 
 public class Burning extends Buff implements Hero.Doom {
 	
-	private static final float DURATION = 8f;
+	private static final float DURATION = 16f;
 	
 	private float left;
 	
@@ -91,7 +91,7 @@ public class Burning extends Buff implements Hero.Doom {
 		
 		if (target.isAlive() && !target.isImmune(getClass())) {
 			
-			int damage = Random.NormalIntRange( 1, 3 + Dungeon.scalingDepth()/4 );
+			int damage = Random.NormalIntRange( 1, 9 + Dungeon.scalingDepth() );
 			Buff.detach( target, Chill.class);
 
 			if (target instanceof Hero && target.buff(TimekeepersHourglass.timeStasis.class) == null) {
@@ -152,7 +152,7 @@ public class Burning extends Buff implements Hero.Doom {
 		}
 		
 		if (Dungeon.level.flamable[target.pos] && Blob.volumeAt(target.pos, Fire.class) == 0) {
-			GameScene.add( Blob.seed( target.pos, 4, Fire.class ) );
+			GameScene.add( Blob.seed( target.pos, 12, Fire.class ) );
 		}
 		
 		spend( TICK );

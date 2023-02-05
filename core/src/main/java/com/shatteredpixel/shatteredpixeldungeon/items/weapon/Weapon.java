@@ -180,7 +180,7 @@ abstract public class Weapon extends KindOfWeapon {
 		float ACC = this.ACC;
 
 		if (owner.buff(Wayward.WaywardBuff.class) != null && enchantment instanceof Wayward){
-			ACC /= 5;
+			ACC /= 10;
 		}
 
 		return encumbrance > 0 ? (float)(ACC / Math.pow( 1.5, encumbrance )) : ACC;
@@ -210,7 +210,7 @@ abstract public class Weapon extends KindOfWeapon {
 	@Override
 	public int reachFactor(Char owner) {
 		if (hasEnchant(Projecting.class, owner)){
-			return RCH + Math.round(RingOfArcana.enchantPowerMultiplier(owner));
+			return 2*RCH + Math.round(RingOfArcana.enchantPowerMultiplier(owner));
 		} else {
 			return RCH;
 		}
@@ -219,7 +219,7 @@ abstract public class Weapon extends KindOfWeapon {
 	public int STRReq(){
 		int req = STRReq(level());
 		if (masteryPotionBonus){
-			req -= 2;
+			req -= 3;
 		}
 		return req;
 	}
@@ -278,28 +278,22 @@ abstract public class Weapon extends KindOfWeapon {
 	public String name() {
 		return enchantment != null && (cursedKnown || !enchantment.curse()) ? enchantment.name( super.name() ) : super.name();
 	}
-	
+
 	@Override
 	public Item random() {
-		//+0: 75% (3/4)
-		//+1: 20% (4/20)
-		//+2: 5%  (1/20)
-		int n = 0;
-		if (Random.Int(4) == 0) {
-			n++;
-			if (Random.Int(5) == 0) {
-				n++;
-			}
-		}
+
+		int n = Random.Int(7);;
+
 		level(n);
+
 		
 		//30% chance to be cursed
-		//10% chance to be enchanted
+		//30% chance to be enchanted
 		float effectRoll = Random.Float();
 		if (effectRoll < 0.3f) {
 			enchant(Enchantment.randomCurse());
 			cursed = true;
-		} else if (effectRoll >= 0.9f){
+		} else if (effectRoll >= 0.3f){
 			enchant();
 		}
 
@@ -374,11 +368,11 @@ abstract public class Weapon extends KindOfWeapon {
 
 			if (attacker.buff(Talent.SpiritBladesTracker.class) != null
 					&& ((Hero)attacker).pointsInTalent(Talent.SPIRIT_BLADES) == 4){
-				multi += 0.1f;
+				multi += 0.3f;
 			}
 			if (attacker.buff(Talent.StrikingWaveTracker.class) != null
 					&& ((Hero)attacker).pointsInTalent(Talent.STRIKING_WAVE) == 4){
-				multi += 0.2f;
+				multi += 0.4f;
 			}
 			return multi;
 		}

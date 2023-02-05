@@ -73,10 +73,10 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 
 		//1st index is prep level, 2nd is talent level
 		private static final float[][] KOThresholds = new float[][]{
-				{.03f, .04f, .05f, .06f},
-				{.10f, .13f, .17f, .20f},
-				{.20f, .27f, .33f, .40f},
-				{.50f, .67f, .83f, 1.0f}
+				{.06f, .08f, .1f, 1.2f},
+				{.20f, .26f, .34f, .40f},
+				{.40f, .54f, .66f, .80f},
+				{1.0f, 1.34f, 1.66f, 2.0f}
 		};
 
 		public float KOThreshold(){
@@ -85,14 +85,14 @@ public class Preparation extends Buff implements ActionIndicator.Action {
 
 		//1st index is prep level, 2nd is talent level
 		private static final int[][] blinkRanges = new int[][]{
-				{1, 1, 2, 2},
-				{2, 3, 4, 5},
-				{3, 4, 6, 7},
-				{4, 6, 8, 10}
+				{1, 2, 4, 4},
+				{2, 6, 8, 10},
+				{3, 8, 12, 14},
+				{4, 12, 16, 20}
 		};
 
 		public int blinkDistance(){
-			return blinkRanges[ordinal()][Dungeon.hero.pointsInTalent(Talent.ASSASSINS_REACH)];
+			return blinkRanges[ordinal()][Dungeon.hero.pointsInTalent(Talent.ASSASSINS_REACH)*2];
 		}
 		
 		public boolean canKO(Char defender){

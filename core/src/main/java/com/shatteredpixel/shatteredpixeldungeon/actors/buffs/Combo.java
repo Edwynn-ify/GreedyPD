@@ -89,10 +89,10 @@ public class Combo extends Buff implements ActionIndicator.Action {
 	public void hit( Char enemy ) {
 
 		count++;
-		comboTime = 5f;
+		comboTime = 10f;
 
 		if (!enemy.isAlive() || (enemy.buff(Corruption.class) != null && enemy.HP == enemy.HT)){
-			comboTime = Math.max(comboTime, 15*((Hero)target).pointsInTalent(Talent.CLEAVE));
+			comboTime = Math.max(comboTime, 30*((Hero)target).pointsInTalent(Talent.CLEAVE));
 		}
 
 		initialComboTime = comboTime;
@@ -330,10 +330,10 @@ public class Combo extends Buff implements ActionIndicator.Action {
 					//trim it to just be the part that goes past them
 					trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
 					//knock them back along that ballistica, ensuring they don't fall into a pit
-					int dist = 2;
+					int dist = 4;
 					if (enemy.isAlive() && count >= 7 && hero.pointsInTalent(Talent.ENHANCED_COMBO) >= 1) {
 						dist++;
-						Buff.prolong(enemy, Vertigo.class, 3);
+						Buff.prolong(enemy, Vertigo.class, 6);
 					} else if (!enemy.flying) {
 						while (dist > trajectory.dist ||
 								(dist > 0 && Dungeon.level.pit[trajectory.path.get(dist)])) {
@@ -351,8 +351,8 @@ public class Combo extends Buff implements ActionIndicator.Action {
 					for (Char ch : Actor.chars()) {
 						if (ch != enemy && ch.alignment == Char.Alignment.ENEMY
 								&& PathFinder.distance[ch.pos] < Integer.MAX_VALUE) {
-							int aoeHit = Math.round(target.damageRoll() * 0.25f * count);
-							aoeHit /= 2;
+							int aoeHit = Math.round(target.damageRoll() * 0.5f * count);
+							aoeHit /= 1;
 							aoeHit -= ch.drRoll();
 							if (ch.buff(Vulnerable.class) != null) aoeHit *= 1.33f;
 							ch.damage(aoeHit, target);
@@ -362,7 +362,7 @@ public class Combo extends Buff implements ActionIndicator.Action {
 							if (!ch.isAlive()) {
 								if (hero.hasTalent(Talent.LETHAL_DEFENSE) && hero.buff(BrokenSeal.WarriorShield.class) != null) {
 									BrokenSeal.WarriorShield shield = hero.buff(BrokenSeal.WarriorShield.class);
-									shield.supercharge(Math.round(shield.maxShield() * hero.pointsInTalent(Talent.LETHAL_DEFENSE) / 3f));
+									shield.supercharge(Math.round(shield.maxShield() * hero.pointsInTalent(Talent.LETHAL_DEFENSE) / 1.5f));
 								}
 							}
 						}
@@ -417,7 +417,7 @@ public class Combo extends Buff implements ActionIndicator.Action {
 		if (!enemy.isAlive() || (!wasAlly && enemy.alignment == target.alignment)) {
 			if (hero.hasTalent(Talent.LETHAL_DEFENSE) && hero.buff(BrokenSeal.WarriorShield.class) != null){
 				BrokenSeal.WarriorShield shield = hero.buff(BrokenSeal.WarriorShield.class);
-				shield.supercharge(Math.round(shield.maxShield() * hero.pointsInTalent(Talent.LETHAL_DEFENSE)/3f));
+				shield.supercharge(Math.round(shield.maxShield() * hero.pointsInTalent(Talent.LETHAL_DEFENSE)/1.5f));
 			}
 		}
 
@@ -437,7 +437,7 @@ public class Combo extends Buff implements ActionIndicator.Action {
 
 			} else if (!((Hero)target).canAttack(enemy)){
 				if (((Hero) target).pointsInTalent(Talent.ENHANCED_COMBO) < 3
-					|| Dungeon.level.distance(target.pos, enemy.pos) > 1 + target.buff(Combo.class).count/3){
+					|| Dungeon.level.distance(target.pos, enemy.pos) > 2 + target.buff(Combo.class).count){
 					GLog.w(Messages.get(Combo.class, "bad_target"));
 				} else {
 					Ballistica c = new Ballistica(target.pos, enemy.pos, Ballistica.PROJECTILE);

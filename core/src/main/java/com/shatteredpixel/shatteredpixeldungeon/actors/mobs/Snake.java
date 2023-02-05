@@ -43,12 +43,12 @@ public class Snake extends Mob {
 		maxLvl = 7;
 		
 		loot = Generator.Category.SEED;
-		lootChance = 0.25f;
+		lootChance = 0.4f;
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 4 );
+		return Random.NormalIntRange( 1, 8 );
 	}
 	
 	@Override

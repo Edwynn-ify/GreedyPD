@@ -45,7 +45,7 @@ public class DM201 extends DM200 {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 15, 25 );
+		return Random.NormalIntRange( 15, 50 );
 	}
 
 	private boolean threatened = false;
@@ -91,10 +91,10 @@ public class DM201 extends DM200 {
 		threatened = false;
 		spend(TICK);
 
-		GameScene.add(Blob.seed(enemy.pos, 15, CorrosiveGas.class).setStrength(8));
+		GameScene.add(Blob.seed(enemy.pos, 500, CorrosiveGas.class).setStrength(8));
 		for (int i : PathFinder.NEIGHBOURS8){
 			if (!Dungeon.level.solid[enemy.pos+i]) {
-				GameScene.add(Blob.seed(enemy.pos + i, 5, CorrosiveGas.class).setStrength(8));
+				GameScene.add(Blob.seed(enemy.pos + i, 500, CorrosiveGas.class).setStrength(8));
 			}
 		}
 
@@ -112,7 +112,7 @@ public class DM201 extends DM200 {
 
 	@Override
 	public void rollToDropLoot() {
-		if (Dungeon.hero.lvl > maxLvl + 2) return;
+		if (Dungeon.hero.lvl > maxLvl + 4) return;
 
 		super.rollToDropLoot();
 

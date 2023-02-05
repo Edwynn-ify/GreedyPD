@@ -111,7 +111,7 @@ public class Food extends Item {
 
 		Artifact.ArtifactBuff buff = hero.buff( HornOfPlenty.hornRecharge.class );
 		if (buff != null && buff.isCursed()){
-			foodVal *= 0.67f;
+			foodVal *= 1.67f;
 			GLog.n( Messages.get(Hunger.class, "cursedhorn") );
 		}
 

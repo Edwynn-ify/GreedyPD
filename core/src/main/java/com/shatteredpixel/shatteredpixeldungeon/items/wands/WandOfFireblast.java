@@ -27,11 +27,21 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Fire;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.SacrificialFire;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Amok;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Blindness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Cripple;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Hex;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Paralysis;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Slow;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Terror;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vertigo;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.mage.WildMagic;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.rogue.DeathMark;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Blazing;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
@@ -65,7 +75,7 @@ public class WandOfFireblast extends DamageWand {
 
 	//1x/2x/3x damage
 	public int max(int lvl){
-		return (6+2*lvl) * chargesPerCast();
+		return (12+4*lvl) * chargesPerCast();
 	}
 
 	ConeAOE cone;
@@ -97,7 +107,7 @@ public class WandOfFireblast extends DamageWand {
 					Dungeon.level.heaps.get(cell).burn();
 				}
 			} else {
-				GameScene.add( Blob.seed( cell, 1+chargesPerCast(), Fire.class ) );
+				GameScene.add( Blob.seed( cell, 2+chargesPerCast(), Fire.class ) );
 			}
 
 			Char ch = Actor.findChar( cell );
@@ -133,9 +143,20 @@ public class WandOfFireblast extends DamageWand {
 						break; //no effects
 					case 2:
 						Buff.affect(ch, Cripple.class, 4f);
+						Buff.affect(ch, Vulnerable.class, 4f);
+						Buff.affect(ch, Weakness.class, 4f);
 						break;
-					case 3:
-						Buff.affect(ch, Paralysis.class, 4f);
+					case 3: //flood them with debuffs, but you'll less likely to see them, they'll die first
+						Buff.affect(ch, Paralysis.class, 8f);
+						Buff.affect(ch, Slow.class, 8f);
+						Buff.affect(ch, Cripple.class, 8f);
+						Buff.affect(ch, Terror.class, 8f);
+						Buff.affect(ch, Hex.class, 8f);
+						Buff.affect(ch, Amok.class, 8f);
+						Buff.affect(ch, Weakness.class, 8f);
+						Buff.affect(ch, Vulnerable.class, 8f);
+						Buff.affect(ch, Blindness.class, 8f);
+						Buff.affect(ch, Vertigo.class, 8f);
 						break;
 				}
 			}

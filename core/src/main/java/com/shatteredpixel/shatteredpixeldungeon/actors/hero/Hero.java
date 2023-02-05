@@ -249,7 +249,7 @@ public class Hero extends Char {
 		}
 
 		if (hasTalent(Talent.STRONGMAN)){
-			strBonus += (int)Math.floor(STR * (0.03f + 0.05f*pointsInTalent(Talent.STRONGMAN)));
+			strBonus += (int)Math.floor(STR * (0.06f + 0.1f*pointsInTalent(Talent.STRONGMAN)));
 		}
 
 		return STR + strBonus;
@@ -373,7 +373,7 @@ public class Hero extends Char {
 			return 0;
 		} else if (buff(PotionOfDivineInspiration.DivineInspirationTracker.class) != null
 					&& buff(PotionOfDivineInspiration.DivineInspirationTracker.class).isBoosted(tier)) {
-			return 2;
+			return 8;
 		} else {
 			return 0;
 		}
@@ -456,7 +456,7 @@ public class Hero extends Char {
 		
 		if (wep instanceof MissileWeapon){
 			if (Dungeon.level.adjacent( pos, target.pos )) {
-				accuracy *= (0.5f + 0.2f*pointsInTalent(Talent.POINT_BLANK));
+				accuracy *= (1f + 0.4f*pointsInTalent(Talent.POINT_BLANK));
 			} else {
 				accuracy *= 1.5f;
 			}
@@ -528,7 +528,7 @@ public class Hero extends Char {
 		}
 
 		if (buff(HoldFast.class) != null){
-			dr += Random.NormalIntRange(0, 2*pointsInTalent(Talent.HOLD_FAST));
+			dr += Random.NormalIntRange(1, 4*pointsInTalent(Talent.HOLD_FAST));
 		}
 		
 		return dr;
@@ -571,7 +571,7 @@ public class Hero extends Char {
 
 		NaturesPower.naturesPowerTracker natStrength = buff(NaturesPower.naturesPowerTracker.class);
 		if (natStrength != null){
-			speed *= (2f + 0.25f*pointsInTalent(Talent.GROWING_POWER));
+			speed *= (2f + 0.5f*pointsInTalent(Talent.GROWING_POWER));
 		}
 
 		speed = AscensionChallenge.modifyHeroSpeed(speed);
@@ -728,7 +728,7 @@ public class Hero extends Char {
 		}
 		
 		if(hasTalent(Talent.BARKSKIN) && Dungeon.level.map[pos] == Terrain.FURROWED_GRASS){
-			Buff.affect(this, Barkskin.class).set( (lvl*pointsInTalent(Talent.BARKSKIN))/2, 1 );
+			Buff.affect(this, Barkskin.class).set( (lvl*pointsInTalent(Talent.BARKSKIN)), 2 );
 		}
 		
 		return actResult;

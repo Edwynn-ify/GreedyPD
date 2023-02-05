@@ -76,14 +76,14 @@ public class CavesLevel extends RegularLevel {
 	protected int standardRooms(boolean forceMax) {
 		if (forceMax) return 7;
 		//6 to 7, average 6.333
-		return 6+Random.chances(new float[]{2, 1});
+		return 12+Random.chances(new float[]{2, 1});
 	}
 	
 	@Override
 	protected int specialRooms(boolean forceMax) {
 		if (forceMax) return 3;
 		//2 to 3, average 2.2
-		return 2+Random.chances(new float[]{4, 1});
+		return 4+Random.chances(new float[]{4, 1});
 	}
 	
 	@Override

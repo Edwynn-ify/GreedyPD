@@ -81,9 +81,7 @@ public abstract class ChampionEnemy extends Buff {
 		return 1f;
 	}
 
-	{
-		immunities.add(AllyBuff.class);
-	}
+
 
 	public static void rollForChampion(Mob m){
 		if (Dungeon.mobsToChampion <= 0) Dungeon.mobsToChampion = 8;

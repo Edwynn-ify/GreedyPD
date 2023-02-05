@@ -347,16 +347,16 @@ public class Armor extends EquipableItem {
 		
 		if (hasGlyph(Swiftness.class, owner)) {
 			boolean enemyNear = false;
-			PathFinder.buildDistanceMap(owner.pos, Dungeon.level.passable, 2);
+			PathFinder.buildDistanceMap(owner.pos, Dungeon.level.passable, 4);
 			for (Char ch : Actor.chars()){
 				if ( PathFinder.distance[ch.pos] != Integer.MAX_VALUE && owner.alignment != ch.alignment){
 					enemyNear = true;
 					break;
 				}
 			}
-			if (!enemyNear) speed *= (1.2f + 0.04f * buffedLvl()) * RingOfArcana.enchantPowerMultiplier(owner);
+			if (!enemyNear) speed *= (1.2f + 0.08f * buffedLvl()) * RingOfArcana.enchantPowerMultiplier(owner);
 		} else if (hasGlyph(Flow.class, owner) && Dungeon.level.water[owner.pos]){
-			speed *= (2f + 0.25f*buffedLvl()) * RingOfArcana.enchantPowerMultiplier(owner);
+			speed *= (2f + 0.5f*buffedLvl()) * RingOfArcana.enchantPowerMultiplier(owner);
 		}
 		
 		if (hasGlyph(Bulk.class, owner) &&
@@ -372,7 +372,7 @@ public class Armor extends EquipableItem {
 	public float stealthFactor( Char owner, float stealth ){
 		
 		if (hasGlyph(Obfuscation.class, owner)){
-			stealth += (1 + buffedLvl()/3f) * RingOfArcana.enchantPowerMultiplier(owner);
+			stealth += (2 + buffedLvl()/1.5f) * RingOfArcana.enchantPowerMultiplier(owner);
 		}
 		
 		return stealth;
@@ -521,22 +521,17 @@ public class Armor extends EquipableItem {
 		//+0: 75% (3/4)
 		//+1: 20% (4/20)
 		//+2: 5%  (1/20)
-		int n = 0;
-		if (Random.Int(4) == 0) {
-			n++;
-			if (Random.Int(5) == 0) {
-				n++;
-			}
-		}
+		int n = Random.Int(7);;
+
 		level(n);
 		
 		//30% chance to be cursed
-		//15% chance to be inscribed
+		//30% chance to be inscribed
 		float effectRoll = Random.Float();
 		if (effectRoll < 0.3f) {
 			inscribe(Glyph.randomCurse());
 			cursed = true;
-		} else if (effectRoll >= 0.85f){
+		} else if (effectRoll >= 0.7f){
 			inscribe();
 		}
 
@@ -546,7 +541,7 @@ public class Armor extends EquipableItem {
 	public int STRReq(){
 		int req = STRReq(level());
 		if (masteryPotionBonus){
-			req -= 2;
+			req -= 3;
 		}
 		return req;
 	}

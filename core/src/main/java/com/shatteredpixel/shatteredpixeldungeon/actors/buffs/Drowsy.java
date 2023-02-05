@@ -27,7 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 
 public class Drowsy extends Buff {
 
-	public static final float DURATION = 5f;
+	public static final float DURATION = 10f;
 
 	{
 		type = buffType.NEUTRAL;

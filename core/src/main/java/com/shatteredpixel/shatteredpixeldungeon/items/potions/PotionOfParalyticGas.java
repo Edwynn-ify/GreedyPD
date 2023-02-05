@@ -46,7 +46,7 @@ public class PotionOfParalyticGas extends Potion {
 			Sample.INSTANCE.play( Assets.Sounds.GAS );
 		}
 
-		GameScene.add( Blob.seed( cell, 1000, ParalyticGas.class ) );
+		GameScene.add( Blob.seed( cell, 3000, ParalyticGas.class ) );
 	}
 	
 	@Override

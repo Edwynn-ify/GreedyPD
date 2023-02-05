@@ -41,13 +41,13 @@ public class Entanglement extends Glyph {
 	public int proc(Armor armor, Char attacker, final Char defender, final int damage ) {
 
 		final int level = Math.max( 0, armor.buffedLvl() );
-		float procChance = 1/4f * procChanceMultiplier(defender);
+		float procChance = 2/5f * procChanceMultiplier(defender);
 
 		if (Random.Float() < procChance) {
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 
-			Buff.affect( defender, Earthroot.Armor.class ).level( Math.round((5 + 2 * level)*powerMulti) );
+			Buff.affect( defender, Earthroot.Armor.class ).level( Math.round((10 + 4 * level)*powerMulti) );
 			CellEmitter.bottom( defender.pos ).start( EarthParticle.FACTORY, 0.05f, 8 );
 			Camera.main.shake( 1, 0.4f );
 			

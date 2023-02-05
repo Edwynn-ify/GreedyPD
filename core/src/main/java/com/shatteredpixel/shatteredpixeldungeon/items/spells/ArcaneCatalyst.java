@@ -35,7 +35,20 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRetributio
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTerror;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfAntiMagic;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDivination;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDread;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfForesight;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMysticalEnergy;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPassage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPrismaticImage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.Runestone;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Plant;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
@@ -53,17 +66,30 @@ public class ArcaneCatalyst extends Spell {
 	
 	private static HashMap<Class<? extends Scroll>, Float> scrollChances = new HashMap<>();
 	static{
-		scrollChances.put( ScrollOfIdentify.class,      3f );
-		scrollChances.put( ScrollOfRemoveCurse.class,   2f );
-		scrollChances.put( ScrollOfMagicMapping.class,  2f );
-		scrollChances.put( ScrollOfMirrorImage.class,   2f );
-		scrollChances.put( ScrollOfRecharging.class,    2f );
-		scrollChances.put( ScrollOfLullaby.class,       2f );
-		scrollChances.put( ScrollOfRetribution.class,   2f );
-		scrollChances.put( ScrollOfRage.class,          2f );
-		scrollChances.put( ScrollOfTeleportation.class, 2f );
-		scrollChances.put( ScrollOfTerror.class,        2f );
-		scrollChances.put( ScrollOfTransmutation.class, 1f );
+		scrollChances.put( ScrollOfIdentify.class,      6f );
+		scrollChances.put( ScrollOfUpgrade.class,      6f );
+		scrollChances.put( ScrollOfRemoveCurse.class,   6f );
+		scrollChances.put( ScrollOfMirrorImage.class,   6f );
+		scrollChances.put( ScrollOfRecharging.class,    6f );
+		scrollChances.put( ScrollOfTeleportation.class, 6f );
+		scrollChances.put( ScrollOfLullaby.class,       6f );
+		scrollChances.put( ScrollOfMagicMapping.class,  6f );
+		scrollChances.put( ScrollOfRage.class,          6f );
+		scrollChances.put( ScrollOfRetribution.class,   6f );
+		scrollChances.put( ScrollOfTerror.class,        6f );
+		scrollChances.put( ScrollOfTransmutation.class, 6f );
+		scrollChances.put( ScrollOfDivination.class,      6f );
+		scrollChances.put( ScrollOfAntiMagic.class,   6f );
+		scrollChances.put( ScrollOfPrismaticImage.class,   6f );
+		scrollChances.put( ScrollOfMysticalEnergy.class,    6f );
+		scrollChances.put( ScrollOfPassage.class, 6f );
+		scrollChances.put( ScrollOfSirensSong.class,       6f );
+		scrollChances.put( ScrollOfForesight.class,  6f );
+		scrollChances.put( ScrollOfChallenge.class,          6f );
+		scrollChances.put( ScrollOfPsionicBlast.class,   6f );
+		scrollChances.put( ScrollOfDread.class,        6f );
+		scrollChances.put( ScrollOfMetamorphosis.class, 6f );
+		scrollChances.put( ScrollOfEnchantment.class,      6f );
 	}
 	
 	@Override

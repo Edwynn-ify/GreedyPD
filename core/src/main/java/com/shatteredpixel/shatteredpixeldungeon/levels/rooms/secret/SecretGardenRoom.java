@@ -27,7 +27,9 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Patch;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Mageroyal;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Starflower;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.watabou.utils.Random;
 
 public class SecretGardenRoom extends SecretRoom {
@@ -49,6 +51,8 @@ public class SecretGardenRoom extends SecretRoom {
 		entrance().set( Door.Type.HIDDEN );
 		
 		level.plant(new Starflower.Seed(), plantPos(level));
+		level.plant(new Sungrass.Seed(), plantPos(level));
+		level.plant(new Mageroyal.Seed(), plantPos(level));
 		level.plant(new WandOfRegrowth.Seedpod.Seed(), plantPos( level ));
 		level.plant(new WandOfRegrowth.Dewcatcher.Seed(), plantPos( level ));
 		

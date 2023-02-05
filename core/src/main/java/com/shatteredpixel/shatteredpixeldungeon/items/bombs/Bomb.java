@@ -179,11 +179,11 @@ public class Bomb extends Item {
 					continue;
 				}
 
-				int dmg = Random.NormalIntRange(5 + Dungeon.scalingDepth(), 10 + Dungeon.scalingDepth()*2);
+				int dmg = Random.NormalIntRange(5 + Dungeon.scalingDepth(), 20 + Dungeon.scalingDepth()*4);
 
 				//those not at the center of the blast take less damage
 				if (ch.pos != cell){
-					dmg = Math.round(dmg*0.67f);
+					dmg = Math.round(dmg*0.75f);
 				}
 
 				dmg -= ch.drRoll();
@@ -219,9 +219,29 @@ public class Bomb extends Item {
 	
 	@Override
 	public Item random() {
-		switch(Random.Int( 4 )){
+		switch(Random.Int( 11 )){
 			case 0:
 				return new DoubleBomb();
+			case 1:
+				return new ArcaneBomb();
+			case 2:
+				return new Firebomb();
+			case 3:
+				return new Flashbang();
+			case 4:
+				return new FrostBomb();
+			case 5:
+				return new HolyBomb();
+			case 6:
+				return new Noisemaker();
+			case 7:
+				return new RegrowthBomb();
+			case 8:
+				return new ShockBomb();
+			case 9:
+				return new ShrapnelBomb();
+			case 10:
+				return new WoollyBomb();
 			default:
 				return this;
 		}

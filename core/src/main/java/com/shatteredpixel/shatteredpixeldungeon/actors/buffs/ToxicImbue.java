@@ -22,6 +22,9 @@
 package com.shatteredpixel.shatteredpixeldungeon.actors.buffs;
 
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ConfusionGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ParalyticGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -29,14 +32,14 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 
-public class ToxicImbue extends Buff {
+public class ToxicImbue extends FlavourBuff {
 	
 	{
 		type = buffType.POSITIVE;
 		announced = true;
 	}
 
-	public static final float DURATION	= 50f;
+	public static final float DURATION	= 200f;
 
 	protected float left;
 
@@ -100,5 +103,10 @@ public class ToxicImbue extends Buff {
 	{
 		immunities.add( ToxicGas.class );
 		immunities.add( Poison.class );
+		immunities.add( CorrosiveGas.class );
+		immunities.add( Corrosion.class );
+		immunities.add( ConfusionGas.class );
+		immunities.add( ParalyticGas.class );
+
 	}
 }

@@ -50,7 +50,7 @@ public class RunestoneRoom extends SpecialRoom {
 		Painter.drawInside( level, this, entrance(), 2, Terrain.EMPTY_SP);
 		Painter.fill( level, this, 2, Terrain.EMPTY );
 		
-		int n = Random.NormalIntRange(2, 3);
+		int n = Random.NormalIntRange(2, 15);
 		int dropPos;
 		for (int i = 0; i < n; i++) {
 			do {
@@ -67,7 +67,7 @@ public class RunestoneRoom extends SpecialRoom {
 		
 		Item prize = level.findPrizeItem( Runestone.class );
 		if (prize == null)
-			prize = Generator.random( Generator.Category.STONE );
+			prize = Generator.random(Random.oneOf( Generator.Category.STONE, Generator.Category.SCROLL, Generator.Category.FOOD, Generator.Category.RING ));
 		
 		return prize;
 	}

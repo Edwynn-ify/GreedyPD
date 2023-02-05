@@ -22,7 +22,17 @@
 package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret;
 
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ArcaneBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Firebomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Flashbang;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.FrostBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.HolyBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Noisemaker;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.RegrowthBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ShockBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ShrapnelBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.WoollyBomb;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -36,7 +46,7 @@ public class SecretArtilleryRoom extends SecretRoom {
 		
 		Painter.set(level, center(), Terrain.STATUE_SP);
 		
-		for (int i = 0; i < 3; i++){
+		for (int i = 0; i < 10; i++){
 			int itemPos;
 			do{
 				itemPos = level.pointToCell(random());
@@ -45,8 +55,31 @@ public class SecretArtilleryRoom extends SecretRoom {
 			
 			if( i == 0 ){
 				level.drop(new Bomb.DoubleBomb(), itemPos);
+				level.drop(new ArcaneBomb(), itemPos);
+				level.drop(new ArcaneBomb(), itemPos);
+				level.drop(new Firebomb(), itemPos);
+				level.drop(new Flashbang(), itemPos);
+				level.drop(new FrostBomb(), itemPos);
+				level.drop(new HolyBomb(), itemPos);
+				level.drop(new Noisemaker(), itemPos);
+				level.drop(new RegrowthBomb(), itemPos);
+				level.drop(new ShockBomb(), itemPos);
+				level.drop(new ShrapnelBomb(), itemPos);
+				level.drop(new WoollyBomb(), itemPos);
+
 			} else {
 				level.drop(Generator.randomMissile(), itemPos);
+				level.drop(new ArcaneBomb(), itemPos);
+				level.drop(new ArcaneBomb(), itemPos);
+				level.drop(new Firebomb(), itemPos);
+				level.drop(new Flashbang(), itemPos);
+				level.drop(new FrostBomb(), itemPos);
+				level.drop(new HolyBomb(), itemPos);
+				level.drop(new Noisemaker(), itemPos);
+				level.drop(new RegrowthBomb(), itemPos);
+				level.drop(new ShockBomb(), itemPos);
+				level.drop(new ShrapnelBomb(), itemPos);
+				level.drop(new WoollyBomb(), itemPos);
 			}
 		}
 		

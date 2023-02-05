@@ -145,7 +145,7 @@ public class ElementalBlast extends ArmorAbility {
 			return;
 		}
 
-		int aoeSize = 4 + hero.pointsInTalent(Talent.BLAST_RADIUS);
+		int aoeSize = 8 + hero.pointsInTalent(Talent.BLAST_RADIUS);
 
 		int projectileProps = Ballistica.STOP_SOLID | Ballistica.STOP_TARGET;
 
@@ -175,7 +175,7 @@ public class ElementalBlast extends ArmorAbility {
 			);
 		}
 
-		final float effectMulti = 1f + 0.25f*hero.pointsInTalent(Talent.ELEMENTAL_POWER);
+		final float effectMulti = 1f + 0.5f*hero.pointsInTalent(Talent.ELEMENTAL_POWER);
 
 		//cast a ray 2/3 the way, and do effects
 		Class<? extends Wand> finalWandCls = wandCls;
@@ -393,9 +393,9 @@ public class ElementalBlast extends ArmorAbility {
 
 						}
 
-						charsHit = Math.min(4 + hero.pointsInTalent(Talent.REACTIVE_BARRIER), charsHit);
+						charsHit = Math.min(8 + hero.pointsInTalent(Talent.REACTIVE_BARRIER), charsHit);
 						if (charsHit > 0 && hero.hasTalent(Talent.REACTIVE_BARRIER)){
-							int shielding = Math.round(charsHit*2.5f*hero.pointsInTalent(Talent.REACTIVE_BARRIER));
+							int shielding = Math.round(charsHit*5f*hero.pointsInTalent(Talent.REACTIVE_BARRIER));
 							Buff.affect(hero, Barrier.class).setShield(shielding);
 						}
 

@@ -42,7 +42,7 @@ public class Dazzling extends Weapon.Enchantment {
 	@Override
 	public int proc(Weapon weapon, Char attacker, Char defender, int damage ) {
 
-		float procChance = 1/10f * procChanceMultiplier(attacker);
+		float procChance = 2/5f * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance) {
 			for (Char ch : Actor.chars()){
 				if (ch.fieldOfView != null && ch.fieldOfView[defender.pos]){

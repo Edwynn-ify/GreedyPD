@@ -68,7 +68,7 @@ public class DistortionTrap extends Trap{
 	@Override
 	public void activate() {
 
-		int nMobs = 3;
+		int nMobs = 9;
 		if (Random.Int( 2 ) == 0) {
 			nMobs++;
 			if (Random.Int( 2 ) == 0) {

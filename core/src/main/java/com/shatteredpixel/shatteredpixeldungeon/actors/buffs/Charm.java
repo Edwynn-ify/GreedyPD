@@ -32,7 +32,7 @@ public class Charm extends FlavourBuff {
 	public int object = 0;
 	public boolean ignoreHeroAllies = false;
 
-	public static final float DURATION = 10f;
+	public static final float DURATION = 20f;
 
 	{
 		type = buffType.NEGATIVE;

@@ -36,13 +36,13 @@ public class Friendly extends Weapon.Enchantment {
 	@Override
 	public int proc(Weapon weapon, Char attacker, Char defender, int damage ) {
 
-		float procChance = 1/10f * procChanceMultiplier(attacker);
+		float procChance = 2/5f * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance) {
 			
 			Buff.affect( attacker, Charm.class, Charm.DURATION ).object = defender.id();
 			attacker.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 5 );
 			
-			Charm c = Buff.affect( defender, Charm.class, Charm.DURATION/2 );
+			Charm c = Buff.affect( defender, Charm.class, Charm.DURATION );
 			c.ignoreNextHit = true;
 			c.object = attacker.id();
 			defender.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 5 );

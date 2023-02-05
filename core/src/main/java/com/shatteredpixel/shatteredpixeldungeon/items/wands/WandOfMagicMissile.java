@@ -49,7 +49,7 @@ public class WandOfMagicMissile extends DamageWand {
 	}
 
 	public int max(int lvl){
-		return 8+2*lvl;
+		return 16+4*lvl;
 	}
 	
 	@Override
@@ -82,7 +82,7 @@ public class WandOfMagicMissile extends DamageWand {
 		SpellSprite.show(attacker, SpellSprite.CHARGE);
 		for (Wand.Charger c : attacker.buffs(Wand.Charger.class)){
 			if (c.wand() != this){
-				c.gainCharge(0.5f * procChanceMultiplier(attacker));
+				c.gainCharge(1f * procChanceMultiplier(attacker));
 			}
 		}
 

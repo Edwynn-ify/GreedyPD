@@ -47,7 +47,7 @@ public class Earthroot extends Plant {
 
 		if (ch != null){
 			if (ch instanceof Hero && ((Hero) ch).subClass == HeroSubClass.WARDEN) {
-				Buff.affect(ch, Barkskin.class).set(Dungeon.hero.lvl + 5, 5);
+				Buff.affect(ch, Barkskin.class).set(Dungeon.hero.lvl + 10, 20);
 			} else {
 				Buff.affect(ch, Armor.class).level(ch.HT);
 			}

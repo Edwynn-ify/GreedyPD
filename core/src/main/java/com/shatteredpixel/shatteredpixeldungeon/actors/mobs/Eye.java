@@ -68,7 +68,7 @@ public class Eye extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(20, 30);
+		return Random.NormalIntRange(20, 60);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class Eye extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 10);
+		return Random.NormalIntRange(0, 20);
 	}
 	
 	private Ballistica beam;
@@ -159,7 +159,7 @@ public class Eye extends Mob {
 			return;
 
 		beamCharged = false;
-		beamCooldown = Random.IntRange(4, 6);
+		beamCooldown = Random.IntRange(2, 4);
 
 		boolean terrainAffected = false;
 
@@ -180,7 +180,7 @@ public class Eye extends Mob {
 			}
 
 			if (hit( this, ch, true )) {
-				int dmg = Random.NormalIntRange( 30, 50 );
+				int dmg = Random.NormalIntRange( 30, 100 );
 				dmg = Math.round(dmg * AscensionChallenge.statModifier(this));
 				ch.damage( dmg, new DeathGaze() );
 

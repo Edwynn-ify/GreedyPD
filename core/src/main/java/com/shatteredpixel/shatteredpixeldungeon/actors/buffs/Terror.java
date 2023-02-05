@@ -31,7 +31,7 @@ public class Terror extends FlavourBuff {
 
 	private static final String OBJECT    = "object";
 
-	public static final float DURATION = 20f;
+	public static final float DURATION = 40f;
 
 	{
 		type = buffType.NEGATIVE;

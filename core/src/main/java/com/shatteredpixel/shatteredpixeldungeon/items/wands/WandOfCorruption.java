@@ -85,14 +85,15 @@ public class WandOfCorruption extends Wand {
 	// This is because the wand of corruption considers them to be a certain level of harmful
 	// for the purposes of reducing resistance, but does not actually apply them itself
 	
-	private static final float MINOR_DEBUFF_WEAKEN = 1/4f;
+	private static final float MINOR_DEBUFF_WEAKEN = 1/2f;
 	private static final HashMap<Class<? extends Buff>, Float> MINOR_DEBUFFS = new HashMap<>();
 	static{
-		MINOR_DEBUFFS.put(Weakness.class,       2f);
-		MINOR_DEBUFFS.put(Vulnerable.class,     2f);
-		MINOR_DEBUFFS.put(Cripple.class,        1f);
-		MINOR_DEBUFFS.put(Blindness.class,      1f);
-		MINOR_DEBUFFS.put(Terror.class,         1f);
+		MINOR_DEBUFFS.put(Weakness.class,       3f);
+		MINOR_DEBUFFS.put(Vulnerable.class,     3f);
+		MINOR_DEBUFFS.put(Cripple.class,        3f);
+		MINOR_DEBUFFS.put(Blindness.class,      3f);
+		MINOR_DEBUFFS.put(Terror.class,         3f);
+
 		
 		MINOR_DEBUFFS.put(Chill.class,          0f);
 		MINOR_DEBUFFS.put(Ooze.class,           0f);
@@ -108,16 +109,16 @@ public class WandOfCorruption extends Wand {
 	private static final HashMap<Class<? extends Buff>, Float> MAJOR_DEBUFFS = new HashMap<>();
 	static{
 		MAJOR_DEBUFFS.put(Amok.class,           3f);
-		MAJOR_DEBUFFS.put(Slow.class,           2f);
-		MAJOR_DEBUFFS.put(Hex.class,            2f);
-		MAJOR_DEBUFFS.put(Paralysis.class,      1f);
+		MAJOR_DEBUFFS.put(Slow.class,           3f);
+		MAJOR_DEBUFFS.put(Hex.class,            3f);
+		MAJOR_DEBUFFS.put(Paralysis.class,      3f);
 
 		MAJOR_DEBUFFS.put(Dread.class,          0f);
 		MAJOR_DEBUFFS.put(Charm.class,          0f);
 		MAJOR_DEBUFFS.put(MagicalSleep.class,   0f);
-		MAJOR_DEBUFFS.put(SoulMark.class,       0f);
+		MAJOR_DEBUFFS.put(SoulMark.class,       3f);
 		MAJOR_DEBUFFS.put(Corrosion.class,      0f);
-		MAJOR_DEBUFFS.put(Frost.class,          0f);
+		MAJOR_DEBUFFS.put(Frost.class,          3f);
 		MAJOR_DEBUFFS.put(Doom.class,           0f);
 	}
 	
@@ -137,7 +138,7 @@ public class WandOfCorruption extends Wand {
 				Statistics.qualifiedForBossChallengeBadge = false;
 			}
 
-			float corruptingPower = 3 + buffedLvl()/2f;
+			float corruptingPower = 6 + buffedLvl()*2f;
 			
 			//base enemy resistance is usually based on their exp, but in special cases it is based on other criteria
 			float enemyResist;
@@ -147,7 +148,7 @@ public class WandOfCorruption extends Wand {
 				enemyResist = 1 + Dungeon.depth/2f;
 			} else if (ch instanceof Wraith) {
 				//divide by 5 as wraiths are always at full HP and are therefore ~5x harder to corrupt
-				enemyResist = (1f + Dungeon.scalingDepth()/3f) / 5f;
+				enemyResist = (1f + Dungeon.scalingDepth()/3f) / 2.5f;
 			} else if (ch instanceof Swarm){
 				//child swarms don't give exp, so we force this here.
 				enemyResist = 1 + AscensionChallenge.AscensionExp(enemy);
@@ -157,7 +158,7 @@ public class WandOfCorruption extends Wand {
 			}
 			
 			//100% health: 5x resist   75%: 3.25x resist   50%: 2x resist   25%: 1.25x resist
-			enemyResist *= 1 + 4*Math.pow(enemy.HP/(float)enemy.HT, 2);
+			enemyResist *= 1 + 2*Math.pow(enemy.HP/(float)enemy.HT, 2);
 			
 			//debuffs placed on the enemy reduce their resistance
 			for (Buff buff : enemy.buffs()){
@@ -240,12 +241,12 @@ public class WandOfCorruption extends Wand {
 		// lvl 0 - 25%
 		// lvl 1 - 40%
 		// lvl 2 - 50%
-		float procChance = (level+1f)/(level+4f) * procChanceMultiplier(attacker);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance) {
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 
-			Buff.prolong( defender, Amok.class, Math.round((4+level*2) * powerMulti));
+			Buff.prolong( defender, Amok.class, Math.round((8+level*4) * powerMulti));
 		}
 	}
 

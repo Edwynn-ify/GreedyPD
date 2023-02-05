@@ -47,7 +47,7 @@ public class Sungrass extends Plant {
 		
 		if (ch != null){
 			if (ch instanceof Hero && ((Hero) ch).subClass == HeroSubClass.WARDEN) {
-				Buff.affect(ch, Healing.class).setHeal(ch.HT, 0, 1);
+				Buff.affect(ch, Healing.class).setHeal(ch.HT, 0, 2);
 			} else {
 				Buff.affect(ch, Health.class).boost(ch.HT);
 			}
@@ -88,7 +88,7 @@ public class Sungrass extends Plant {
 			}
 			
 			//for the hero, full heal takes ~50/93/111/120 turns at levels 1/10/20/30
-			partialHeal += (40 + target.HT)/150f;
+			partialHeal += (80 + target.HT)/50f;
 			
 			if (partialHeal > 1){
 				target.HP += (int)partialHeal;

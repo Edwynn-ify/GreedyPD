@@ -22,11 +22,23 @@
 package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Foliage;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfRegrowth;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.plants.BlandfruitBush;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Blindweed;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Earthroot;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Fadeleaf;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Firebloom;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Icecap;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Mageroyal;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Rotberry;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sorrowmoss;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Starflower;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Stormvine;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
 import com.watabou.utils.Random;
 
 public class GardenRoom extends SpecialRoom {
@@ -41,13 +53,44 @@ public class GardenRoom extends SpecialRoom {
 
 		int bushes = Random.Int(3);
 		if (bushes == 0) {
-			level.plant(new Sungrass.Seed(), plantPos( level ));
+			level.plant(new WandOfRegrowth.Dewcatcher.Seed(), plantPos( level ));
 		} else if (bushes == 1) {
 			level.plant(new BlandfruitBush.Seed(), plantPos( level ));
+		} else if (bushes == 2) {
+			level.plant(new Blindweed.Seed(), plantPos( level ));
+		} else if (bushes == 3) {
+			level.plant(new Earthroot.Seed(), plantPos( level ));
+		} else if (bushes == 4) {
+			level.plant(new Fadeleaf.Seed(), plantPos( level ));
+		} else if (bushes == 5) {
+			level.plant(new Firebloom.Seed(), plantPos( level ));
+		} else if (bushes == 6) {
+			level.plant(new Icecap.Seed(), plantPos( level ));
+		} else if (bushes == 7) {
+			level.plant(new Mageroyal.Seed(), plantPos( level ));
+		} else if (bushes == 8) {
+			level.plant(new Rotberry.Seed(), plantPos( level ));
+		} else if (bushes == 9) {
+			level.plant(new Sorrowmoss.Seed(), plantPos( level ));
+		} else if (bushes == 10) {
+			level.plant(new Starflower.Seed(), plantPos( level ));
+		} else if (bushes == 11) {
+			level.plant(new Stormvine.Seed(), plantPos( level ));
+		} else if (bushes == 12) {
+			level.plant(new Sungrass.Seed(), plantPos( level ));
+		} else if (bushes == 13) {
+			level.plant(new Swiftthistle.Seed(), plantPos( level ));
+		} else if (bushes == 14) {
+			level.plant(new WandOfRegrowth.Seedpod.Seed(), plantPos( level ));
+
+
 		} else if (Random.Int(5) == 0) {
 			level.plant(new Sungrass.Seed(), plantPos( level ));
 			level.plant(new BlandfruitBush.Seed(), plantPos( level ));
+			level.plant(new Mageroyal.Seed(), plantPos( level ));
 		}
+
+
 		
 		Foliage light = (Foliage)level.blobs.get( Foliage.class );
 		if (light == null) {

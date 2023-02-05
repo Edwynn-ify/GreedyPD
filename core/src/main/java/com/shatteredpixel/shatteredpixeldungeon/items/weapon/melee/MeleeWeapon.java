@@ -41,7 +41,7 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	public int max(int lvl) {
 		return  5*(tier+1) +    //base
-				lvl*(tier+1);   //level scaling
+				lvl*(tier+2);   //level scaling
 	}
 
 	public int STRReq(int lvl){

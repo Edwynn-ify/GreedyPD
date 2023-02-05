@@ -29,11 +29,32 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AscensionChallenge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Degrade;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.MagicalSight;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfArcaneArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDragonsBreath;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfEarthenArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMagicalSight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStamina;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStormClouds;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.WarlockSprite;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
@@ -53,16 +74,18 @@ public class Warlock extends Mob implements Callback {
 		
 		EXP = 11;
 		maxLvl = 21;
-		
-		loot = Generator.Category.POTION;
-		lootChance = 0.5f;
+
+		loot = Random.oneOf(Generator.Category.POTION, new PotionOfShielding(), new PotionOfMastery(), new PotionOfDragonsBreath(),
+		new PotionOfCleansing(), new PotionOfEarthenArmor(), new PotionOfStormClouds(), new PotionOfStamina(), new PotionOfMagicalSight(),new PotionOfSnapFreeze(), new PotionOfDivineInspiration(),new PotionOfCorrosiveGas(),
+				new ElixirOfHoneyedHealing(), new ElixirOfAquaticRejuvenation(), new ElixirOfDragonsBlood(), new ElixirOfMight(), new ElixirOfToxicEssence(), new ElixirOfIcyTouch(), new ElixirOfArcaneArmor(), new AlchemicalCatalyst());
+		lootChance = 0.4f;
 
 		properties.add(Property.UNDEAD);
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 12, 18 );
+		return Random.NormalIntRange( 12, 36 );
 	}
 	
 	@Override
@@ -72,7 +95,7 @@ public class Warlock extends Mob implements Callback {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 8);
+		return Random.NormalIntRange(0, 16);
 	}
 	
 	@Override
@@ -140,9 +163,9 @@ public class Warlock extends Mob implements Callback {
 	public Item createLoot(){
 
 		// 1/6 chance for healing, scaling to 0 over 8 drops
-		if (Random.Int(3) == 0 && Random.Int(8) > Dungeon.LimitedDrops.WARLOCK_HP.count ){
+		if (Random.Int(3) == 0 && Random.Int(9999) > Dungeon.LimitedDrops.WARLOCK_HP.count ){
 			Dungeon.LimitedDrops.WARLOCK_HP.count++;
-			return new PotionOfHealing();
+			return Random.oneOf(new PotionOfHealing(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
 		} else {
 			Item i = Generator.randomUsingDefaults(Generator.Category.POTION);
 			int healingTried = 0;

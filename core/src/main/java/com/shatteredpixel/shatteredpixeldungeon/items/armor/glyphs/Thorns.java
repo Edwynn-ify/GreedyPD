@@ -40,12 +40,12 @@ public class Thorns extends Armor.Glyph {
 		// lvl 0 - 16.7%
 		// lvl 1 - 23.1%
 		// lvl 2 - 28.5%
-		float procChance = (level+2f)/(level+12f) * procChanceMultiplier(defender);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(defender);
 		if ( Random.Float() < procChance ) {
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 
-			Buff.affect( attacker, Bleeding.class).set( Math.round((4 + level)*powerMulti) );
+			Buff.affect( attacker, Bleeding.class).set( Math.round((8 + level)*powerMulti) );
 
 		}
 

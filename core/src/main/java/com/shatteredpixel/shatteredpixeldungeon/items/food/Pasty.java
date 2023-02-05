@@ -107,7 +107,7 @@ public class Pasty extends Food {
 				hero.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 				break;
 			case XMAS:
-				Buff.affect( hero, Recharging.class, 2f ); //half of a charge
+				Buff.affect( hero, Recharging.class, 4f ); //half of a charge (full charge?)
 				ScrollOfRecharging.charge( hero );
 				break;
 		}

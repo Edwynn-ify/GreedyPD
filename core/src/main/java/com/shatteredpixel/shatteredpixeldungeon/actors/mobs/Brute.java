@@ -56,8 +56,8 @@ public class Brute extends Mob {
 	@Override
 	public int damageRoll() {
 		return buff(BruteRage.class) != null ?
-			Random.NormalIntRange( 15, 40 ) :
-			Random.NormalIntRange( 5, 25 );
+			Random.NormalIntRange( 15, 80 ) :
+			Random.NormalIntRange( 5, 50 );
 	}
 	
 	@Override
@@ -67,7 +67,7 @@ public class Brute extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 8);
+		return Random.NormalIntRange(0, 16);
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class Brute extends Mob {
 	}
 	
 	protected void triggerEnrage(){
-		Buff.affect(this, BruteRage.class).setShield(HT/2 + 4);
+		Buff.affect(this, BruteRage.class).setShield(HT + 8);
 		if (Dungeon.level.heroFOV[pos]) {
 			SpellSprite.show( this, SpellSprite.BERSERK);
 		}
@@ -128,7 +128,7 @@ public class Brute extends Mob {
 				return true;
 			}
 			
-			absorbDamage( 4 );
+			absorbDamage( 8 );
 			
 			if (shielding() <= 0){
 				target.die(null);

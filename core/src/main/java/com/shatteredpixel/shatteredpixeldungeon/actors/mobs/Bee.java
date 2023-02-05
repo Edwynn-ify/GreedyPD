@@ -40,7 +40,7 @@ public class Bee extends Mob {
 	{
 		spriteClass = BeeSprite.class;
 		
-		viewDistance = 4;
+		viewDistance = 8;
 
 		EXP = 0;
 		
@@ -84,8 +84,8 @@ public class Bee extends Mob {
 	public void spawn( int level ) {
 		this.level = level;
 		
-		HT = (2 + level) * 4;
-		defenseSkill = 9 + level;
+		HT = (4 + level) * 8;
+		defenseSkill = 18 + level;
 	}
 
 	public void setPotInfo(int potPos, Char potHolder){
@@ -111,7 +111,7 @@ public class Bee extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( HT / 10, HT / 4 );
+		return Random.NormalIntRange( HT / 10, HT / 2 );
 	}
 	
 	@Override
@@ -148,7 +148,7 @@ public class Bee extends Mob {
 			
 			//try to find a new enemy in these circumstances
 			if (enemy == null || !enemy.isAlive() || !Actor.chars().contains(enemy) || state == WANDERING
-					|| Dungeon.level.distance(enemy.pos, potPos) > 3
+					|| Dungeon.level.distance(enemy.pos, potPos) > 6
 					|| (alignment == Alignment.ALLY && enemy.alignment == Alignment.ALLY)
 					|| (buff( Amok.class ) == null && enemy.isInvulnerable(getClass()))){
 				

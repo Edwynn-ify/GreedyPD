@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 public class Frost extends FlavourBuff {
 
-	public static final float DURATION	= 10f;
+	public static final float DURATION	= 20f;
 
 	{
 		type = buffType.NEGATIVE;

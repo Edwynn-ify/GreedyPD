@@ -22,7 +22,12 @@
 package com.shatteredpixel.shatteredpixeldungeon.items.armor.curses;
 
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blizzard;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ConfusionGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Inferno;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -36,10 +41,17 @@ public class Stench extends Armor.Glyph {
 	@Override
 	public int proc(Armor armor, Char attacker, Char defender, int damage) {
 
-		float procChance = 1/8f * procChanceMultiplier(defender);
+		float procChance = 2/5f * procChanceMultiplier(defender);
 		if ( Random.Float() < procChance ) {
 
-			GameScene.add( Blob.seed( defender.pos, 250, ToxicGas.class ) );
+			GameScene.add( Blob.seed( defender.pos, 1000, ToxicGas.class ) );
+			GameScene.add( Blob.seed( defender.pos, 1000, StenchGas.class ) );
+			GameScene.add( Blob.seed( defender.pos, 1000, CorrosiveGas.class ) );
+			GameScene.add( Blob.seed( defender.pos, 1000, ConfusionGas.class ) );
+			GameScene.add( Blob.seed( defender.pos, 1000, Inferno.class ) );
+			GameScene.add( Blob.seed( defender.pos, 1000, Blizzard.class ) );
+
+
 
 		}
 

@@ -44,12 +44,12 @@ public class ArmoredBrute extends Brute {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(6, 10);
+		return Random.NormalIntRange(6, 20);
 	}
 	
 	@Override
 	protected void triggerEnrage () {
-		Buff.affect(this, ArmoredRage.class).setShield(HT/2 + 1);
+		Buff.affect(this, ArmoredRage.class).setShield(HT + 2);
 		if (Dungeon.level.heroFOV[pos]) {
 			sprite.showStatus( CharSprite.NEGATIVE, Messages.get(this, "enraged") );
 		}
@@ -76,7 +76,7 @@ public class ArmoredBrute extends Brute {
 				return true;
 			}
 			
-			absorbDamage( 1 );
+			absorbDamage( 2 );
 			
 			if (shielding() <= 0){
 				target.die(null);

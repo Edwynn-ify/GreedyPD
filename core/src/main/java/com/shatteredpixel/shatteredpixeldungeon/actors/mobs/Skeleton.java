@@ -47,7 +47,7 @@ public class Skeleton extends Mob {
 		maxLvl = 10;
 
 		loot = Generator.Category.WEAPON;
-		lootChance = 0.1667f; //by default, see lootChance()
+		lootChance = 0.4f; //by default, see lootChance()
 
 		properties.add(Property.UNDEAD);
 		properties.add(Property.INORGANIC);
@@ -55,7 +55,7 @@ public class Skeleton extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 2, 10 );
+		return Random.NormalIntRange( 2, 20 );
 	}
 	
 	@Override
@@ -69,7 +69,7 @@ public class Skeleton extends Mob {
 		for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
 			Char ch = findChar( pos + PathFinder.NEIGHBOURS8[i] );
 			if (ch != null && ch.isAlive()) {
-				int damage = Math.round(Random.NormalIntRange(6, 12));
+				int damage = Math.round(Random.NormalIntRange(6, 24));
 				damage = Math.round( damage * AscensionChallenge.statModifier(this));
 				damage = Math.max( 0,  damage - (ch.drRoll() + ch.drRoll()) );
 				ch.damage( damage, this );
@@ -109,7 +109,7 @@ public class Skeleton extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 5);
+		return Random.NormalIntRange(0, 10);
 	}
 
 }

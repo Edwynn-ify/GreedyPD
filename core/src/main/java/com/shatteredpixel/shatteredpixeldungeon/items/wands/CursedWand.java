@@ -28,12 +28,18 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blizzard;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ConfusionGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Fire;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Inferno;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ParalyticGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Regrowth;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StormCloud;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Web;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Frost;
@@ -83,10 +89,10 @@ import java.util.ArrayList;
 //helper class to contain all the cursed wand zapping logic, so the main wand class doesn't get huge.
 public class CursedWand {
 
-	private static float COMMON_CHANCE = 0.6f;
-	private static float UNCOMMON_CHANCE = 0.3f;
-	private static float RARE_CHANCE = 0.09f;
-	private static float VERY_RARE_CHANCE = 0.01f;
+	private static float COMMON_CHANCE = 0.25f;
+	private static float UNCOMMON_CHANCE = 0.25f;
+	private static float RARE_CHANCE = 0.25f;
+	private static float VERY_RARE_CHANCE = 0.25f;
 
 	public static void cursedZap(final Item origin, final Char user, final Ballistica bolt, final Callback afterZap){
 
@@ -141,7 +147,7 @@ public class CursedWand {
 
 			//spawns some regrowth
 			case 1:
-				GameScene.add( Blob.seed(targetPos, 30, Regrowth.class));
+				GameScene.add( Blob.seed(targetPos, 300, Regrowth.class));
 				tryForWandProc(Actor.findChar(targetPos), origin);
 				return true;
 
@@ -168,15 +174,33 @@ public class CursedWand {
 			case 3:
 				Sample.INSTANCE.play( Assets.Sounds.GAS );
 				tryForWandProc(Actor.findChar(targetPos), origin);
-				switch (Random.Int(3)) {
+				switch (Random.Int(9)) {
 					case 0: default:
-						GameScene.add( Blob.seed( targetPos, 800, ConfusionGas.class ) );
+						GameScene.add( Blob.seed( targetPos, 3000, ConfusionGas.class ) );
 						return true;
 					case 1:
-						GameScene.add( Blob.seed( targetPos, 500, ToxicGas.class ) );
+						GameScene.add( Blob.seed( targetPos, 3000, ToxicGas.class ) );
 						return true;
 					case 2:
-						GameScene.add( Blob.seed( targetPos, 200, ParalyticGas.class ) );
+						GameScene.add( Blob.seed( targetPos, 3000, ParalyticGas.class ) );
+						return true;
+					case 3:
+						GameScene.add( Blob.seed( targetPos, 3000, Inferno.class ) );
+						return true;
+					case 4:
+						GameScene.add( Blob.seed( targetPos, 3000, CorrosiveGas.class ) );
+						return true;
+					case 5:
+						GameScene.add( Blob.seed( targetPos, 3000, StormCloud.class ) );
+						return true;
+					case 6:
+						GameScene.add( Blob.seed( targetPos, 3000, Blizzard.class ) );
+						return true;
+					case 7:
+						GameScene.add( Blob.seed( targetPos, 3000, StenchGas.class ) );
+						return true;
+					case 8:
+						GameScene.add( Blob.seed( targetPos, 3000, Web.class ) );
 						return true;
 				}
 		}
@@ -206,7 +230,7 @@ public class CursedWand {
 			case 1:
 				final Char target = Actor.findChar( targetPos );
 				if (target != null) {
-					int damage = Dungeon.scalingDepth() * 2;
+					int damage = 10 + Dungeon.scalingDepth() * 4;
 					Char toHeal, toDamage;
 
 					if (Random.Int(2) == 0){
@@ -333,7 +357,7 @@ public class CursedWand {
 			//great forest fire!
 			case 0: default:
 				for (int i = 0; i < Dungeon.level.length(); i++){
-					GameScene.add( Blob.seed(i, 15, Regrowth.class));
+					GameScene.add( Blob.seed(i, 3000, Regrowth.class));
 				}
 				do {
 					GameScene.add(Blob.seed(Dungeon.level.randomDestination(null), 10, Fire.class));

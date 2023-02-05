@@ -51,7 +51,7 @@ public class PotionOfLevitation extends Potion {
 			Sample.INSTANCE.play( Assets.Sounds.GAS );
 		}
 
-		GameScene.add( Blob.seed( cell, 1000, ConfusionGas.class ) );
+		GameScene.add( Blob.seed( cell, 3000, ConfusionGas.class ) );
 	}
 	
 	@Override

@@ -57,7 +57,7 @@ public abstract class TippedDart extends Dart {
 	{
 		tier = 2;
 
-		baseUses = 1f;
+		baseUses = 5f;
 	}
 	
 	private static final String AC_CLEAN = "CLEAN";
@@ -135,7 +135,7 @@ public abstract class TippedDart extends Dart {
 	public float durabilityPerUse() {
 		float use = super.durabilityPerUse();
 		
-		use /= (1 + Dungeon.hero.pointsInTalent(Talent.DURABLE_TIPS));
+		use /= (1 + Dungeon.hero.pointsInTalent(Talent.DURABLE_TIPS)*2);
 
 		//checks both destination and source position
 		float lotusPreserve = 0f;

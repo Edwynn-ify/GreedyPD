@@ -36,7 +36,7 @@ public class FetidRat extends Rat {
 	{
 		spriteClass = FetidRatSprite.class;
 
-		HP = HT = 20;
+		HP = HT = 30;
 		defenseSkill = 5;
 
 		EXP = 4;
@@ -54,7 +54,7 @@ public class FetidRat extends Rat {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 2);
+		return Random.NormalIntRange(0, 4);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class FetidRat extends Rat {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 
-		GameScene.add(Blob.seed(pos, 20, StenchGas.class));
+		GameScene.add(Blob.seed(pos, 250, StenchGas.class));
 
 		return super.defenseProc(enemy, damage);
 	}

@@ -47,7 +47,7 @@ public class PoisonDartTrap extends Trap {
 	}
 	
 	protected int poisonAmount(){
-		return 8 + Math.round(2*Dungeon.depth / 3f);
+		return 8 + Math.round(2*Dungeon.depth * 3f);
 	}
 	
 	protected boolean canTarget( Char ch ){
@@ -117,7 +117,7 @@ public class PoisonDartTrap extends Trap {
 					}
 				});
 			} else {
-				finalTarget.damage(Random.NormalIntRange(4, 8) - finalTarget.drRoll(), trap);
+				finalTarget.damage(Random.NormalIntRange(4, 24) - finalTarget.drRoll(), trap);
 				Buff.affect( finalTarget, Poison.class ).set( poisonAmount() );
 			}
 		}

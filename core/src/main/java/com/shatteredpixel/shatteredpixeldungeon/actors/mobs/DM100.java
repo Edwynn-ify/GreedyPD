@@ -51,7 +51,7 @@ public class DM100 extends Mob implements Callback {
 		maxLvl = 13;
 		
 		loot = Generator.Category.SCROLL;
-		lootChance = 0.25f;
+		lootChance = 0.4f;
 		
 		properties.add(Property.ELECTRIC);
 		properties.add(Property.INORGANIC);
@@ -59,7 +59,7 @@ public class DM100 extends Mob implements Callback {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 2, 8 );
+		return Random.NormalIntRange( 2, 16);
 	}
 	
 	@Override
@@ -69,7 +69,7 @@ public class DM100 extends Mob implements Callback {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 4);
+		return Random.NormalIntRange(0, 8);
 	}
 	
 	@Override
@@ -93,7 +93,7 @@ public class DM100 extends Mob implements Callback {
 
 			Invisibility.dispel(this);
 			if (hit( this, enemy, true )) {
-				int dmg = Random.NormalIntRange(3, 10);
+				int dmg = Random.NormalIntRange(3, 20);
 				dmg = Math.round(dmg * AscensionChallenge.statModifier(this));
 				enemy.damage( dmg, new LightningBolt() );
 

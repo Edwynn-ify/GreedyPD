@@ -51,12 +51,12 @@ public abstract class Shaman extends Mob {
 		maxLvl = 16;
 		
 		loot = Generator.Category.WAND;
-		lootChance = 0.03f; //initially, see lootChance()
+		lootChance = 0.4f; //initially, see lootChance()
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 5, 10 );
+		return Random.NormalIntRange( 5, 20 );
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public abstract class Shaman extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 6);
+		return Random.NormalIntRange(0, 12);
 	}
 	
 	@Override
@@ -119,7 +119,7 @@ public abstract class Shaman extends Mob {
 				if (enemy == Dungeon.hero) Sample.INSTANCE.play( Assets.Sounds.DEBUFF );
 			}
 			
-			int dmg = Random.NormalIntRange( 6, 15 );
+			int dmg = Random.NormalIntRange( 6, 30 );
 			dmg = Math.round(dmg * AscensionChallenge.statModifier(this));
 			enemy.damage( dmg, new EarthenBolt() );
 			

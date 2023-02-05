@@ -105,7 +105,7 @@ public class WarpBeacon extends ArmorAbility {
 						float chargeNeeded = chargeUse(hero);
 
 						if (tracker.depth != Dungeon.depth){
-							chargeNeeded *= 1.833f - 0.333f*Dungeon.hero.pointsInTalent(Talent.LONGRANGE_WARP);
+							chargeNeeded *= 0.9165f - 0.1665f*Dungeon.hero.pointsInTalent(Talent.LONGRANGE_WARP);
 						}
 
 						if (armor.charge < chargeNeeded){
@@ -122,10 +122,10 @@ public class WarpBeacon extends ArmorAbility {
 							if (existing != null && existing != hero){
 								if (hero.hasTalent(Talent.TELEFRAG)){
 									int heroHP = hero.HP + hero.shielding();
-									int heroDmg = 5 * hero.pointsInTalent(Talent.TELEFRAG);
+									int heroDmg = 10 * hero.pointsInTalent(Talent.TELEFRAG);
 									hero.damage(Math.min(heroDmg, heroHP-1), WarpBeacon.this);
 
-									int damage = Random.NormalIntRange(10*hero.pointsInTalent(Talent.TELEFRAG), 15*hero.pointsInTalent(Talent.TELEFRAG));
+									int damage = Random.NormalIntRange(10*hero.pointsInTalent(Talent.TELEFRAG), 30*hero.pointsInTalent(Talent.TELEFRAG));
 									existing.sprite.flash();
 									existing.sprite.bloodBurstA(existing.sprite.center(), damage);
 									existing.damage(damage, WarpBeacon.this);
@@ -201,7 +201,7 @@ public class WarpBeacon extends ArmorAbility {
 				return;
 			}
 
-			if (Dungeon.level.distance(hero.pos, target) > 4*hero.pointsInTalent(Talent.REMOTE_BEACON)){
+			if (Dungeon.level.distance(hero.pos, target) > 8*hero.pointsInTalent(Talent.REMOTE_BEACON)){
 				GLog.w( Messages.get(WarpBeacon.class, "too_far") );
 				return;
 			}

@@ -61,7 +61,7 @@ public class RingOfEnergy extends Ring {
 		float bonus = (float)Math.pow(1.15, getBuffedBonus(target, Energy.class));
 
 		if (target instanceof Hero && ((Hero) target).heroClass != HeroClass.ROGUE && ((Hero) target).hasTalent(Talent.LIGHT_CLOAK)){
-			bonus *= 1f + (0.2f * ((Hero) target).pointsInTalent(Talent.LIGHT_CLOAK)/3f);
+			bonus *= 1f + (0.4f * ((Hero) target).pointsInTalent(Talent.LIGHT_CLOAK)/1.5f);
 		}
 
 		return bonus;

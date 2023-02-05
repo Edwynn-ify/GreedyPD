@@ -87,7 +87,7 @@ public class PrismaticGuard extends Buff {
 		
 		LockedFloor lock = target.buff(LockedFloor.class);
 		if (HP < maxHP() && (lock == null || lock.regenOn())){
-			HP += 0.1f;
+			HP += 0.3f;
 		}
 		
 		return true;
@@ -102,7 +102,7 @@ public class PrismaticGuard extends Buff {
 	}
 	
 	public static int maxHP( Hero hero ){
-		return 10 + (int)Math.floor(hero.lvl * 2.5f); //half of hero's HP
+		return 20 + (int)Math.floor(hero.lvl * 5f); //half of hero's HP
 	}
 	
 	@Override

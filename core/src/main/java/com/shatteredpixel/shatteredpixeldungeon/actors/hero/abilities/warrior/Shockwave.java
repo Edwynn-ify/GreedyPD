@@ -29,6 +29,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Combo;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Cripple;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Paralysis;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
@@ -36,6 +38,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ArmorAbili
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClassArmor;
+import com.shatteredpixel.shatteredpixeldungeon.levels.traps.WeakeningTrap;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.ConeAOE;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -78,12 +81,12 @@ public class Shockwave extends ArmorAbility {
 
 		Ballistica aim = new Ballistica(hero.pos, target, Ballistica.WONT_STOP);
 
-		int maxDist = 5 + hero.pointsInTalent(Talent.EXPANDING_WAVE);
+		int maxDist = 10 + hero.pointsInTalent(Talent.EXPANDING_WAVE);
 		int dist = Math.min(aim.dist, maxDist);
 
 		ConeAOE cone = new ConeAOE(aim,
 				dist,
-				60 + 15*hero.pointsInTalent(Talent.EXPANDING_WAVE),
+				120 + 30*hero.pointsInTalent(Talent.EXPANDING_WAVE),
 				Ballistica.STOP_SOLID | Ballistica.STOP_TARGET);
 
 		//cast to cells at the tip, rather than all cells, better performance.
@@ -112,9 +115,9 @@ public class Shockwave extends ArmorAbility {
 
 							Char ch = Actor.findChar(cell);
 							if (ch != null && ch.alignment != hero.alignment){
-								int scalingStr = hero.STR()-10;
-								int damage = Random.NormalIntRange(5 + scalingStr, 10 + 2*scalingStr);
-								damage = Math.round(damage * (1f + 0.2f*hero.pointsInTalent(Talent.SHOCK_FORCE)));
+								int scalingStr = hero.STR()-5;
+								int damage = Random.NormalIntRange(5 + scalingStr, 20 + 4*scalingStr);
+								damage = Math.round(damage * (1f + 0.4f*hero.pointsInTalent(Talent.SHOCK_FORCE)));
 								damage -= ch.drRoll();
 
 								if (hero.pointsInTalent(Talent.STRIKING_WAVE) == 4){
@@ -133,9 +136,11 @@ public class Shockwave extends ArmorAbility {
 								}
 								if (ch.isAlive()){
 									if (Random.Int(4) < hero.pointsInTalent(Talent.SHOCK_FORCE)){
-										Buff.affect(ch, Paralysis.class, 5f);
+										Buff.affect(ch, Paralysis.class, 10f);
+										Buff.affect(ch, Vulnerable.class, 20f);
+										Buff.affect(ch, Weakness.class, 20f);
 									} else {
-										Buff.affect(ch, Cripple.class, 5f);
+										Buff.affect(ch, Cripple.class, 20f);
 									}
 								}
 

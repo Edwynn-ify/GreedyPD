@@ -49,7 +49,7 @@ public class Golem extends Mob {
 		maxLvl = 22;
 
 		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
-		lootChance = 0.125f; //initially, see lootChance()
+		lootChance = 0.4f; //initially, see lootChance()
 
 		properties.add(Property.INORGANIC);
 		properties.add(Property.LARGE);
@@ -60,7 +60,7 @@ public class Golem extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 25, 30 );
+		return Random.NormalIntRange( 25, 60 );
 	}
 	
 	@Override
@@ -70,7 +70,7 @@ public class Golem extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 12);
+		return Random.NormalIntRange(0, 24);
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class Golem extends Mob {
 			((GolemSprite)sprite).teleParticles(false);
 			if (Actor.findChar(target) == null && Dungeon.level.openSpace[target]) {
 				ScrollOfTeleportation.appear(this, target);
-				selfTeleCooldown = 30;
+				selfTeleCooldown = 15;
 			} else {
 				target = Dungeon.level.randomDestination(this);
 			}
@@ -169,7 +169,7 @@ public class Golem extends Mob {
 			}
 		}
 
-		enemyTeleCooldown = 20;
+		enemyTeleCooldown = 10;
 	}
 
 	private boolean canTele(int target){

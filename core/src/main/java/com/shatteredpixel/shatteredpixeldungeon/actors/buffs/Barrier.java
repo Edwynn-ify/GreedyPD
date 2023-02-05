@@ -51,10 +51,10 @@ public class Barrier extends ShieldBuff {
 	@Override
 	public boolean act() {
 
-		partialLostShield += Math.min(1f, shielding()/20f);
+		partialLostShield += Math.min(1f, shielding()/10f);
 
 		if (partialLostShield >= 1f) {
-			absorbDamage(1);
+			absorbDamage(2);
 			partialLostShield = 0;
 		}
 		

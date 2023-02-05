@@ -32,7 +32,7 @@ import java.util.HashSet;
 
 public class MagicalSight extends FlavourBuff {
 	
-	public static final float DURATION = 50f;
+	public static final float DURATION = 100f;
 	
 	public static final int DISTANCE = 12;
 	

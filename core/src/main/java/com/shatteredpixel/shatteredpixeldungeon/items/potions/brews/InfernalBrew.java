@@ -47,12 +47,12 @@ public class InfernalBrew extends Brew {
 			Sample.INSTANCE.play( Assets.Sounds.GAS );
 		}
 
-		int centerVolume = 120;
+		int centerVolume = 240;
 		for (int i : PathFinder.NEIGHBOURS8){
 			if (!Dungeon.level.solid[cell+i]){
-				GameScene.add( Blob.seed( cell+i, 120, Inferno.class ) );
+				GameScene.add( Blob.seed( cell+i, 3000, Inferno.class ) );
 			} else {
-				centerVolume += 120;
+				centerVolume += 240;
 			}
 		}
 		

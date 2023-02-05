@@ -76,7 +76,7 @@ public class Viscosity extends Glyph {
 
 			int level = Math.max( 0, this.level );
 
-			float percent = (level+1)/(float)(level+6);
+			float percent = (level+1)/(float)(level+12);
 			percent *= RingOfArcana.enchantPowerMultiplier(target);
 
 			int amount;

@@ -32,8 +32,14 @@ public class WornShortsword extends MeleeWeapon {
 		hitSoundPitch = 1.1f;
 
 		tier = 1;
-		
+
 		bones = false;
+	}
+	@Override
+	public int max(int lvl) {
+		return  6*(tier+1) +    //12 base
+				lvl*(tier+1);   //scaling unchanged
+
 	}
 
 }

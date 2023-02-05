@@ -85,7 +85,7 @@ public class Tengu extends Mob {
 	{
 		spriteClass = TenguSprite.class;
 		
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 250 : 200;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 500 : 250;
 		EXP = 20;
 		defenseSkill = 15;
 		

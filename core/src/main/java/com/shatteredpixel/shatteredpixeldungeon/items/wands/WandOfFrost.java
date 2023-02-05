@@ -52,7 +52,7 @@ public class WandOfFrost extends DamageWand {
 	}
 
 	public int max(int lvl){
-		return 8+5*lvl;
+		return 16+10*lvl;
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class WandOfFrost extends DamageWand {
 			if (ch.buff(Chill.class) != null){
 				//6.67% less damage per turn of chill remaining, to a max of 10 turns (50% dmg)
 				float chillturns = Math.min(10, ch.buff(Chill.class).cooldown());
-				damage = (int)Math.round(damage * Math.pow(0.9333f, chillturns));
+				damage = (int)Math.round(damage * Math.pow(0.967f, chillturns));
 			} else {
 				ch.sprite.burst( 0xFF99CCFF, buffedLvl() / 2 + 2 );
 			}
@@ -100,9 +100,9 @@ public class WandOfFrost extends DamageWand {
 
 			if (ch.isAlive()){
 				if (Dungeon.level.water[ch.pos])
-					Buff.affect(ch, Chill.class, 4+buffedLvl());
+					Buff.affect(ch, Chill.class, 8+buffedLvl());
 				else
-					Buff.affect(ch, Chill.class, 2+buffedLvl());
+					Buff.affect(ch, Chill.class, 4+buffedLvl());
 			}
 		} else {
 			Dungeon.level.pressCell(bolt.collisionPos);
@@ -126,12 +126,12 @@ public class WandOfFrost extends DamageWand {
 		if (chill != null) {
 
 			//1/9 at 2 turns of chill, scaling to 9/9 at 10 turns
-			float procChance = ((int)Math.floor(chill.cooldown()) - 1)/9f;
+			float procChance = ((int)Math.floor(chill.cooldown()) - 1)/4.5f;
 			procChance *= procChanceMultiplier(attacker);
 
 			if (Random.Float() < procChance) {
 
-				float powerMulti = Math.max(1f, procChance);
+				float powerMulti = Math.max(2f, procChance);
 
 				//need to delay this through an actor so that the freezing isn't broken by taking damage from the staff hit.
 				new FlavourBuff() {

@@ -44,7 +44,7 @@ public class PotionOfShielding extends ExoticPotion {
 			PotionOfHealing.pharmacophobiaProc(hero);
 		} else {
 			//~75% of a potion of healing
-			Buff.affect(hero, Barrier.class).setShield((int) (0.6f * hero.HT + 10));
+			Buff.affect(hero, Barrier.class).setShield((int) (1.2f * hero.HT + 20));
 		}
 		Talent.onHealingPotionUsed( hero );
 	}

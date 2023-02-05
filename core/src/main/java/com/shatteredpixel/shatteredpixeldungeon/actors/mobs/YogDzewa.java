@@ -75,7 +75,7 @@ public class YogDzewa extends Mob {
 	{
 		spriteClass = YogSprite.class;
 
-		HP = HT = 1000;
+		HP = HT = 3000;
 
 		EXP = 50;
 
@@ -189,7 +189,7 @@ public class YogDzewa extends Mob {
 
 		if (phase == 4 && findFist() == null){
 			yell(Messages.get(this, "hope"));
-			summonCooldown = -15; //summon a burst of minions!
+			summonCooldown = -9; //summon a burst of minions!
 			phase = 5;
 			BossHealthBar.bleed(true);
 		}
@@ -556,8 +556,6 @@ public class YogDzewa extends Mob {
 		immunities.add( Charm.class );
 		immunities.add( Sleep.class );
 		immunities.add( Vertigo.class );
-		immunities.add( Frost.class );
-		immunities.add( Paralysis.class );
 	}
 
 	private static final String PHASE = "phase";
@@ -619,7 +617,7 @@ public class YogDzewa extends Mob {
 		{
 			spriteClass = LarvaSprite.class;
 
-			HP = HT = 20;
+			HP = HT = 40;
 			defenseSkill = 12;
 			viewDistance = Light.DISTANCE;
 
@@ -636,12 +634,12 @@ public class YogDzewa extends Mob {
 
 		@Override
 		public int damageRoll() {
-			return Random.NormalIntRange( 15, 25 );
+			return Random.NormalIntRange( 15, 50 );
 		}
 
 		@Override
 		public int drRoll() {
-			return Random.NormalIntRange(0, 4);
+			return Random.NormalIntRange(0, 8);
 		}
 
 	}

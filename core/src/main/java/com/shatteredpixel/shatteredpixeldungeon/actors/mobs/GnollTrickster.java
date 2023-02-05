@@ -82,11 +82,11 @@ public class GnollTrickster extends Gnoll {
 			if (effect >=6 && enemy.buff(Burning.class) == null){
 
 				if (Dungeon.level.flamable[enemy.pos])
-					GameScene.add(Blob.seed(enemy.pos, 4, Fire.class));
+					GameScene.add(Blob.seed(enemy.pos, 8, Fire.class));
 				Buff.affect(enemy, Burning.class).reignite( enemy );
 
 			} else
-				Buff.affect( enemy, Poison.class).set((effect-2) );
+				Buff.affect( enemy, Poison.class).set((effect) );
 
 		}
 		return damage;
@@ -114,7 +114,7 @@ public class GnollTrickster extends Gnoll {
 	public Item createLoot() {
 		MissileWeapon drop = (MissileWeapon)super.createLoot();
 		//half quantity, rounded up
-		drop.quantity((drop.quantity()+1)/2);
+		drop.quantity((drop.quantity()+1));
 		return drop;
 	}
 	

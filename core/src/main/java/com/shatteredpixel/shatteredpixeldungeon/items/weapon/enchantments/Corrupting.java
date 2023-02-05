@@ -50,7 +50,7 @@ public class Corrupting extends Weapon.Enchantment {
 		// lvl 0 - 20%
 		// lvl 1 ~ 23%
 		// lvl 2 ~ 26%
-		float procChance = (level+5f)/(level+25f) * procChanceMultiplier(attacker);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(attacker);
 		if (damage >= defender.HP
 				&& Random.Float() < procChance
 				&& !defender.isImmune(Corruption.class)
@@ -65,10 +65,10 @@ public class Corrupting extends Weapon.Enchantment {
 
 			AllyBuff.affectAndLoot(enemy, hero, Corruption.class);
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 			if (powerMulti > 1.1f){
 				//1 turn of adrenaline for each 20% above 100% proc rate
-				Buff.affect(enemy, Adrenaline.class, Math.round(5*(powerMulti-1f)));
+				Buff.affect(enemy, Adrenaline.class, Math.round(10*(powerMulti+1f)));
 			}
 			
 			return 0;

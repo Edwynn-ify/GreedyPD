@@ -21,12 +21,18 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.food;
 
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Blindness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Cripple;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Hex;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Hunger;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Roots;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Slow;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vertigo;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -52,7 +58,7 @@ public class MysteryMeat extends Food {
 	}
 
 	public static void effect(Hero hero){
-		switch (Random.Int( 5 )) {
+		switch (Random.Int( 10 )) {
 			case 0:
 				GLog.w( Messages.get(MysteryMeat.class, "hot") );
 				Buff.affect( hero, Burning.class ).reignite( hero );
@@ -63,11 +69,35 @@ public class MysteryMeat extends Food {
 				break;
 			case 2:
 				GLog.w( Messages.get(MysteryMeat.class, "not_well") );
-				Buff.affect( hero, Poison.class ).set( hero.HT / 5 );
+				Buff.affect( hero, Poison.class ).set( hero.HT / 3 );
 				break;
 			case 3:
 				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
 				Buff.prolong( hero, Slow.class, Slow.DURATION );
+				break;
+			case 4:
+				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
+				Buff.prolong( hero, Hex.class, Hex.DURATION );
+				break;
+			case 5:
+				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
+				Buff.prolong( hero, Vulnerable.class, Vulnerable.DURATION );
+				break;
+			case 6:
+				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
+				Buff.prolong( hero, Vertigo.class, Vertigo.DURATION );
+				break;
+			case 7:
+				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
+				Buff.prolong( hero, Weakness.class, Weakness.DURATION );
+				break;
+			case 8:
+				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
+				Buff.prolong( hero, Cripple.class, Cripple.DURATION );
+				break;
+			case 9:
+				GLog.w( Messages.get(MysteryMeat.class, "stuffed") );
+				Buff.prolong( hero, Blindness.class, Blindness.DURATION );
 				break;
 		}
 	}

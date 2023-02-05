@@ -38,21 +38,21 @@ public class RoundShield extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  Math.round(2.5f*(tier+1)) +     //10 base, down from 20
-				lvl*(tier-1);                   //+2 per level, down from +4
+		return  Math.round(5f*(tier+1)) +     //10 base, down from 20
+				lvl*(tier+1);                   //+2 per level, down from +4
 	}
 
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return 4+2*buffedLvl();     //4 extra defence, plus 2 per level;
+		return 8+4*buffedLvl();     //4 extra defence, plus 2 per level;
 	}
 	
 	public String statsInfo(){
 		if (isIdentified()){
-			return Messages.get(this, "stats_desc", 4+2*buffedLvl());
+			return Messages.get(this, "stats_desc", 8+4*buffedLvl());
 		} else {
-			return Messages.get(this, "typical_stats_desc", 4);
+			return Messages.get(this, "typical_stats_desc", 8);
 		}
 	}
 }

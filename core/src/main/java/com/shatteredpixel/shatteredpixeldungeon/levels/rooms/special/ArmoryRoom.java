@@ -53,8 +53,8 @@ public class ArmoryRoom extends SpecialRoom {
 		if (statue != null) {
 			Painter.set( level, statue, Terrain.STATUE );
 		}
-		
-		int n = Random.IntRange( 2, 3 );
+		//apparently max cap is 5
+		int n = Random.IntRange( 2, 5 );
 		prizeCats = new float[]{1,1,1,1};
 		for (int i=0; i < n; i++) {
 			int pos;
@@ -80,7 +80,13 @@ public class ArmoryRoom extends SpecialRoom {
 				return Generator.randomWeapon();
 			case 2:
 				return Generator.randomArmor();
-			case 3: default:
+			case 3:
+				return Generator.random(Random.oneOf(Generator.Category.WAND));
+			case 4:
+				return Generator.random(Random.oneOf(Generator.Category.RING));
+			case 5:
+				return Generator.random(Random.oneOf(Generator.Category.ARTIFACT));
+				case 6: default:
 				return Generator.randomMissile();
 		}
 	}

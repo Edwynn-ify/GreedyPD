@@ -110,9 +110,9 @@ public class CrystalMimic extends Mimic {
 		state = FLEEING;
 		//haste for 2 turns if attacking
 		if (alignment == Alignment.NEUTRAL){
-			Buff.affect(this, Haste.class, 2f);
+			Buff.affect(this, Haste.class, 4f);
 		} else {
-			Buff.affect(this, Haste.class, 1f);
+			Buff.affect(this, Haste.class, 2f);
 		}
 		if (Actor.chars().contains(this) && Dungeon.level.heroFOV[pos]) {
 			enemy = Dungeon.hero;

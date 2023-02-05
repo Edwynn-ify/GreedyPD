@@ -82,7 +82,7 @@ abstract public class MissileWeapon extends Weapon {
 	@Override
 	public int min(int lvl) {
 		return  2 * tier +                      //base
-				(tier == 1 ? lvl : 2*lvl);      //level scaling
+				(tier == 1 ? lvl : 3*lvl);      //level scaling
 	}
 	
 	@Override
@@ -92,8 +92,8 @@ abstract public class MissileWeapon extends Weapon {
 	
 	@Override
 	public int max(int lvl) {
-		return  5 * tier +                      //base
-				(tier == 1 ? 2*lvl : tier*lvl); //level scaling
+		return  10 * tier +                      //base
+				(tier == 1 ? 3*lvl : tier*lvl); //level scaling
 	}
 	
 	public int STRReq(int lvl){
@@ -166,7 +166,7 @@ abstract public class MissileWeapon extends Weapon {
 
 		if (projecting
 				&& (Dungeon.level.passable[dst] || Dungeon.level.avoid[dst])
-				&& Dungeon.level.distance(user.pos, dst) <= Math.round(4 * RingOfArcana.enchantPowerMultiplier(user))){
+				&& Dungeon.level.distance(user.pos, dst) <= Math.round(8 * RingOfArcana.enchantPowerMultiplier(user))){
 			return dst;
 		} else {
 			return super.throwPos(user, dst);
@@ -177,7 +177,7 @@ abstract public class MissileWeapon extends Weapon {
 	public float accuracyFactor(Char owner, Char target) {
 		float accFactor = super.accuracyFactor(owner, target);
 		if (owner instanceof Hero && owner.buff(Momentum.class) != null && owner.buff(Momentum.class).freerunning()){
-			accFactor *= 1f + 0.2f*((Hero) owner).pointsInTalent(Talent.PROJECTILE_MOMENTUM);
+			accFactor *= 1f + 0.8f*((Hero) owner).pointsInTalent(Talent.PROJECTILE_MOMENTUM);
 		}
 
 		accFactor *= adjacentAccFactor(owner, target);
@@ -188,7 +188,7 @@ abstract public class MissileWeapon extends Weapon {
 	protected float adjacentAccFactor(Char owner, Char target){
 		if (Dungeon.level.adjacent( owner.pos, target.pos )) {
 			if (owner instanceof Hero){
-				return (0.5f + 0.2f*((Hero) owner).pointsInTalent(Talent.POINT_BLANK));
+				return (1f + 0.4f*((Hero) owner).pointsInTalent(Talent.POINT_BLANK));
 			} else {
 				return 0.5f;
 			}
@@ -214,10 +214,10 @@ abstract public class MissileWeapon extends Weapon {
 					&& curUser.heroClass != HeroClass.HUNTRESS
 					&& curUser.buff(Talent.SeerShotCooldown.class) == null){
 				if (Actor.findChar(cell) == null) {
-					RevealedArea a = Buff.affect(curUser, RevealedArea.class, 5 * curUser.pointsInTalent(Talent.SEER_SHOT));
+					RevealedArea a = Buff.affect(curUser, RevealedArea.class, 10 * curUser.pointsInTalent(Talent.SEER_SHOT));
 					a.depth = Dungeon.depth;
 					a.pos = cell;
-					Buff.affect(curUser, Talent.SeerShotCooldown.class, 20f);
+					Buff.affect(curUser, Talent.SeerShotCooldown.class, 10f);
 				}
 			}
 
@@ -310,7 +310,7 @@ abstract public class MissileWeapon extends Weapon {
 
 		//+50%/75% durability
 		if (Dungeon.hero.hasTalent(Talent.DURABLE_PROJECTILES)){
-			usages *= 1.25f + (0.25f*Dungeon.hero.pointsInTalent(Talent.DURABLE_PROJECTILES));
+			usages *= 1.5f + (0.5f*Dungeon.hero.pointsInTalent(Talent.DURABLE_PROJECTILES));
 		}
 		if (holster) {
 			usages *= MagicalHolster.HOLSTER_DURABILITY_FACTOR;
@@ -361,7 +361,7 @@ abstract public class MissileWeapon extends Weapon {
 				damage += Random.IntRange( 0, exStr );
 			}
 			if (owner.buff(Momentum.class) != null && owner.buff(Momentum.class).freerunning()) {
-				damage = Math.round(damage * (1f + 0.15f * ((Hero) owner).pointsInTalent(Talent.PROJECTILE_MOMENTUM)));
+				damage = Math.round(damage * (1f + 0.3f * ((Hero) owner).pointsInTalent(Talent.PROJECTILE_MOMENTUM)));
 			}
 		}
 		

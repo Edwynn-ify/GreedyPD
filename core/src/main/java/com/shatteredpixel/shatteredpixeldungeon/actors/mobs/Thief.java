@@ -33,6 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Honeypot;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ThiefSprite;
@@ -53,8 +54,8 @@ public class Thief extends Mob {
 		EXP = 5;
 		maxLvl = 11;
 
-		loot = Random.oneOf(Generator.Category.RING, Generator.Category.ARTIFACT);
-		lootChance = 0.03f; //initially, see lootChance()
+		loot = Random.oneOf(Generator.Category.RING, Generator.Category.ARTIFACT, Generator.Category.WAND);
+		lootChance = 0.4f; //initially, see lootChance()
 
 		WANDERING = new Wandering();
 		FLEEING = new Fleeing();
@@ -84,7 +85,7 @@ public class Thief extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 10 );
+		return Random.NormalIntRange( 1, 20 );
 	}
 
 	@Override
@@ -123,7 +124,7 @@ public class Thief extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 3);
+		return Random.NormalIntRange(0, 6);
 	}
 
 	@Override

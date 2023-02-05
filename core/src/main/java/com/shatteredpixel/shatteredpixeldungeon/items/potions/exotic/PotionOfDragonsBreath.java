@@ -30,6 +30,10 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Fire;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Cripple;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Hex;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Terror;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
@@ -129,10 +133,10 @@ public class PotionOfDragonsBreath extends ExoticPotion {
 
 						final Ballistica bolt = new Ballistica(curUser.pos, cell, Ballistica.WONT_STOP);
 
-						int maxDist = 6;
+						int maxDist = 12;
 						int dist = Math.min(bolt.dist, maxDist);
 
-						final ConeAOE cone = new ConeAOE(bolt, 6, 60, Ballistica.STOP_SOLID | Ballistica.STOP_TARGET | Ballistica.IGNORE_SOFT_SOLID);
+						final ConeAOE cone = new ConeAOE(bolt, 12, 120, Ballistica.STOP_SOLID | Ballistica.STOP_TARGET | Ballistica.IGNORE_SOFT_SOLID);
 
 						//cast to cells at the tip, rather than all cells, better performance.
 						for (Ballistica ray : cone.outerRays){
@@ -168,14 +172,18 @@ public class PotionOfDragonsBreath extends ExoticPotion {
 											if (Dungeon.level.adjacent(bolt.sourcePos, cell) && !Dungeon.level.flamable[cell]){
 												adjacentCells.add(cell);
 											} else {
-												GameScene.add( Blob.seed( cell, 5, Fire.class ) );
+												GameScene.add( Blob.seed( cell, 10, Fire.class ) );
 											}
 											
 											Char ch = Actor.findChar( cell );
 											if (ch != null) {
 												
 												Buff.affect( ch, Burning.class ).reignite( ch );
-												Buff.affect(ch, Cripple.class, 5f);
+												Buff.affect(ch, Cripple.class, 10f);
+												Buff.affect(ch, Vulnerable.class, 10f);
+												Buff.affect(ch, Weakness.class, 10f);
+												Buff.affect(ch, Hex.class, 10f);
+												Buff.affect(ch, Terror.class, 10f);
 											}
 										}
 
@@ -186,7 +194,7 @@ public class PotionOfDragonsBreath extends ExoticPotion {
 												if (Dungeon.level.trueDistance(cell+i, bolt.sourcePos) > Dungeon.level.trueDistance(cell, bolt.sourcePos)
 														&& Dungeon.level.flamable[cell+i]
 														&& Fire.volumeAt(cell+i, Fire.class) == 0){
-													GameScene.add( Blob.seed( cell+i, 5, Fire.class ) );
+													GameScene.add( Blob.seed( cell+i, 10, Fire.class ) );
 												}
 											}
 										}

@@ -40,8 +40,8 @@ public class Bolas extends MissileWeapon {
 	
 	@Override
 	public int max(int lvl) {
-		return  3 * tier +                      //9 base, down from 15
-				(tier == 1 ? 2*lvl : tier*lvl); //scaling unchanged
+		return  5 * tier +                      //9 base, down from 15
+				(tier == 1 ? 3*lvl : tier*lvl); //scaling unchanged
 	}
 	
 	@Override

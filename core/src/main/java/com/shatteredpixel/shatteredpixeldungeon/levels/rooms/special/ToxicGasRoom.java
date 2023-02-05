@@ -23,6 +23,7 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -56,6 +57,7 @@ public class ToxicGasRoom extends SpecialRoom {
 			if (level.map[cell] == Terrain.EMPTY) {
 				//as if gas has been spreading in the room for a while
 				Blob.seed(cell, 30, ToxicGas.class, level);
+				Blob.seed(cell, 30, StenchGas.class, level);
 			}
 		}
 
@@ -68,6 +70,7 @@ public class ToxicGasRoom extends SpecialRoom {
 			} while (level.map[cell] != Terrain.EMPTY);
 			level.setTrap(new ToxicVent().reveal(), cell);
 			Blob.seed(cell, 12, ToxicGasSeed.class, level);
+			Blob.seed(cell, 12, StenchGas.class, level);
 			Painter.set(level, cell, Terrain.INACTIVE_TRAP);
 		}
 

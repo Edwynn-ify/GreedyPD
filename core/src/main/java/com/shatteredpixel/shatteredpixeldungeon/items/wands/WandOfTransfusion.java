@@ -78,9 +78,9 @@ public class WandOfTransfusion extends Wand {
 			if (ch.alignment == Char.Alignment.ALLY || ch.buff(Charm.class) != null){
 				
 				// 5% of max hp
-				int selfDmg = Math.round(curUser.HT*0.05f);
+				int selfDmg = Math.round(curUser.HT*0.1f);
 				
-				int healing = selfDmg + 3*buffedLvl();
+				int healing = selfDmg + 6*buffedLvl();
 				int shielding = (ch.HP + healing) - ch.HT;
 				if (shielding > 0){
 					healing -= shielding;
@@ -104,18 +104,18 @@ public class WandOfTransfusion extends Wand {
 			} else {
 
 				//grant a self-shield, and...
-				Buff.affect(curUser, Barrier.class).setShield((5 + buffedLvl()));
+				Buff.affect(curUser, Barrier.class).setShield((10 + buffedLvl()));
 				
 				//charms living enemies
 				if (!ch.properties().contains(Char.Property.UNDEAD)) {
-					Charm charm = Buff.affect(ch, Charm.class, Charm.DURATION/2f);
+					Charm charm = Buff.affect(ch, Charm.class, Charm.DURATION);
 					charm.object = curUser.id();
 					charm.ignoreHeroAllies = true;
 					ch.sprite.centerEmitter().start( Speck.factory( Speck.HEART ), 0.2f, 3 );
 				
 				//harms the undead
 				} else {
-					ch.damage(Random.NormalIntRange(3 + buffedLvl(), 6+2*buffedLvl()), this);
+					ch.damage(Random.NormalIntRange(3 + buffedLvl(), 12+4*buffedLvl()), this);
 					ch.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10 + buffedLvl());
 					Sample.INSTANCE.play(Assets.Sounds.BURNING);
 				}
@@ -143,7 +143,7 @@ public class WandOfTransfusion extends Wand {
 		if (defender.buff(Charm.class) != null && defender.buff(Charm.class).object == attacker.id()){
 			//grants a free use of the staff and shields self
 			freeCharge = true;
-			Buff.affect(attacker, Barrier.class).setShield(Math.round((2*(5 + buffedLvl()))*procChanceMultiplier(attacker)));
+			Buff.affect(attacker, Barrier.class).setShield(Math.round((4*(10 + buffedLvl()))*procChanceMultiplier(attacker)));
 			GLog.p( Messages.get(this, "charged") );
 			attacker.sprite.emitter().burst(BloodParticle.BURST, 20);
 		}
@@ -168,7 +168,7 @@ public class WandOfTransfusion extends Wand {
 
 	@Override
 	public String statsDesc() {
-		int selfDMG = Math.round(Dungeon.hero.HT*0.05f);
+		int selfDMG = Math.round(Dungeon.hero.HT*0.1f);
 		if (levelKnown)
 			return Messages.get(this, "stats_desc", selfDMG, selfDMG + 3*buffedLvl(), 5+buffedLvl(), 3+buffedLvl()/2, 6+ buffedLvl());
 		else

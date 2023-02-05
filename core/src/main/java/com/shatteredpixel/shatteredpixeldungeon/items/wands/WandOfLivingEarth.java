@@ -62,7 +62,7 @@ public class WandOfLivingEarth extends DamageWand {
 	
 	@Override
 	public int max(int lvl) {
-		return 6 + 2*lvl;
+		return 12 + 4*lvl;
 	}
 	
 	@Override
@@ -196,7 +196,7 @@ public class WandOfLivingEarth extends DamageWand {
 			}
 		}
 		
-		int armor = Math.round(damage*0.33f*procChanceMultiplier(attacker));
+		int armor = Math.round(damage*0.66f*procChanceMultiplier(attacker));
 
 		if (guardian != null){
 			guardian.sprite.centerEmitter().burst(MagicMissile.EarthParticle.ATTRACT, 8 + buffedLvl() / 2);
@@ -235,11 +235,11 @@ public class WandOfLivingEarth extends DamageWand {
 		private void addArmor( int wandLevel, int toAdd ){
 			this.wandLevel = Math.max(this.wandLevel, wandLevel);
 			armor += toAdd;
-			armor = Math.min(armor, 2*armorToGuardian());
+			armor = Math.min(armor, 4*armorToGuardian());
 		}
 
 		private int armorToGuardian(){
-			return 8 + wandLevel*4;
+			return 16 + wandLevel*8;
 		}
 
 		public int absorb( int damage ) {
@@ -320,17 +320,17 @@ public class WandOfLivingEarth extends DamageWand {
 		public void setInfo(Hero hero, int wandLevel, int healthToAdd){
 			if (wandLevel > this.wandLevel) {
 				this.wandLevel = wandLevel;
-				HT = 16 + 8 * wandLevel;
+				HT = 32 + 16 * wandLevel;
 			}
 			HP = Math.min(HT, HP + healthToAdd);
 			//half of hero's evasion
-			defenseSkill = (hero.lvl + 4)/2;
+			defenseSkill = (hero.lvl + 4);
 		}
 
 		@Override
 		public int attackSkill(Char target) {
 			//same as the hero
-			return 2*defenseSkill + 5;
+			return 4*defenseSkill + 10;
 		}
 
 		@Override
@@ -347,18 +347,18 @@ public class WandOfLivingEarth extends DamageWand {
 		@Override
 		public int drRoll() {
 			if (Dungeon.isChallenged(Challenges.NO_ARMOR)){
-				return Random.NormalIntRange(wandLevel, 2 + wandLevel);
+				return Random.NormalIntRange(wandLevel, 4 + wandLevel);
 			} else {
-				return Random.NormalIntRange(wandLevel, 3 + 3 * wandLevel);
+				return Random.NormalIntRange(wandLevel, 6 + 6 * wandLevel);
 			}
 		}
 
 		@Override
 		public String description() {
 			if (Dungeon.isChallenged(Challenges.NO_ARMOR)){
-				return Messages.get(this, "desc", wandLevel, 2 + wandLevel);
+				return Messages.get(this, "desc", wandLevel, 4 + wandLevel);
 			} else {
-				return Messages.get(this, "desc", wandLevel, 3 + 3*wandLevel);
+				return Messages.get(this, "desc", wandLevel, 6 + 6*wandLevel);
 			}
 			
 		}

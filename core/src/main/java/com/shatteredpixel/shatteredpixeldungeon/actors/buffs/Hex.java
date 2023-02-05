@@ -26,7 +26,7 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 
 public class Hex extends FlavourBuff {
 	
-	public static final float DURATION	= 30f;
+	public static final float DURATION	= 60f;
 	
 	{
 		type = buffType.NEGATIVE;

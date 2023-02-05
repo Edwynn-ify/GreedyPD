@@ -191,15 +191,15 @@ public class Mimic extends Mob {
 	@Override
 	public int damageRoll() {
 		if (alignment == Alignment.NEUTRAL){
-			return Random.NormalIntRange( 2 + 2*level, 2 + 2*level);
+			return Random.NormalIntRange( 2 + 2*level, 4 + 4*level);
 		} else {
-			return Random.NormalIntRange( 1 + level, 2 + 2*level);
+			return Random.NormalIntRange( 1 + level, 4 + 4*level);
 		}
 	}
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 1 + level/2);
+		return Random.NormalIntRange(0, 2 + level);
 	}
 
 	@Override
@@ -212,7 +212,7 @@ public class Mimic extends Mob {
 		if (target != null && alignment == Alignment.NEUTRAL && target.invisible <= 0){
 			return INFINITE_ACCURACY;
 		} else {
-			return 6 + level;
+			return 12 + level;
 		}
 	}
 
@@ -287,7 +287,7 @@ public class Mimic extends Mob {
 	protected void generatePrize(){
 		Item reward = null;
 		do {
-			switch (Random.Int(5)) {
+			switch (Random.Int(7)) {
 				case 0:
 					reward = new Gold().random();
 					break;
@@ -302,6 +302,12 @@ public class Mimic extends Mob {
 					break;
 				case 4:
 					reward = Generator.random(Generator.Category.RING);
+					break;
+				case 5:
+					reward = Generator.random(Generator.Category.ARTIFACT);
+					break;
+				case 6:
+					reward = Generator.random(Generator.Category.WAND);
 					break;
 			}
 		} while (reward == null || Challenges.isItemBlocked(reward));

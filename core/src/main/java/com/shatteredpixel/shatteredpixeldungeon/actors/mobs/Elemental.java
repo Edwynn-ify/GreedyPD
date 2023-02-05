@@ -33,6 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Chill;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Lightning;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Splash;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Embers;
@@ -67,10 +68,10 @@ public abstract class Elemental extends Mob {
 	@Override
 	public int damageRoll() {
 		if (!summonedALly) {
-			return Random.NormalIntRange(20, 25);
+			return Random.NormalIntRange(20, 50);
 		} else {
-			int regionScale = Math.max(2, (1 + Dungeon.scalingDepth()/5));
-			return Random.NormalIntRange(5*regionScale, 5 + 5*regionScale);
+			int regionScale = Math.max(2, (2 + Dungeon.scalingDepth()/2));
+			return Random.NormalIntRange(5*regionScale, 10 + 10*regionScale);
 		}
 	}
 	
@@ -79,25 +80,25 @@ public abstract class Elemental extends Mob {
 		if (!summonedALly) {
 			return 25;
 		} else {
-			int regionScale = Math.max(2, (1 + Dungeon.scalingDepth()/5));
-			return 5 + 5*regionScale;
+			int regionScale = Math.max(2, (2 + Dungeon.scalingDepth()/2));
+			return 10 + 10*regionScale;
 		}
 	}
 
 	public void setSummonedALly(){
 		summonedALly = true;
 		//sewers are prison are equivalent, otherwise scales as normal (2/2/3/4/5)
-		int regionScale = Math.max(2, (1 + Dungeon.scalingDepth()/5));
+		int regionScale = Math.max(2, (2 + Dungeon.scalingDepth()/2));
 		defenseSkill = 5*regionScale;
-		HT = 15*regionScale;
+		HT = 30*regionScale;
 	}
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 5);
+		return Random.NormalIntRange(0, 10);
 	}
 	
-	protected int rangedCooldown = Random.NormalIntRange( 3, 5 );
+	protected int rangedCooldown = Random.NormalIntRange( 2, 4 );
 	
 	@Override
 	protected boolean act() {
@@ -166,7 +167,7 @@ public abstract class Elemental extends Mob {
 	@Override
 	public void add( Buff buff ) {
 		if (harmfulBuffs.contains( buff.getClass() )) {
-			damage( Random.NormalIntRange( HT/2, HT * 3/5 ), buff );
+			damage( Random.NormalIntRange( HT/2, HT * 4/5 ), buff );
 		} else {
 			super.add( buff );
 		}
@@ -205,7 +206,7 @@ public abstract class Elemental extends Mob {
 			spriteClass = ElementalSprite.Fire.class;
 			
 			loot = new PotionOfLiquidFlame();
-			lootChance = 1/8f;
+			lootChance = 0.4f;
 			
 			properties.add( Property.FIERY );
 			
@@ -286,7 +287,7 @@ public abstract class Elemental extends Mob {
 			spriteClass = ElementalSprite.Frost.class;
 			
 			loot = new PotionOfFrost();
-			lootChance = 1/8f;
+			lootChance = 2/5;
 			
 			properties.add( Property.ICY );
 			
@@ -314,7 +315,7 @@ public abstract class Elemental extends Mob {
 			spriteClass = ElementalSprite.Shock.class;
 			
 			loot = new ScrollOfRecharging();
-			lootChance = 1/4f;
+			lootChance = 2/5f;
 			
 			properties.add( Property.ELECTRIC );
 		}

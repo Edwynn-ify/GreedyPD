@@ -47,12 +47,12 @@ public class PotionOfShroudingFog extends ExoticPotion {
 			Sample.INSTANCE.play( Assets.Sounds.GAS );
 		}
 
-		int centerVolume = 180;
+		int centerVolume = 360;
 		for (int i : PathFinder.NEIGHBOURS8){
 			if (!Dungeon.level.solid[cell+i]){
-				GameScene.add( Blob.seed( cell+i, 180, SmokeScreen.class ) );
+				GameScene.add( Blob.seed( cell+i, 3000, SmokeScreen.class ) );
 			} else {
-				centerVolume += 180;
+				centerVolume += 360;
 			}
 		}
 

@@ -47,20 +47,20 @@ public class Shocking extends Weapon.Enchantment {
 		// lvl 0 - 25%
 		// lvl 1 - 40%
 		// lvl 2 - 50%
-		float procChance = (level+1f)/(level+4f) * procChanceMultiplier(attacker);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance) {
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 			
 			affected.clear();
 			arcs.clear();
 			
-			arc(attacker, defender, 2, affected, arcs);
+			arc(attacker, defender, 4, affected, arcs);
 			
 			affected.remove(defender); //defender isn't hurt by lightning
 			for (Char ch : affected) {
 				if (ch.alignment != attacker.alignment) {
-					ch.damage(Math.round(damage * 0.4f * powerMulti), this);
+					ch.damage(Math.round(damage * 0.8f * powerMulti), this);
 				}
 			}
 
@@ -95,7 +95,7 @@ public class Shocking extends Weapon.Enchantment {
 				Char n = Actor.findChar(i);
 				if (n != null && n != attacker && !affected.contains(n)) {
 					arcs.add(new Lightning.Arc(defender.sprite.center(), n.sprite.center()));
-					arc(attacker, n, (Dungeon.level.water[n.pos] && !n.flying) ? 2 : 1, affected, arcs);
+					arc(attacker, n, (Dungeon.level.water[n.pos] && !n.flying) ? 4 : 2, affected, arcs);
 				}
 			}
 		}

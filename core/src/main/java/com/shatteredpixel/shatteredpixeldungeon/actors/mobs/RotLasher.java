@@ -36,7 +36,7 @@ public class RotLasher extends Mob {
 	{
 		spriteClass = RotLasherSprite.class;
 
-		HP = HT = 40;
+		HP = HT = 80;
 		defenseSkill = 0;
 
 		EXP = 1;
@@ -53,7 +53,7 @@ public class RotLasher extends Mob {
 	@Override
 	protected boolean act() {
 		if (enemy == null || !Dungeon.level.adjacent(pos, enemy.pos)) {
-			HP = Math.min(HT, HP + 3);
+			HP = Math.min(HT, HP + 6);
 		}
 		return super.act();
 	}
@@ -92,7 +92,7 @@ public class RotLasher extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(8, 15);
+		return Random.NormalIntRange(8, 30);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class RotLasher extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 8);
+		return Random.NormalIntRange(0, 16);
 	}
 	
 	{

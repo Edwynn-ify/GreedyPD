@@ -32,7 +32,7 @@ public class Slow extends FlavourBuff {
 		announced = true;
 	}
 
-	public static final float DURATION = 10f;
+	public static final float DURATION = 20f;
 
 	@Override
 	public int icon() {

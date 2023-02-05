@@ -41,16 +41,16 @@ public class Chilling extends Weapon.Enchantment {
 		// lvl 0 - 25%
 		// lvl 1 - 40%
 		// lvl 2 - 50%
-		float procChance = (level+1f)/(level+4f) * procChanceMultiplier(attacker);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance) {
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 
 			//adds 3 turns of chill per proc, with a cap of 6 turns
-			float durationToAdd = 3f * powerMulti;
+			float durationToAdd = 6f * powerMulti;
 			Chill existing = defender.buff(Chill.class);
 			if (existing != null){
-				durationToAdd = Math.min(durationToAdd, (6f*powerMulti)-existing.cooldown());
+				durationToAdd = Math.min(durationToAdd, (12f*powerMulti)-existing.cooldown());
 			}
 			
 			Buff.affect( defender, Chill.class, durationToAdd );

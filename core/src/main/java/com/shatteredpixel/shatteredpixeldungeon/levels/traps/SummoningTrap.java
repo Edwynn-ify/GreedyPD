@@ -44,7 +44,7 @@ public class SummoningTrap extends Trap {
 	@Override
 	public void activate() {
 
-		int nMobs = 1;
+		int nMobs = 3;
 		if (Random.Int( 2 ) == 0) {
 			nMobs++;
 			if (Random.Int( 2 ) == 0) {

@@ -40,16 +40,16 @@ public class Repulsion extends Armor.Glyph {
 		// lvl 0 - 20%
 		// lvl 1 - 33%
 		// lvl 2 - 43%
-		float procChance = (level+1f)/(level+5f) * procChanceMultiplier(defender);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(defender);
 		if (Random.Float() < procChance){
 
-			float powerMulti = Math.max(1f, procChance);
+			float powerMulti = Math.max(2f, procChance);
 
 			int oppositeHero = attacker.pos + (attacker.pos - defender.pos);
 			Ballistica trajectory = new Ballistica(attacker.pos, oppositeHero, Ballistica.MAGIC_BOLT);
 			WandOfBlastWave.throwChar(attacker,
 					trajectory,
-					Math.round(2 * powerMulti),
+					Math.round(4 * powerMulti),
 					true,
 					true,
 					getClass());

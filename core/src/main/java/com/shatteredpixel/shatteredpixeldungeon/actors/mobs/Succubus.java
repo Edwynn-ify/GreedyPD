@@ -61,14 +61,14 @@ public class Succubus extends Mob {
 		maxLvl = 25;
 		
 		loot = Generator.Category.SCROLL;
-		lootChance = 0.33f;
+		lootChance = 0.4f;
 
 		properties.add(Property.DEMONIC);
 	}
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 25, 30 );
+		return Random.NormalIntRange( 25, 60 );
 	}
 	
 	@Override
@@ -76,19 +76,19 @@ public class Succubus extends Mob {
 		damage = super.attackProc( enemy, damage );
 		
 		if (enemy.buff(Charm.class) != null ){
-			int shield = (HP - HT) + (5 + damage);
+			int shield = (HP - HT) + (10 + damage);
 			if (shield > 0){
 				HP = HT;
 				Buff.affect(this, Barrier.class).setShield(shield);
 			} else {
-				HP += 5 + damage;
+				HP += 10 + damage;
 			}
 			if (Dungeon.level.heroFOV[pos]) {
 				sprite.emitter().burst( Speck.factory( Speck.HEALING ), 2 );
 				Sample.INSTANCE.play( Assets.Sounds.CHARMS );
 			}
 		} else if (Random.Int( 3 ) == 0) {
-			Charm c = Buff.affect( enemy, Charm.class, Charm.DURATION/2f );
+			Charm c = Buff.affect( enemy, Charm.class, Charm.DURATION );
 			c.object = id();
 			c.ignoreNextHit = true; //so that the -5 duration from succubus hit is ignored
 			if (Dungeon.level.heroFOV[enemy.pos]) {
@@ -141,14 +141,14 @@ public class Succubus extends Mob {
 			if (candidates.size() > 0)
 				cell = Random.element(candidates);
 			else {
-				blinkCooldown = Random.IntRange(4, 6);
+				blinkCooldown = Random.IntRange(2, 4);
 				return false;
 			}
 		}
 		
 		ScrollOfTeleportation.appear( this, cell );
 
-		blinkCooldown = Random.IntRange(4, 6);
+		blinkCooldown = Random.IntRange(2, 4);
 		return true;
 	}
 	
@@ -159,7 +159,7 @@ public class Succubus extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 10);
+		return Random.NormalIntRange(0, 20);
 	}
 
 	@Override

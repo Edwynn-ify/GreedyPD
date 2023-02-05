@@ -54,7 +54,7 @@ public abstract class ShieldBuff extends Buff {
 	}
 	
 	public void incShield(){
-		incShield(1);
+		incShield(2);
 	}
 
 	public void incShield( int amt ){

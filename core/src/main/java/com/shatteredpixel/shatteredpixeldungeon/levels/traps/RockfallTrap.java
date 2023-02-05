@@ -27,6 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Paralysis;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.levels.RegularLevel;
@@ -75,7 +76,7 @@ public class RockfallTrap extends Trap {
 			
 		//if we don't have a room, then just do 5x5
 		} else {
-			PathFinder.buildDistanceMap( pos, BArray.not( Dungeon.level.solid, null ), 2 );
+			PathFinder.buildDistanceMap( pos, BArray.not( Dungeon.level.solid, null ), 6 );
 			for (int i = 0; i < PathFinder.distance.length; i++) {
 				if (PathFinder.distance[i] < Integer.MAX_VALUE) {
 					rockCells.add(i);
@@ -94,11 +95,12 @@ public class RockfallTrap extends Trap {
 			Char ch = Actor.findChar( cell );
 
 			if (ch != null && ch.isAlive()){
-				int damage = Random.NormalIntRange(5+Dungeon.depth, 10+Dungeon.depth*2);
+				int damage = Random.NormalIntRange(5+Dungeon.depth, 30+Dungeon.depth*2);
 				damage -= ch.drRoll();
 				ch.damage( Math.max(damage, 0) , this);
 
 				Buff.prolong( ch, Paralysis.class, Paralysis.DURATION );
+				Buff.prolong( ch, Paralysis.class, Vulnerable.DURATION );
 
 				if (!ch.isAlive() && ch == Dungeon.hero){
 					Dungeon.fail( getClass() );

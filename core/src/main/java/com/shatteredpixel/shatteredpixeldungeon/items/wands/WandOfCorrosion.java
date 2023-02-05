@@ -56,9 +56,9 @@ public class WandOfCorrosion extends Wand {
 
 	@Override
 	public void onZap(Ballistica bolt) {
-		CorrosiveGas gas = Blob.seed(bolt.collisionPos, 50 + 10 * buffedLvl(), CorrosiveGas.class);
-		CellEmitter.get(bolt.collisionPos).burst(Speck.factory(Speck.CORROSION), 10 );
-		gas.setStrength(2 + buffedLvl(), getClass());
+		CorrosiveGas gas = Blob.seed(bolt.collisionPos, 100 + 20 * buffedLvl(), CorrosiveGas.class);
+		CellEmitter.get(bolt.collisionPos).burst(Speck.factory(Speck.CORROSION), 100 );
+		gas.setStrength(4 + buffedLvl(), getClass());
 		GameScene.add(gas);
 		Sample.INSTANCE.play(Assets.Sounds.GAS);
 
@@ -96,7 +96,7 @@ public class WandOfCorrosion extends Wand {
 		// lvl 0 - 33%
 		// lvl 1 - 50%
 		// lvl 2 - 60%
-		float procChance = (level+1f)/(level+3f) * procChanceMultiplier(attacker);
+		float procChance = (level+2f)/(level+5f) * procChanceMultiplier(attacker);
 		if (Random.Float() < procChance) {
 
 			float powerMulti = Math.max(1f, procChance);
@@ -120,9 +120,9 @@ public class WandOfCorrosion extends Wand {
 	@Override
 	public String statsDesc() {
 		if (levelKnown)
-			return Messages.get(this, "stats_desc", 2+buffedLvl());
+			return Messages.get(this, "stats_desc", 4+buffedLvl());
 		else
-			return Messages.get(this, "stats_desc", 2);
+			return Messages.get(this, "stats_desc", 4);
 	}
 
 }

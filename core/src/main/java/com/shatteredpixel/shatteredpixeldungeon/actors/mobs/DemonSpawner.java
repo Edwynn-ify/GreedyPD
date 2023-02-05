@@ -48,7 +48,7 @@ public class DemonSpawner extends Mob {
 	{
 		spriteClass = SpawnerSprite.class;
 
-		HP = HT = 120;
+		HP = HT = 250;
 		defenseSkill = 0;
 
 		EXP = 15;
@@ -66,7 +66,7 @@ public class DemonSpawner extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 12);
+		return Random.NormalIntRange(0, 24);
 	}
 
 	@Override

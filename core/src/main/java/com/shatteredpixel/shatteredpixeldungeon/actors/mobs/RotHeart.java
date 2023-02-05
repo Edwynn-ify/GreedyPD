@@ -25,6 +25,8 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ParalyticGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Amok;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
@@ -43,7 +45,7 @@ public class RotHeart extends Mob {
 	{
 		spriteClass = RotHeartSprite.class;
 
-		HP = HT = 80;
+		HP = HT = 150;
 		defenseSkill = 0;
 
 		EXP = 4;
@@ -73,7 +75,9 @@ public class RotHeart extends Mob {
 
 	@Override
 	public int defenseProc(Char enemy, int damage) {
-		GameScene.add(Blob.seed(pos, 20, ToxicGas.class));
+		GameScene.add(Blob.seed(pos, 500, ToxicGas.class));
+		GameScene.add(Blob.seed(pos, 500, StenchGas.class));
+		GameScene.add(Blob.seed(pos, 500, ParalyticGas.class));
 
 		return super.defenseProc(enemy, damage);
 	}

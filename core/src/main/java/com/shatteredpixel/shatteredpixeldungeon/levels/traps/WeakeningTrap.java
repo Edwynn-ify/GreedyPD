@@ -46,7 +46,7 @@ public class WeakeningTrap extends Trap{
 		if (ch != null){
 			if (ch.properties().contains(Char.Property.BOSS)
 				|| ch.properties().contains(Char.Property.MINIBOSS)){
-				Buff.prolong( ch, Weakness.class, Weakness.DURATION/2f );
+				Buff.prolong( ch, Weakness.class, Weakness.DURATION*3f );
 			}
 			Buff.prolong( ch, Weakness.class, Weakness.DURATION*3f );
 		}

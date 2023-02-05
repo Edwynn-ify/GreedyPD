@@ -48,7 +48,7 @@ public class DM200 extends Mob {
 		maxLvl = 17;
 
 		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
-		lootChance = 0.125f; //initially, see lootChance()
+		lootChance = 0.4f; //initially, see lootChance()
 
 		properties.add(Property.INORGANIC);
 		properties.add(Property.LARGE);
@@ -58,7 +58,7 @@ public class DM200 extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 10, 25 );
+		return Random.NormalIntRange( 10, 50 );
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class DM200 extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 8);
+		return Random.NormalIntRange(0, 16);
 	}
 
 	@Override
@@ -122,9 +122,9 @@ public class DM200 extends Mob {
 		Ballistica trajectory = new Ballistica(pos, enemy.pos, Ballistica.STOP_TARGET);
 
 		for (int i : trajectory.subPath(0, trajectory.dist)){
-			GameScene.add(Blob.seed(i, 20, ToxicGas.class));
+			GameScene.add(Blob.seed(i, 1000, ToxicGas.class));
 		}
-		GameScene.add(Blob.seed(trajectory.collisionPos, 100, ToxicGas.class));
+		GameScene.add(Blob.seed(trajectory.collisionPos, 1000, ToxicGas.class));
 
 	}
 

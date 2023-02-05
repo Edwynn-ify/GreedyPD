@@ -40,7 +40,7 @@ public class Dirk extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  4*(tier+1) +    //12 base, down from 15
+		return  5*(tier+1) +    //12 base, down from 15
 				lvl*(tier+1);   //scaling unchanged
 	}
 	
@@ -53,7 +53,7 @@ public class Dirk extends MeleeWeapon {
 				//deals 67% toward max to max on surprise, instead of min to max.
 				int diff = max() - min();
 				int damage = augment.damageFactor(Random.NormalIntRange(
-						min() + Math.round(diff*0.67f),
+						min() + Math.round(diff*0.75f),
 						max()));
 				int exStr = hero.STR() - STRReq();
 				if (exStr > 0) {

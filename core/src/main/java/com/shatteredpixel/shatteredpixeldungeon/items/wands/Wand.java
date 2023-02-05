@@ -128,7 +128,7 @@ public abstract class Wand extends Item {
 	//not affected by enchantment proc chance changers
 	public static float procChanceMultiplier( Char attacker ){
 		if (attacker.buff(Talent.EmpoweredStrikeTracker.class) != null){
-			return 1f + ((Hero)attacker).pointsInTalent(Talent.EMPOWERED_STRIKE)/2f;
+			return 2f + ((Hero)attacker).pointsInTalent(Talent.EMPOWERED_STRIKE);
 		}
 		return 1f;
 	}
@@ -194,7 +194,7 @@ public abstract class Wand extends Item {
 	//TODO Consider externalizing char awareness buff
 	protected static void wandProc(Char target, int wandLevel, int chargesUsed){
 		if (Dungeon.hero.hasTalent(Talent.ARCANE_VISION)) {
-			int dur = 5 + 5*Dungeon.hero.pointsInTalent(Talent.ARCANE_VISION);
+			int dur = 10 + 10*Dungeon.hero.pointsInTalent(Talent.ARCANE_VISION);
 			Buff.append(Dungeon.hero, TalismanOfForesight.CharAwareness.class, dur).charID = target.id();
 		}
 
@@ -333,18 +333,18 @@ public abstract class Wand extends Item {
 
 		if (charger != null && charger.target != null) {
 			if (charger.target.buff(WildMagic.WildMagicTracker.class) != null){
-				int bonus = 4 + ((Hero)charger.target).pointsInTalent(Talent.WILD_POWER);
+				int bonus = 8 + ((Hero)charger.target).pointsInTalent(Talent.WILD_POWER);
 				if (Random.Int(2) == 0) bonus++;
-				bonus /= 2; // +2/+2.5/+3/+3.5/+4 at 0/1/2/3/4 talent points
+				bonus /= 1; // +2/+2.5/+3/+3.5/+4 at 0/1/2/3/4 talent points
 
-				int maxBonusLevel = 3 + ((Hero)charger.target).pointsInTalent(Talent.WILD_POWER);
+				int maxBonusLevel = 6 + ((Hero)charger.target).pointsInTalent(Talent.WILD_POWER);
 				if (lvl < maxBonusLevel) {
 					lvl = Math.min(lvl + bonus, maxBonusLevel);
 				}
 			}
 
 			if (charger.target.buff(ScrollEmpower.class) != null){
-				lvl += 3;
+				lvl += 6;
 			}
 
 			WandOfMagicMissile.MagicCharge buff = charger.target.buff(WandOfMagicMissile.MagicCharge.class);
@@ -400,7 +400,7 @@ public abstract class Wand extends Item {
 		//inside staff
 		if (charger != null && charger.target == Dungeon.hero && !Dungeon.hero.belongings.contains(this)){
 			if (Dungeon.hero.hasTalent(Talent.EXCESS_CHARGE) && curCharges >= maxCharges){
-				Buff.affect(Dungeon.hero, Barrier.class).setShield(Math.round(buffedLvl()*0.67f*Dungeon.hero.pointsInTalent(Talent.EXCESS_CHARGE)));
+				Buff.affect(Dungeon.hero, Barrier.class).setShield(Math.round(buffedLvl()*1.34f*Dungeon.hero.pointsInTalent(Talent.EXCESS_CHARGE)));
 			}
 		}
 		
@@ -428,7 +428,7 @@ public abstract class Wand extends Item {
 			if (!Dungeon.hero.belongings.contains(this)) {
 				if (curCharges == 0 && Dungeon.hero.hasTalent(Talent.BACKUP_BARRIER)) {
 					//grants 3/5 shielding
-					Buff.affect(Dungeon.hero, Barrier.class).setShield(1 + 2 * Dungeon.hero.pointsInTalent(Talent.BACKUP_BARRIER));
+					Buff.affect(Dungeon.hero, Barrier.class).setShield(2 + 4 * Dungeon.hero.pointsInTalent(Talent.BACKUP_BARRIER));
 				}
 				if (Dungeon.hero.hasTalent(Talent.EMPOWERED_STRIKE)) {
 					Buff.prolong(Dungeon.hero, Talent.EmpoweredStrikeTracker.class, 10f);
@@ -446,7 +446,7 @@ public abstract class Wand extends Item {
 				}
 				if (highest){
 					//grants 3/5 shielding
-					Buff.affect(Dungeon.hero, Barrier.class).setShield(1 + 2 * Dungeon.hero.pointsInTalent(Talent.BACKUP_BARRIER));
+					Buff.affect(Dungeon.hero, Barrier.class).setShield(2 + 4 * Dungeon.hero.pointsInTalent(Talent.BACKUP_BARRIER));
 				}
 			}
 		}
@@ -458,16 +458,8 @@ public abstract class Wand extends Item {
 	
 	@Override
 	public Item random() {
-		//+0: 66.67% (2/3)
-		//+1: 26.67% (4/15)
-		//+2: 6.67%  (1/15)
-		int n = 0;
-		if (Random.Int(3) == 0) {
-			n++;
-			if (Random.Int(5) == 0){
-				n++;
-			}
-		}
+		int n = Random.Int(7);
+
 		level(n);
 		curCharges += n;
 		
@@ -594,8 +586,8 @@ public abstract class Wand extends Item {
 				
 				if (target == curUser.pos || cell == curUser.pos) {
 					if (target == curUser.pos && curUser.hasTalent(Talent.SHIELD_BATTERY)){
-						float shield = curUser.HT * (0.04f*curWand.curCharges);
-						if (curUser.pointsInTalent(Talent.SHIELD_BATTERY) == 2) shield *= 1.5f;
+						float shield = curUser.HT * (0.08f*curWand.curCharges);
+						if (curUser.pointsInTalent(Talent.SHIELD_BATTERY) == 2) shield *= 3f;
 						Buff.affect(curUser, Barrier.class).setShield(Math.round(shield));
 						curWand.curCharges = 0;
 						curUser.sprite.operate(curUser.pos);
@@ -661,7 +653,7 @@ public abstract class Wand extends Item {
 		private static final float SCALING_CHARGE_ADDITION = 40f;
 		private static final float NORMAL_SCALE_FACTOR = 0.875f;
 
-		private static final float CHARGE_BUFF_BONUS = 0.25f;
+		private static final float CHARGE_BUFF_BONUS = 0.5f;
 
 		float scalingFactor = NORMAL_SCALE_FACTOR;
 

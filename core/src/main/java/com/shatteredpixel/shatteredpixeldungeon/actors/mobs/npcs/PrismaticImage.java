@@ -22,6 +22,7 @@
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
@@ -49,8 +50,8 @@ public class PrismaticImage extends NPC {
 	{
 		spriteClass = PrismaticSprite.class;
 		
-		HP = HT = 10;
-		defenseSkill = 1;
+		HP = HT = 20 + Dungeon.hero.HT;
+		defenseSkill = Dungeon.hero.HT/4;
 		
 		alignment = Alignment.ALLY;
 		intelligentAlly = true;

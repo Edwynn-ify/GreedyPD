@@ -46,8 +46,8 @@ public class ElixirOfHoneyedHealing extends Elixir {
 		PotionOfHealing.cure(hero);
 		PotionOfHealing.heal(hero);
 		Talent.onHealingPotionUsed( hero );
-		Buff.affect(hero, Hunger.class).satisfy(Hunger.HUNGRY/2f);
-		Talent.onFoodEaten(hero, Hunger.HUNGRY/2f, this);
+		Buff.affect(hero, Hunger.class).satisfy(Hunger.HUNGRY);
+		Talent.onFoodEaten(hero, Hunger.HUNGRY, this);
 	}
 	
 	@Override

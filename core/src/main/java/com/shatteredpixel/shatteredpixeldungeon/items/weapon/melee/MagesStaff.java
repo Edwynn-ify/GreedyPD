@@ -156,7 +156,7 @@ public class MagesStaff extends MeleeWeapon {
 			Hero hero = (Hero) attacker;
 			for (Buff b : hero.buffs()){
 				if (b instanceof Artifact.ArtifactBuff && !((Artifact.ArtifactBuff) b).isCursed() ) {
-					((Artifact.ArtifactBuff) b).charge(hero, hero.pointsInTalent(Talent.MYSTICAL_CHARGE)/2f);
+					((Artifact.ArtifactBuff) b).charge(hero, hero.pointsInTalent(Talent.MYSTICAL_CHARGE));
 				}
 			}
 		}

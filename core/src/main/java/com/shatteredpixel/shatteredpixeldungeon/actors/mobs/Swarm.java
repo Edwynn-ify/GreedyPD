@@ -32,6 +32,10 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.SwarmSprite;
 import com.watabou.utils.Bundle;
@@ -44,7 +48,7 @@ public class Swarm extends Mob {
 	{
 		spriteClass = SwarmSprite.class;
 		
-		HP = HT = 50;
+		HP = HT = 75;
 		defenseSkill = 5;
 
 		EXP = 3;
@@ -52,8 +56,8 @@ public class Swarm extends Mob {
 		
 		flying = true;
 
-		loot = new PotionOfHealing();
-		lootChance = 0.1667f; //by default, see lootChance()
+		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
+		lootChance = 0.4f; //by default, see lootChance()
 	}
 	
 	private static final float SPLIT_DELAY	= 1f;
@@ -77,7 +81,7 @@ public class Swarm extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 4 );
+		return Random.NormalIntRange( 1, 8 );
 	}
 	
 	@Override
@@ -141,8 +145,8 @@ public class Swarm extends Mob {
 
 	@Override
 	public float lootChance() {
-		lootChance = 1f/(6 * (generation+1) );
-		return super.lootChance() * (5f - Dungeon.LimitedDrops.SWARM_HP.count) / 5f;
+		lootChance = 1f/(3 * (generation+1) );
+		return super.lootChance() * (2.5f - Dungeon.LimitedDrops.SWARM_HP.count) / 2.5f;
 	}
 	
 	@Override

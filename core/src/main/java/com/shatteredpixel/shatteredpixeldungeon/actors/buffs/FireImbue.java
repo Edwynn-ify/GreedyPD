@@ -32,14 +32,14 @@ import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-public class FireImbue extends Buff {
+public class FireImbue extends FlavourBuff {
 	
 	{
 		type = buffType.POSITIVE;
 		announced = true;
 	}
 
-	public static final float DURATION	= 50f;
+	public static final float DURATION	= 200f;
 
 	protected float left;
 

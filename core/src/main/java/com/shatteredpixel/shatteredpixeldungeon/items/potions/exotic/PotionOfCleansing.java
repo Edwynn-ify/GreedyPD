@@ -93,7 +93,7 @@ public class PotionOfCleansing extends ExoticPotion {
 			type = buffType.POSITIVE;
 		}
 
-		public static final float DURATION = 5f;
+		public static final float DURATION = 10f;
 
 		@Override
 		public int icon() {

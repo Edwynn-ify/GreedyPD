@@ -40,7 +40,7 @@ public class AdrenalineDart extends TippedDart {
 			Buff.prolong( defender, Adrenaline.class, Adrenaline.DURATION);
 			return 0;
 		} else {
-			Buff.prolong( defender, Cripple.class, Cripple.DURATION/2);
+			Buff.prolong( defender, Cripple.class, Cripple.DURATION);
 		}
 		
 		return super.proc(attacker, defender, damage);

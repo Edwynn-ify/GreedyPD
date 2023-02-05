@@ -50,14 +50,14 @@ public class Spinner extends Mob {
 		maxLvl = 17;
 
 		loot = new MysteryMeat();
-		lootChance = 0.125f;
+		lootChance = 0.4f;
 
 		FLEEING = new Fleeing();
 	}
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(10, 20);
+		return Random.NormalIntRange(10, 40);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class Spinner extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 6);
+		return Random.NormalIntRange(0, 12);
 	}
 
 	private int webCoolDown = 0;
@@ -120,7 +120,7 @@ public class Spinner extends Mob {
 	public int attackProc(Char enemy, int damage) {
 		damage = super.attackProc( enemy, damage );
 		if (Random.Int(2) == 0) {
-			int duration = Random.IntRange(7, 8);
+			int duration = Random.IntRange(7, 16);
 			//we only use half the ascension modifier here as total poison dmg doesn't scale linearly
 			duration = Math.round(duration * (AscensionChallenge.statModifier(this)/2f + 0.5f));
 			Buff.affect(enemy, Poison.class).set(duration);
