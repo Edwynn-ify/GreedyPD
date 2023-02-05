@@ -29,6 +29,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.CorpseDust;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTerror;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDread;
+import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfFear;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfCorruption;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -63,7 +68,7 @@ public class MassGraveRoom extends SpecialRoom {
 		level.customTiles.add(b);
 
 		//50% 1 skeleton, 50% 2 skeletons
-		for (int i = 0; i <= Random.Int(2); i++){
+		for (int i = 0; i <= Random.Int(6); i++){
 			Skeleton skele = new Skeleton();
 
 			int pos;
@@ -82,8 +87,16 @@ public class MassGraveRoom extends SpecialRoom {
 		if (Random.Float() <= 0.3f) items.add(new Gold());
 		if (Random.Float() <= 0.3f) items.add(new Gold());
 		if (Random.Float() <= 0.6f) items.add(Generator.random());
-		if (Random.Float() <= 0.3f) items.add(Generator.randomArmor());
-
+		if (Random.Float() <= 0.6f) items.add(Generator.randomArmor());
+		if (Random.Float() <= 0.6f) items.add(Generator.randomWeapon());
+		if (Random.Float() <= 0.6f) items.add(Generator.randomArtifact());
+		if (Random.Float() <= 0.6f) items.add(Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND, Generator.Category.SCROLL, Generator.Category.POTION,Generator.Category.FOOD, Generator.Category.MISSILE)));
+		if (Random.Float() <= 0.6f) items.add(new WandOfCorruption());
+		if (Random.Float() <= 0.6f) items.add(new ScrollOfTerror());
+		if (Random.Float() <= 0.6f) items.add(new ScrollOfDread());
+		if (Random.Float() <= 0.6f) items.add(new StoneOfFear());
+		if (Random.Float() <= 0.6f) items.add(new WandOfCorruption());
+		if (Random.Float() <= 0.6f) items.add(new ScrollOfRage());
 		for (Item item : items){
 			int pos;
 			do {

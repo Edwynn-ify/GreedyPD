@@ -33,6 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Point;
+import com.watabou.utils.Random;
 
 public class CryptRoom extends SpecialRoom {
 
@@ -73,23 +74,14 @@ public class CryptRoom extends SpecialRoom {
 	
 	private static Item prize( Level level ) {
 		
-		//1 floor set higher than normal
-		Armor prize = Generator.randomArmor( (Dungeon.depth / 5) + 1);
+		//1 floor set higher than normal (no longer work)
+		Item prize = Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND,Generator.Category.ARMOR,Generator.Category.WEAPON,Generator.Category.ARTIFACT));
 		
 		if (Challenges.isItemBlocked(prize)){
 			return new Gold().random();
 		}
-
-		//if it isn't already cursed, give it a free upgrade
-		if (!prize.cursed){
-			prize.upgrade();
-			//curse the armor, unless it has a glyph
-			if (!prize.hasGoodGlyph()){
-				prize.inscribe(Armor.Glyph.randomCurse());
-			}
-		}
 		prize.cursed = prize.cursedKnown = true;
-		
+
 		return prize;
 	}
 }

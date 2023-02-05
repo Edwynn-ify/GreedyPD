@@ -37,9 +37,9 @@ public class StorageRoom extends SpecialRoom {
 		Painter.fill( level, this, Terrain.WALL );
 		Painter.fill( level, this, 1, Terrain.EMPTY_SP );
 
-		boolean honeyPot = Random.Int( 2 ) == 0;
+		boolean honeyPot = Random.Int( 3 ) == 0;
 		
-		int n = Random.IntRange( 3, 4 );
+		int n = Random.IntRange( 3, 15 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {
@@ -69,7 +69,13 @@ public class StorageRoom extends SpecialRoom {
 			Generator.Category.POTION,
 			Generator.Category.SCROLL,
 			Generator.Category.FOOD,
-			Generator.Category.GOLD
+			Generator.Category.GOLD,
+				Generator.Category.ARMOR,
+				Generator.Category.WAND,
+				Generator.Category.WEAPON,
+				Generator.Category.MISSILE,
+				Generator.Category.ARTIFACT,
+				Generator.Category.RING
 		) );
 	}
 }

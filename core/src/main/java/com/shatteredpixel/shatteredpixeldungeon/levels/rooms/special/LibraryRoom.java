@@ -68,7 +68,7 @@ public class LibraryRoom extends SpecialRoom {
 		
 		Item prize = level.findPrizeItem( Scroll.class );
 		if (prize == null)
-			prize = Generator.random( Generator.Category.SCROLL );
+			prize = Generator.random(Random.oneOf(Generator.Category.SCROLL, Generator.Category.SEED, Generator.Category.STONE, Generator.Category.WAND, Generator.Category.POTION));
 		
 		return prize;
 	}

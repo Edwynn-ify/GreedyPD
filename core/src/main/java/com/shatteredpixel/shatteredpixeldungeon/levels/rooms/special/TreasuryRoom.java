@@ -42,13 +42,13 @@ public class TreasuryRoom extends SpecialRoom {
 		
 		Heap.Type heapType = Random.Int( 2 ) == 0 ? Heap.Type.CHEST : Heap.Type.HEAP;
 		
-		int n = Random.IntRange( 2, 3 );
+		int n = Random.IntRange( 2, 15 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {
 				pos = level.pointToCell(random());
 			} while (level.map[pos] != Terrain.EMPTY || level.heaps.get( pos ) != null || level.findMob(pos) != null);
-			if (heapType == Heap.Type.CHEST && Dungeon.depth > 1 && Random.Int( 5 ) == 0){
+			if (heapType == Heap.Type.CHEST && Dungeon.depth > 1 && Random.Int( 3 ) == 0){
 				level.mobs.add(Mimic.spawnAt(pos, new Gold().random()));
 			} else {
 				level.drop( new Gold().random(), pos ).type = heapType;
@@ -61,7 +61,7 @@ public class TreasuryRoom extends SpecialRoom {
 				do {
 					pos = level.pointToCell(random());
 				} while (level.map[pos] != Terrain.EMPTY);
-				level.drop( new Gold( Random.IntRange( 5, 12 ) ), pos );
+				level.drop( new Gold( Random.IntRange( 5, 250 ) ), pos );
 			}
 		}
 		

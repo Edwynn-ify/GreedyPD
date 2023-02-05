@@ -24,6 +24,8 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Alchemy;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.items.EnergyCrystal;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Flashbang;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
@@ -35,7 +37,31 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlam
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfParalyticGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfPurity;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfToxicGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.BlizzardBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.CausticBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.InfernalBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.ShockingBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfArcaneArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDragonsBreath;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfEarthenArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMagicalSight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShroudingFog;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStamina;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStormClouds;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -49,17 +75,42 @@ public class SecretLaboratoryRoom extends SecretRoom {
 	
 	private static HashMap<Class<? extends Potion>, Float> potionChances = new HashMap<>();
 	static{
-		potionChances.put(PotionOfHealing.class,        1f);
-		potionChances.put(PotionOfMindVision.class,     2f);
-		potionChances.put(PotionOfFrost.class,          3f);
-		potionChances.put(PotionOfLiquidFlame.class,    3f);
-		potionChances.put(PotionOfToxicGas.class,       3f);
-		potionChances.put(PotionOfHaste.class,          4f);
-		potionChances.put(PotionOfInvisibility.class,   4f);
-		potionChances.put(PotionOfLevitation.class,     4f);
-		potionChances.put(PotionOfParalyticGas.class,   4f);
-		potionChances.put(PotionOfPurity.class,         4f);
+		potionChances.put(PotionOfHealing.class,        6f);
+		potionChances.put(PotionOfStrength.class,        6f);
+		potionChances.put(PotionOfMindVision.class,     6f);
+		potionChances.put(PotionOfFrost.class,          6f);
+		potionChances.put(PotionOfLiquidFlame.class,    6f);
+		potionChances.put(PotionOfToxicGas.class,       6f);
+		potionChances.put(PotionOfHaste.class,          6f);
+		potionChances.put(PotionOfInvisibility.class,   6f);
+		potionChances.put(PotionOfLevitation.class,     6f);
+		potionChances.put(PotionOfParalyticGas.class,   6f);
+		potionChances.put(PotionOfPurity.class,         6f);
 		potionChances.put(PotionOfExperience.class,     6f);
+		potionChances.put(PotionOfShielding.class,        6f);
+		potionChances.put(PotionOfMagicalSight.class,     6f);
+		potionChances.put(PotionOfSnapFreeze.class,          6f);
+		potionChances.put(PotionOfDragonsBreath.class,    6f);
+		potionChances.put(PotionOfCorrosiveGas.class,       6f);
+		potionChances.put(PotionOfStamina.class,          6f);
+		potionChances.put(PotionOfShroudingFog.class,   6f);
+		potionChances.put(PotionOfStormClouds.class,     6f);
+		potionChances.put(PotionOfEarthenArmor.class,   6f);
+		potionChances.put(PotionOfCleansing.class,         6f);
+		potionChances.put(PotionOfDivineInspiration.class,     6f);
+		potionChances.put(PotionOfMastery.class,        6f);
+		potionChances.put(ElixirOfHoneyedHealing.class,        6f);
+		potionChances.put(ElixirOfToxicEssence.class,     6f);
+		potionChances.put(ElixirOfAquaticRejuvenation.class,          6f);
+		potionChances.put(ElixirOfArcaneArmor.class,    6f);
+		potionChances.put(ElixirOfDragonsBlood.class,       6f);
+		potionChances.put(ElixirOfIcyTouch.class,          6f);
+		potionChances.put(ElixirOfMight.class,   6f);
+		potionChances.put(InfernalBrew.class,     6f);
+		potionChances.put(CausticBrew.class,   6f);
+		potionChances.put(ShockingBrew.class,         6f);
+		potionChances.put(BlizzardBrew.class,     6f);
+		potionChances.put(AlchemicalCatalyst.class,        6f);
 	}
 	
 	public void paint( Level level ) {
@@ -85,7 +136,7 @@ public class SecretLaboratoryRoom extends SecretRoom {
 		} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
 		level.drop( new EnergyCrystal().random(), pos );
 
-		int n = Random.IntRange( 2, 3 );
+		int n = Random.IntRange( 2, 15 );
 		HashMap<Class<? extends Potion>, Float> chances = new HashMap<>(potionChances);
 		for (int i=0; i < n; i++) {
 			do {

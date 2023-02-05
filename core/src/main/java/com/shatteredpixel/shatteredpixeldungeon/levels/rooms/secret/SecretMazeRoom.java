@@ -94,12 +94,12 @@ public class SecretMazeRoom extends SecretRoom {
 		}
 		
 		Item prize;
-		//1 floor set higher in probability, never cursed
+		//1 floor set higher in probability, never cursed (removed/no longer works, hopefully.)
 		do {
 			if (Random.Int(2) == 0) {
-				prize = Generator.randomWeapon((Dungeon.depth / 5) + 1);
+				prize = Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.RING, Generator.Category.ARTIFACT));
 			} else {
-				prize = Generator.randomArmor((Dungeon.depth / 5) + 1);
+				prize = Generator.random(Random.oneOf(Generator.Category.ARMOR, Generator.Category.WEAPON));
 			}
 		} while (prize.cursed || Challenges.isItemBlocked(prize));
 		prize.cursedKnown = true;

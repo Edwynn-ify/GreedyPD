@@ -115,7 +115,7 @@ public abstract class RegularLevel extends Level {
 		//force max standard rooms and multiple by 1.5x for large levels
 		int standards = standardRooms(feeling == Feeling.LARGE);
 		if (feeling == Feeling.LARGE){
-			standards = (int)Math.ceil(standards * 1.5f);
+			standards = (int)Math.ceil(standards * 2f);
 		}
 		for (int i = 0; i < standards; i++) {
 			StandardRoom s;
@@ -195,9 +195,9 @@ public abstract class RegularLevel extends Level {
 			else                            return 10;
 		}
 
-		int mobs = 3 + Dungeon.depth % 5 + Random.Int(3);
+		int mobs = 6 + Dungeon.depth % 5 + Random.Int(6);
 		if (feeling == Feeling.LARGE){
-			mobs = (int)Math.ceil(mobs * 1.33f);
+			mobs = (int)Math.ceil(mobs * 10f);
 		}
 		return mobs;
 	}
@@ -333,10 +333,10 @@ public abstract class RegularLevel extends Level {
 	protected void createItems() {
 		
 		// drops 3/4/5 items 60%/30%/10% of the time
-		int nItems = 3 + Random.chances(new float[]{6, 3, 1});
+		int nItems = 9 + Random.chances(new float[]{9, 6, 3});
 
 		if (feeling == Feeling.LARGE){
-			nItems += 2;
+			nItems += 6;
 		}
 		
 		for (int i=0; i < nItems; i++) {

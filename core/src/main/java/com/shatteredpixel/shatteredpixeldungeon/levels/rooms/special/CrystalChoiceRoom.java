@@ -103,11 +103,14 @@ public class CrystalChoiceRoom extends SpecialRoom {
 			room2 = tmp;
 		}
 
-		int n = Random.NormalIntRange(3, 4);
+		int n = Random.NormalIntRange(3, 15);
 		for (int i = 0; i < n; i++){
 			Item reward = Generator.random(Random.oneOf(
 					Generator.Category.POTION,
-					Generator.Category.SCROLL
+					Generator.Category.SCROLL,
+					Generator.Category.SEED,
+					Generator.Category.FOOD,
+					Generator.Category.STONE
 			));
 			int pos;
 			do {
@@ -123,7 +126,10 @@ public class CrystalChoiceRoom extends SpecialRoom {
 		Item hidden = Generator.random(Random.oneOf(
 				Generator.Category.WAND,
 				Generator.Category.RING,
-				Generator.Category.ARTIFACT
+				Generator.Category.ARTIFACT,
+				Generator.Category.WEAPON,
+				Generator.Category.ARMOR
+
 		));
 		Heap chest = level.drop(hidden, level.pointToCell(room2.center()));
 		chest.type = Heap.Type.CHEST;

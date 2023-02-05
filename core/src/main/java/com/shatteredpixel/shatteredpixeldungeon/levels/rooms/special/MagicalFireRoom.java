@@ -98,7 +98,7 @@ public class MagicalFireRoom extends SpecialRoom {
 
 		boolean honeyPot = Random.Int( 2 ) == 0;
 
-		int n = Random.IntRange( 3, 4 );
+		int n = Random.IntRange( 3, 15 );
 
 		for (int i=0; i < n; i++) {
 			int pos;
@@ -118,7 +118,7 @@ public class MagicalFireRoom extends SpecialRoom {
 
 	private static Item prize( Level level ) {
 
-		if (Random.Int(3) != 0){
+		if (Random.Int(2) != 0){
 			Item prize = level.findPrizeItem();
 			if (prize != null)
 				return prize;
@@ -128,7 +128,11 @@ public class MagicalFireRoom extends SpecialRoom {
 				Generator.Category.POTION,
 				Generator.Category.SCROLL,
 				Generator.Category.FOOD,
-				Generator.Category.GOLD
+				Generator.Category.GOLD,
+				Generator.Category.ARTIFACT,
+				Generator.Category.WAND,
+				Generator.Category.RING
+
 		) );
 	}
 
