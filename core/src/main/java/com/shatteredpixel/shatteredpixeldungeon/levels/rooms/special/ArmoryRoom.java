@@ -53,8 +53,8 @@ public class ArmoryRoom extends SpecialRoom {
 		if (statue != null) {
 			Painter.set( level, statue, Terrain.STATUE );
 		}
-		//apparently max cap is 5
-		int n = Random.IntRange( 2, 5 );
+
+		int n = Random.IntRange( 2, 3 );
 		prizeCats = new float[]{1,1,1,1};
 		for (int i=0; i < n; i++) {
 			int pos;
