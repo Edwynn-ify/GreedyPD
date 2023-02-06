@@ -39,12 +39,12 @@ public class RingOfEnergy extends Ring {
 	public String statsInfo() {
 		if (isIdentified()){
 			return Messages.get(this, "stats",
-					new DecimalFormat("#.##").format(100f * (Math.pow(1.20f, soloBuffedBonus()) - 1f)),
-					new DecimalFormat("#.##").format(100f * (Math.pow(1.15f, soloBuffedBonus()) - 1f)));
+					new DecimalFormat("#.##").format(100f * (Math.pow(1.40f, soloBuffedBonus()) - 1f)),
+					new DecimalFormat("#.##").format(100f * (Math.pow(1.3f, soloBuffedBonus()) - 1f)));
 		} else {
 			return Messages.get(this, "typical_stats",
-					new DecimalFormat("#.##").format(20f),
-					new DecimalFormat("#.##").format(15f));
+					new DecimalFormat("#.##").format(40f),
+					new DecimalFormat("#.##").format(30f));
 		}
 	}
 	
@@ -54,14 +54,14 @@ public class RingOfEnergy extends Ring {
 	}
 	
 	public static float wandChargeMultiplier( Char target ){
-		return (float)Math.pow(1.20, getBuffedBonus(target, Energy.class));
+		return (float)Math.pow(1.40, getBuffedBonus(target, Energy.class));
 	}
 
 	public static float artifactChargeMultiplier( Char target ){
-		float bonus = (float)Math.pow(1.15, getBuffedBonus(target, Energy.class));
+		float bonus = (float)Math.pow(1.3, getBuffedBonus(target, Energy.class));
 
 		if (target instanceof Hero && ((Hero) target).heroClass != HeroClass.ROGUE && ((Hero) target).hasTalent(Talent.LIGHT_CLOAK)){
-			bonus *= 1f + (0.4f * ((Hero) target).pointsInTalent(Talent.LIGHT_CLOAK)/1.5f);
+			bonus *= 1f + (0.8f * ((Hero) target).pointsInTalent(Talent.LIGHT_CLOAK)/0.75f);
 		}
 
 		return bonus;

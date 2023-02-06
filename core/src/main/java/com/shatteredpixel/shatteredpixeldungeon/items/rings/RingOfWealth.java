@@ -31,10 +31,31 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Honeypot;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Firebomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Flashbang;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.FrostBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.HolyBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Noisemaker;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.RegrowthBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ShockBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ShrapnelBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.WoollyBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.MeatPie;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.BlizzardBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.CausticBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.InfernalBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.ShockingBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfArcaneArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfEnchantment;
@@ -90,7 +111,7 @@ public class RingOfWealth extends Ring {
 	}
 	
 	public static float dropChanceMultiplier( Char target ){
-		return (float)Math.pow(1.20, getBuffedBonus(target, Wealth.class));
+		return (float)Math.pow(1.40, getBuffedBonus(target, Wealth.class));
 	}
 	
 	public static ArrayList<Item> tryForBonusDrop(Char target, int tries ){
@@ -140,7 +161,7 @@ public class RingOfWealth extends Ring {
 					i = genEquipmentDrop(equipBonus - 1);
 				} while (Challenges.isItemBlocked(i));
 				drops.add(i);
-				dropsToEquip = Random.NormalIntRange(5, 10);
+				dropsToEquip = Random.NormalIntRange(5, 30);
 			} else {
 				Item i;
 				do {
@@ -149,7 +170,7 @@ public class RingOfWealth extends Ring {
 				drops.add(i);
 				dropsToEquip--;
 			}
-			triesToDrop += Random.NormalIntRange(0, 20);
+			triesToDrop += Random.NormalIntRange(0, 40);
 		}
 
 		//store values back into rings
@@ -194,7 +215,7 @@ public class RingOfWealth extends Ring {
 			latestDropTier = 1;
 			return genLowValueConsumable();
 		//30% chance + 2% per level. Starting from +15: 60%-2%*(lvl-15)
-		} else if (roll < (0.9f - 0.02f * level)) {
+		} else if (roll < (0.9f - 0.04f * level)) {
 			latestDropTier = 2;
 			return genMidValueConsumable();
 		//10% chance + 2% per level. Starting from +15: 40%+2%*(lvl-15)
@@ -205,24 +226,29 @@ public class RingOfWealth extends Ring {
 	}
 
 	private static Item genLowValueConsumable(){
-		switch (Random.Int(4)){
+		switch (Random.Int(6)){
 			case 0: default:
 				Item i = new Gold().random();
-				return i.quantity(i.quantity()/2);
+				return i.quantity(i.quantity());
 			case 1:
 				return Generator.randomUsingDefaults(Generator.Category.STONE);
 			case 2:
 				return Generator.randomUsingDefaults(Generator.Category.POTION);
 			case 3:
 				return Generator.randomUsingDefaults(Generator.Category.SCROLL);
+			case 4:
+				return Generator.randomUsingDefaults(Generator.Category.SEED);
+			case 5:
+				return Generator.randomUsingDefaults(Generator.Category.FOOD);
+
 		}
 	}
 
 	private static Item genMidValueConsumable(){
-		switch (Random.Int(6)){
+		switch (Random.Int(8)){
 			case 0: default:
 				Item i = genLowValueConsumable();
-				return i.quantity(i.quantity()*2);
+				return i.quantity(i.quantity()*3);
 			case 1:
 				i = Generator.randomUsingDefaults(Generator.Category.POTION);
 				return Reflection.newInstance(ExoticPotion.regToExo.get(i.getClass()));
@@ -234,7 +260,11 @@ public class RingOfWealth extends Ring {
 			case 4:
 				return new Bomb();
 			case 5:
+				return Random.oneOf(new Bomb.DoubleBomb(), new Firebomb(), new Flashbang(), new FrostBomb(), new HolyBomb(), new Noisemaker(), new RegrowthBomb(), new ShockBomb(), new ShrapnelBomb(), new WoollyBomb());
+			case 6:
 				return new Honeypot();
+			case 7:
+					return Random.oneOf(new ElixirOfIcyTouch(), new ElixirOfDragonsBlood(), new ElixirOfArcaneArmor(), new ElixirOfAquaticRejuvenation(), new ElixirOfToxicEssence(), new BlizzardBrew(), new CausticBrew(), new InfernalBrew(), new ShockingBrew());
 		}
 	}
 
@@ -243,9 +273,9 @@ public class RingOfWealth extends Ring {
 			case 0: default:
 				Item i = genMidValueConsumable();
 				if (i instanceof Bomb){
-					return new Bomb.DoubleBomb();
+					return Random.oneOf(new Bomb.DoubleBomb(), new Firebomb(), new Flashbang(), new FrostBomb(), new HolyBomb(), new Noisemaker(), new RegrowthBomb(), new ShockBomb(), new ShrapnelBomb(), new WoollyBomb());
 				} else {
-					return i.quantity(i.quantity()*2);
+					return i.quantity(i.quantity()*3);
 				}
 			case 1:
 				return new StoneOfEnchantment();
@@ -253,6 +283,12 @@ public class RingOfWealth extends Ring {
 				return new PotionOfExperience();
 			case 3:
 				return new ScrollOfTransmutation();
+			case 4:
+				return new ScrollOfUpgrade();
+			case 5:
+				return new PotionOfStrength();
+			case 6:
+				return new MeatPie();
 		}
 	}
 
@@ -260,7 +296,7 @@ public class RingOfWealth extends Ring {
 		Item result;
 		//each upgrade increases depth used for calculating drops by 1
 		int floorset = (Dungeon.depth + level)/5;
-		switch (Random.Int(5)){
+		switch (Random.Int(6)){
 			default: case 0: case 1:
 				Weapon w = Generator.randomWeapon(floorset);
 				if (!w.hasGoodEnchant() && Random.Int(10) < level)      w.enchant();
@@ -279,10 +315,13 @@ public class RingOfWealth extends Ring {
 			case 4:
 				result = Generator.random(Generator.Category.ARTIFACT);
 				break;
+			case 5:
+				result = Generator.random(Generator.Category.WAND);
+				break;
 		}
 		//minimum level is 1/2/3/4/5/6 when ring level is 1/3/5/7/9/11
 		if (result.isUpgradable()){
-			int minLevel = (level+1)/2;
+			int minLevel = (level+2);
 			if (result.level() < minLevel){
 				result.level(minLevel);
 			}

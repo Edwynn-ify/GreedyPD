@@ -383,7 +383,7 @@ public abstract class Char extends Actor {
 			}
 
 			if (enemy.buff(ScrollOfChallenge.ChallengeArena.class) != null){
-				dmg *= 0.67f;
+				dmg *= 0.5f;
 			}
 
 			if ( buff(Weakness.class) != null ){

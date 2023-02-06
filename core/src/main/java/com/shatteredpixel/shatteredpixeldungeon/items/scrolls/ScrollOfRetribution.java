@@ -46,7 +46,7 @@ public class ScrollOfRetribution extends Scroll {
 		
 		//scales from 0x to 1x power, maxing at ~10% HP
 		float hpPercent = (curUser.HT - curUser.HP)/(float)(curUser.HT);
-		float power = Math.min( 4f, 4.45f*hpPercent);
+		float power = Math.min( 4f, 9f*hpPercent);
 		
 		Sample.INSTANCE.play( Assets.Sounds.BLAST );
 		GLog.i(Messages.get(this, "blast"));
@@ -54,7 +54,7 @@ public class ScrollOfRetribution extends Scroll {
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 			if (Dungeon.level.heroFOV[mob.pos]) {
 				//deals 10%HT, plus 0-90%HP based on scaling
-				mob.damage(Math.round(mob.HT/10f + (mob.HP * power * 0.225f)), this);
+				mob.damage(Math.round(mob.HT/20f + (mob.HP * power * 0.45f)), this);
 				if (mob.isAlive()) {
 					Buff.prolong(mob, Blindness.class, Blindness.DURATION);
 				}

@@ -50,7 +50,7 @@ public class RingOfForce extends Ring {
 		float tier = Math.max(1, (str - 8)/2f);
 		//each str point after 18 is half as effective
 		if (tier > 5){
-			tier = 5 + (tier - 5) / 2f;
+			tier = 5 + (tier - 5);
 		}
 		return tier;
 	}
@@ -62,7 +62,7 @@ public class RingOfForce extends Ring {
 			return Random.NormalIntRange(min(level, tier), max(level, tier));
 		} else {
 			//attack without any ring of force influence
-			return Random.NormalIntRange(1, Math.max(hero.STR()-8, 1));
+			return Random.NormalIntRange(1, Math.max(hero.STR()-4, 2));
 		}
 	}
 
@@ -81,8 +81,8 @@ public class RingOfForce extends Ring {
 		if (lvl <= 0) tier = 1; //tier is forced to 1 if cursed
 
 		return Math.max( 0, Math.round(
-				5*(tier+1) +    //base
-				lvl*(tier+1)    //level scaling
+				6*(tier+1) +    //base
+				lvl*(tier+2)    //level scaling
 		));
 	}
 

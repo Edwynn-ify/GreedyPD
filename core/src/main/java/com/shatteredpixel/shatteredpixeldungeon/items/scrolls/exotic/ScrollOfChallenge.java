@@ -75,7 +75,7 @@ public class ScrollOfChallenge extends ExoticScroll {
 		private ArrayList<Integer> arenaPositions = new ArrayList<>();
 		private ArrayList<Emitter> arenaEmitters = new ArrayList<>();
 
-		private static final float DURATION = 100;
+		private static final float DURATION = 200;
 		int left = 0;
 
 		{
@@ -111,7 +111,7 @@ public class ScrollOfChallenge extends ExoticScroll {
 
 			int dist;
 			if (Dungeon.depth == 5 || Dungeon.depth == 10 || Dungeon.depth == 20){
-				dist = 1; //smaller boss arenas
+				dist = 3; //smaller boss arenas
 			} else {
 
 				boolean[] visibleCells = new boolean[Dungeon.level.length()];
@@ -123,11 +123,11 @@ public class ScrollOfChallenge extends ExoticScroll {
 				}
 
 				if (count < 30){
-					dist = 1;
-				} else if (count >= 100) {
-					dist = 3;
-				} else {
 					dist = 2;
+				} else if (count >= 100) {
+					dist = 6;
+				} else {
+					dist = 4;
 				}
 			}
 
