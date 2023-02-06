@@ -33,8 +33,8 @@ public class MagicalHolster extends Bag {
 		image = ItemSpriteSheet.HOLSTER;
 	}
 
-	public static final float HOLSTER_SCALE_FACTOR = 0.85f;
-	public static final float HOLSTER_DURABILITY_FACTOR = 1.2f;
+	public static final float HOLSTER_SCALE_FACTOR = 0.425f;
+	public static final float HOLSTER_DURABILITY_FACTOR = 2.4f;
 	
 	@Override
 	public boolean canHold( Item item ) {

@@ -58,9 +58,9 @@ public class TimekeepersHourglass extends Artifact {
 
 		levelCap = 5;
 
-		charge = 5+level();
+		charge = 10+level();
 		partialCharge = 0;
-		chargeCap = 5+level();
+		chargeCap = 10+level();
 
 		defaultAction = AC_ACTIVATE;
 	}

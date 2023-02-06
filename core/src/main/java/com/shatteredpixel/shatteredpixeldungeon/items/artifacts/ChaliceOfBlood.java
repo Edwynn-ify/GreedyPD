@@ -69,7 +69,7 @@ public class ChaliceOfBlood extends Artifact {
 
 		if (action.equals(AC_PRICK)){
 
-			int damage = 3*(level()*level());
+			int damage = 2*(level()*level());
 
 			if (damage > hero.HP*0.75) {
 
@@ -94,7 +94,7 @@ public class ChaliceOfBlood extends Artifact {
 	}
 
 	private void prick(Hero hero){
-		int damage = 3*(level()*level());
+		int damage = 2*(level()*level());
 
 		Earthroot.Armor armor = hero.buff(Earthroot.Armor.class);
 		if (armor != null) {
@@ -158,10 +158,10 @@ public class ChaliceOfBlood extends Artifact {
 		//grants 5 turns of healing up-front, if hero isn't starving
 		if (target.isStarving()) return;
 
-		float healDelay = 10f - level()*0.9f;
+		float healDelay = 5f - level()*1.8f;
 		healDelay /= amount;
 		//effectively 1HP at lvl 0-5, 2HP lvl 6-8, 3HP lvl 9, and 5HP lvl 10.
-		target.HP = Math.min( target.HT, target.HP + (int)Math.ceil(5/healDelay));
+		target.HP = Math.min( target.HT, target.HP + (int)Math.ceil(3/healDelay));
 	}
 	
 	@Override

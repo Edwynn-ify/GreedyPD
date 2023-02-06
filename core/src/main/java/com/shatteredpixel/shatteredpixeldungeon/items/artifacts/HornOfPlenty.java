@@ -58,7 +58,7 @@ public class HornOfPlenty extends Artifact {
 
 		charge = 0;
 		partialCharge = 0;
-		chargeCap = 5 + level()/2;
+		chargeCap = 10 + level();
 
 		defaultAction = AC_SNACK;
 	}
@@ -96,7 +96,7 @@ public class HornOfPlenty extends Artifact {
 			else if (charge == 0)  GLog.i( Messages.get(this, "no_food") );
 			else {
 				//consume as much food as it takes to be full, to a minimum of 1
-				int satietyPerCharge = (int) (Hunger.STARVING/5f);
+				int satietyPerCharge = (int) (Hunger.STARVING/2.5f);
 				if (Dungeon.isChallenged(Challenges.NO_FOOD)){
 					satietyPerCharge /= 3;
 				}
@@ -160,7 +160,7 @@ public class HornOfPlenty extends Artifact {
 	@Override
 	public void charge(Hero target, float amount) {
 		if (charge < chargeCap && !cursed && target.buff(MagicImmune.class) == null){
-			partialCharge += 0.25f*amount;
+			partialCharge += 0.5f*amount;
 			if (partialCharge >= 1){
 				partialCharge--;
 				charge++;
@@ -200,13 +200,13 @@ public class HornOfPlenty extends Artifact {
 	@Override
 	public void level(int value) {
 		super.level(value);
-		chargeCap = 5 + level()/2;
+		chargeCap = 10 + level();
 	}
 
 	@Override
 	public Item upgrade() {
 		super.upgrade();
-		chargeCap = 5 + level()/2;
+		chargeCap = 10 + level();
 		return this;
 	}
 	
@@ -216,7 +216,7 @@ public class HornOfPlenty extends Artifact {
 		storedFoodEnergy += food.energy;
 		if (storedFoodEnergy >= Hunger.HUNGRY){
 			int upgrades = storedFoodEnergy / (int)Hunger.HUNGRY;
-			upgrades = Math.min(upgrades, 10 - level());
+			upgrades = Math.min(upgrades, 20 - level());
 			upgrade(upgrades);
 			storedFoodEnergy -= upgrades * Hunger.HUNGRY;
 			if (level() == 10){
@@ -258,14 +258,14 @@ public class HornOfPlenty extends Artifact {
 				//generates 0.25x max hunger value every hero level, +0.125x max value per horn level
 				//to a max of 1.5x max hunger value per hero level
 				//This means that a standard ration will be recovered in ~5.333 hero levels
-				float chargeGain = Hunger.STARVING * levelPortion * (0.25f + (0.125f*level()));
+				float chargeGain = Hunger.STARVING * levelPortion * (0.5f + (0.25f*level()));
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 
 				//charge is in increments of 1/5 max hunger value.
-				while (partialCharge >= Hunger.STARVING/5) {
+				while (partialCharge >= Hunger.STARVING/3) {
 					charge++;
-					partialCharge -= Hunger.STARVING/5;
+					partialCharge -= Hunger.STARVING/3;
 
 					int oldImage = image;
 					if (charge >= 8)        image = ItemSpriteSheet.ARTIFACT_HORN4;

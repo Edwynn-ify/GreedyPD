@@ -63,7 +63,7 @@ public class MasterThievesArmband extends Artifact {
 
 		charge = 0;
 		partialCharge = 0;
-		chargeCap = 5+level()/2;
+		chargeCap = 10+level();
 
 		defaultAction = AC_STEAL;
 	}
@@ -135,16 +135,16 @@ public class MasterThievesArmband extends Artifact {
 							Sample.INSTANCE.play(Assets.Sounds.HIT);
 
 							boolean surprised = ((Mob) ch).surprisedBy(curUser, false);
-							float lootMultiplier = 1f + 0.1f*level();
-							int debuffDuration = 3 + level()/2;
+							float lootMultiplier = 2f + 0.2f*level();
+							int debuffDuration = 6 + level();
 
 							Invisibility.dispel(curUser);
 
 							if (surprised){
-								lootMultiplier += 0.5f;
+								lootMultiplier += 1f;
 								Surprise.hit(ch);
 								Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG);
-								debuffDuration += 2;
+								debuffDuration += 4;
 								exp += 2;
 							}
 
@@ -233,7 +233,7 @@ public class MasterThievesArmband extends Artifact {
 
 	@Override
 	public Item upgrade() {
-		chargeCap = 5 + (level()+1)/2;
+		chargeCap = 10 + (level()+2);
 		return super.upgrade();
 	}
 
@@ -328,7 +328,7 @@ public class MasterThievesArmband extends Artifact {
 			float valUsing = 0;
 			int chargesUsed = 0;
 			while (valUsing < value && chargesUsed < charge){
-				valUsing += 10 + level()/2f;
+				valUsing += 10 + level();
 				chargesUsed++;
 			}
 			return chargesUsed;

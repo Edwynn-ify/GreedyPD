@@ -52,7 +52,7 @@ public class CapeOfThorns extends Artifact {
 	@Override
 	public void charge(Hero target, float amount) {
 		if (cooldown == 0) {
-			charge += Math.round(4*amount);
+			charge += Math.round(8*amount);
 			updateQuickslot();
 		}
 		if (charge >= chargeCap){
@@ -91,7 +91,7 @@ public class CapeOfThorns extends Artifact {
 
 		public int proc(int damage, Char attacker, Char defender){
 			if (cooldown == 0){
-				charge += damage*(0.5+level()*0.05);
+				charge += damage*(0.5+level()*0.1);
 				if (charge >= chargeCap){
 					charge = 0;
 					cooldown = 10+level();
@@ -109,8 +109,8 @@ public class CapeOfThorns extends Artifact {
 
 				exp+= deflected;
 
-				if (exp >= (level()+1)*5 && level() < levelCap){
-					exp -= (level()+1)*5;
+				if (exp >= (level()+1)*10 && level() < levelCap){
+					exp -= (level()+1)*10;
 					upgrade();
 					GLog.p( Messages.get(this, "levelup") );
 				}

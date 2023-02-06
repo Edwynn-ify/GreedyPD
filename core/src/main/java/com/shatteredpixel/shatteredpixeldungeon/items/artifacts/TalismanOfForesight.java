@@ -99,7 +99,7 @@ public class TalismanOfForesight extends Artifact {
 	public void charge(Hero target, float amount) {
 		if (cursed || target.buff(MagicImmune.class) != null) return;
 		if (charge < chargeCap){
-			charge += Math.round(2*amount);
+			charge += Math.round(4*amount);
 			if (charge >= chargeCap) {
 				charge = chargeCap;
 				partialCharge = 0;
@@ -154,7 +154,7 @@ public class TalismanOfForesight extends Artifact {
 				}
 
 				//starts at 200 degrees, loses 8% per tile of distance
-				float angle = Math.round(200*(float)Math.pow(0.92, dist));
+				float angle = Math.round(200*(float)Math.pow(0.96, dist));
 				ConeAOE cone = new ConeAOE(new Ballistica(curUser.pos, target, Ballistica.STOP_TARGET), angle);
 
 				int earnedExp = 0;
@@ -182,7 +182,7 @@ public class TalismanOfForesight extends Artifact {
 
 					Char ch = Actor.findChar(cell);
 					if (ch != null && ch.alignment != Char.Alignment.NEUTRAL && ch.alignment != curUser.alignment){
-						Buff.append(curUser, CharAwareness.class, 5 + 2*level()).charID = ch.id();
+						Buff.append(curUser, CharAwareness.class, 10 + 4*level()).charID = ch.id();
 
 						if (!curUser.fieldOfView[ch.pos]){
 							earnedExp += 10;
@@ -191,7 +191,7 @@ public class TalismanOfForesight extends Artifact {
 
 					Heap h = Dungeon.level.heaps.get(cell);
 					if (h != null){
-						Buff.append(curUser, HeapAwareness.class, 5 + 2*level()).pos = h.pos;
+						Buff.append(curUser, HeapAwareness.class, 10 + 4*level()).pos = h.pos;
 
 						if (!h.seen){
 							earnedExp += 10;
@@ -209,7 +209,7 @@ public class TalismanOfForesight extends Artifact {
 				updateQuickslot();
 
 				//5 charge at 2 tiles, up to 30 charge at 25 tiles
-				charge -= 3 + dist*1.08f;
+				charge -= 3 + dist*1.16f;
 				partialCharge -= (dist*1.08f)%1f;
 				if (partialCharge < 0 && charge > 0){
 					partialCharge ++;

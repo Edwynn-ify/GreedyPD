@@ -58,7 +58,7 @@ public class EtherealChains extends Artifact {
 	{
 		image = ItemSpriteSheet.ARTIFACT_CHAINS;
 
-		levelCap = 5;
+		levelCap = 10;
 		exp = 0;
 
 		charge = 5;
@@ -271,7 +271,7 @@ public class EtherealChains extends Artifact {
 	@Override
 	public void charge(Hero target, float amount) {
 		if (cursed || target.buff(MagicImmune.class) != null) return;
-		int chargeTarget = 5+(level()*2);
+		int chargeTarget = 10+(level()*4);
 		if (charge < chargeTarget*2){
 			partialCharge += 0.5f*amount;
 			if (partialCharge >= 1){
@@ -300,18 +300,18 @@ public class EtherealChains extends Artifact {
 
 		@Override
 		public boolean act() {
-			int chargeTarget = 5+(level()*2);
+			int chargeTarget = 10+(level()*4);
 			LockedFloor lock = target.buff(LockedFloor.class);
 			if (charge < chargeTarget
 					&& !cursed
 					&& target.buff(MagicImmune.class) == null
 					&& (lock == null || lock.regenOn())) {
 				//gains a charge in 40 - 2*missingCharge turns
-				float chargeGain = (1 / (40f - (chargeTarget - charge)*2f));
+				float chargeGain = (2 / (20f - (chargeTarget - charge)*4f));
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 			} else if (cursed && Random.Int(100) == 0){
-				Buff.prolong( target, Cripple.class, 10f);
+				Buff.prolong( target, Cripple.class, 20f);
 			}
 
 			if (partialCharge >= 1) {
@@ -333,9 +333,9 @@ public class EtherealChains extends Artifact {
 
 			//past the soft charge cap, gaining  charge from leveling is slowed.
 			if (charge > 5+(level()*2)){
-				levelPortion *= (5+((float)level()*2))/charge;
+				levelPortion *= (10+((float)level()*4))/charge;
 			}
-			partialCharge += levelPortion*10f;
+			partialCharge += levelPortion*20f;
 
 			if (exp > 100+level()*100 && level() < levelCap){
 				exp -= 100+level()*100;

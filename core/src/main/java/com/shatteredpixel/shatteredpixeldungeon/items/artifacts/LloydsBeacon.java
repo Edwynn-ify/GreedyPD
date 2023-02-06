@@ -68,7 +68,7 @@ public class LloydsBeacon extends Artifact {
 		levelCap = 3;
 
 		charge = 0;
-		chargeCap = 3+level();
+		chargeCap = 6+level();
 
 		defaultAction = AC_ZAP;
 		usesTargeting = true;

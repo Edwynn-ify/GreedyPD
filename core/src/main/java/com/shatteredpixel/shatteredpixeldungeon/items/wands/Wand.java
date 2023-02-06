@@ -80,7 +80,7 @@ public abstract class Wand extends Item {
 	public boolean curseInfusionBonus = false;
 	public int resinBonus = 0;
 
-	private static final int USES_TO_ID = 10;
+	private static final int USES_TO_ID = 20;
 	private float usesLeftToID = USES_TO_ID;
 	private float availableUsesToID = USES_TO_ID/2f;
 
@@ -649,11 +649,11 @@ public abstract class Wand extends Item {
 	
 	public class Charger extends Buff {
 		
-		private static final float BASE_CHARGE_DELAY = 10f;
-		private static final float SCALING_CHARGE_ADDITION = 40f;
-		private static final float NORMAL_SCALE_FACTOR = 0.875f;
+		private static final float BASE_CHARGE_DELAY = 5f;
+		private static final float SCALING_CHARGE_ADDITION = 80f;
+		private static final float NORMAL_SCALE_FACTOR = 0.4375f;
 
-		private static final float CHARGE_BUFF_BONUS = 0.5f;
+		private static final float CHARGE_BUFF_BONUS = 1f;
 
 		float scalingFactor = NORMAL_SCALE_FACTOR;
 

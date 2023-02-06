@@ -67,9 +67,9 @@ public class UnstableSpellbook extends Artifact {
 
 		levelCap = 10;
 
-		charge = (int)(level()*0.6f)+2;
+		charge = (int)(level()*1.2f)+4;
 		partialCharge = 0;
-		chargeCap = (int)(level()*0.6f)+2;
+		chargeCap = (int)(level()*1.2f)+4;
 
 		defaultAction = AC_READ;
 	}
@@ -126,13 +126,7 @@ public class UnstableSpellbook extends Artifact {
 				Scroll scroll;
 				do {
 					scroll = (Scroll) Generator.randomUsingDefaults(Generator.Category.SCROLL);
-				} while (scroll == null
-						//reduce the frequency of these scrolls by half
-						||((scroll instanceof ScrollOfIdentify ||
-							scroll instanceof ScrollOfRemoveCurse ||
-							scroll instanceof ScrollOfMagicMapping) && Random.Int(2) == 0)
-						//cannot roll transmutation
-						|| (scroll instanceof ScrollOfTransmutation));
+				} while (scroll == null);
 				
 				scroll.anonymize();
 				curItem = scroll;
@@ -237,7 +231,7 @@ public class UnstableSpellbook extends Artifact {
 
 	@Override
 	public Item upgrade() {
-		chargeCap = (int)((level()+1)*0.6f)+2;
+		chargeCap = (int)((level()+2)*1.2f)+4;
 
 		//for artifact transmutation.
 		while (!scrolls.isEmpty() && scrolls.size() > (levelCap-1-level()))
@@ -294,7 +288,7 @@ public class UnstableSpellbook extends Artifact {
 					&& target.buff(MagicImmune.class) == null
 					&& (lock == null || lock.regenOn())) {
 				//120 turns to charge at full, 80 turns to charge at 0/8
-				float chargeGain = 1 / (120f - (chargeCap - charge)*5f);
+				float chargeGain = 2 / (60f - (chargeCap - charge)*10f);
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 

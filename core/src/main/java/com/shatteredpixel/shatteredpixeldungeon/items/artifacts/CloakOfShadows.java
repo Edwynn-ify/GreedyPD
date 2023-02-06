@@ -55,9 +55,9 @@ public class CloakOfShadows extends Artifact {
 		exp = 0;
 		levelCap = 10;
 
-		charge = Math.min(level()+3, 10);
+		charge = Math.min(level()+3, 20);
 		partialCharge = 0;
-		chargeCap = Math.min(level()+3, 10);
+		chargeCap = Math.min(level()+3, 20);
 
 		defaultAction = AC_STEALTH;
 
@@ -179,8 +179,8 @@ public class CloakOfShadows extends Artifact {
 		if (cursed || target.buff(MagicImmune.class) != null) return;
 
 		if (charge < chargeCap) {
-			if (!isEquipped(target)) amount *= 1.5f*target.pointsInTalent(Talent.LIGHT_CLOAK)/1.5f;
-			partialCharge += 0.5f*amount;
+			if (!isEquipped(target)) amount *= 3f*target.pointsInTalent(Talent.LIGHT_CLOAK)/0.75f;
+			partialCharge += 1f*amount;
 			if (partialCharge >= 1){
 				partialCharge--;
 				charge++;
@@ -196,7 +196,7 @@ public class CloakOfShadows extends Artifact {
 	
 	@Override
 	public Item upgrade() {
-		chargeCap = Math.min(chargeCap + 1, 10);
+		chargeCap = Math.min(chargeCap + 1, 20);
 		return super.upgrade();
 	}
 
@@ -321,7 +321,7 @@ public class CloakOfShadows extends Artifact {
 					((Hero) target).interrupt();
 				} else {
 					//target hero level is 1 + 2*cloak level
-					int lvlDiffFromTarget = ((Hero) target).lvl - (1+level()*2);
+					int lvlDiffFromTarget = ((Hero) target).lvl - (1+level()*4);
 					//plus an extra one for each level after 6
 					if (level() >= 7){
 						lvlDiffFromTarget -= level()-6;
