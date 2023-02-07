@@ -357,7 +357,7 @@ public class CursedWand {
 			//great forest fire!
 			case 0: default:
 				for (int i = 0; i < Dungeon.level.length(); i++){
-					GameScene.add( Blob.seed(i, 3000, Regrowth.class));
+					GameScene.add( Blob.seed(i, 300, Regrowth.class));
 				}
 				do {
 					GameScene.add(Blob.seed(Dungeon.level.randomDestination(null), 10, Fire.class));

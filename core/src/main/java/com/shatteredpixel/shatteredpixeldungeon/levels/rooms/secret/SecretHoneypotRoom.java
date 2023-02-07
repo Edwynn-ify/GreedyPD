@@ -23,14 +23,16 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bee;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Honeypot;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Point;
+import com.watabou.utils.Random;
 
 public class SecretHoneypotRoom extends SecretRoom {
 	
@@ -56,11 +58,13 @@ public class SecretHoneypotRoom extends SecretRoom {
 		bee.setPotInfo(level.pointToCell(brokenPotPos), null);
 		
 		placeItem(new Honeypot(), level);
-		placeItem(new Potion().random(), level);
-		placeItem(new Potion(). random(), level);
-		placeItem(new Potion().random(), level);
+		placeItem(new ElixirOfHoneyedHealing(),level);
 		placeItem( new Bomb().random(), level);
-		
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+
 		entrance().set(Door.Type.HIDDEN);
 	}
 	

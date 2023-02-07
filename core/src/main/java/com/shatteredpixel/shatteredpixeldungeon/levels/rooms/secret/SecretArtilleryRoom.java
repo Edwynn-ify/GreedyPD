@@ -69,17 +69,18 @@ public class SecretArtilleryRoom extends SecretRoom {
 
 			} else {
 				level.drop(Generator.randomMissile(), itemPos);
-				level.drop(new ArcaneBomb(), itemPos);
-				level.drop(new ArcaneBomb(), itemPos);
-				level.drop(new Firebomb(), itemPos);
-				level.drop(new Flashbang(), itemPos);
-				level.drop(new FrostBomb(), itemPos);
-				level.drop(new HolyBomb(), itemPos);
-				level.drop(new Noisemaker(), itemPos);
-				level.drop(new RegrowthBomb(), itemPos);
-				level.drop(new ShockBomb(), itemPos);
-				level.drop(new ShrapnelBomb(), itemPos);
-				level.drop(new WoollyBomb(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
+				level.drop( new Bomb().random(), itemPos);
 			}
 		}
 		

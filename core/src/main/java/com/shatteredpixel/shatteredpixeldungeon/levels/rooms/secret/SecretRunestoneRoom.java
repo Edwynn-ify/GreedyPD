@@ -64,55 +64,30 @@ public class SecretRunestoneRoom extends SecretRoom {
 		level.addItemToSpawn(new PotionOfLiquidFlame());
 		
 		int dropPos;
-		
+
 		do{
 			dropPos = level.pointToCell(random());
 		} while (level.map[dropPos] != Terrain.EMPTY);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
-		
-		do{
-			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
-		level.drop( Generator.random(Generator.Category.STONE), dropPos);
-
-		do{
-			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
-		level.drop( Generator.random(Generator.Category.STONE), dropPos);
-
-		do{
-			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
-		level.drop( Generator.random(Generator.Category.STONE), dropPos);
-
-		do{
-			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 
 		do{
 			dropPos = level.pointToCell(random());
 		} while (level.map[dropPos] != Terrain.EMPTY);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
-
-		do{
-			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 
 		do{
 			dropPos = level.pointToCell(random());
 		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+
 
 		do{
 			dropPos = level.pointToCell(random());
 		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
-
-		do{
-			dropPos = level.pointToCell(random());
-		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 
 		do{

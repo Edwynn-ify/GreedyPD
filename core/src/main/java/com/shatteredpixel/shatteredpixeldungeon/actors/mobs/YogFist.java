@@ -62,7 +62,7 @@ import com.watabou.utils.Random;
 public abstract class YogFist extends Mob {
 
 	{
-		HP = HT = 600;
+		HP = HT = 1500;
 		defenseSkill = 20;
 
 		viewDistance = Light.DISTANCE;
@@ -81,7 +81,7 @@ public abstract class YogFist extends Mob {
 	protected boolean canRangedInMelee = true;
 
 	protected void incrementRangedCooldown(){
-		rangedCooldown += Random.NormalFloat(8, 24);
+		rangedCooldown += Random.NormalFloat(8, 72);
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public abstract class YogFist extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 30);
+		return Random.NormalIntRange(0, 45);
 	}
 
 	{

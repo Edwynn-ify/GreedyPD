@@ -28,7 +28,10 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.CrystalKey;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.IronKey;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
@@ -173,6 +176,15 @@ public class CrystalPathRoom extends SpecialRoom {
 				case 13:
 					item = new ElixirOfMight();
 				case 14:
+					item = new ElixirOfDragonsBlood();
+					break;
+				case 15:
+					item = new ElixirOfToxicEssence();
+					break;
+				case 16:
+					item = new ElixirOfIcyTouch();
+					break;
+				case 17:
 					if (Random.Int(2) == 0){
 						item = Generator.random(Random.oneOf(Generator.Category.POTION, Generator.Category.SCROLL));
 					} else if (Random.Int(2) == 0) {

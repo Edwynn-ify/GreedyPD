@@ -82,7 +82,7 @@ public abstract class Plant implements Bundlable {
 			CellEmitter.get( pos ).burst( LeafParticle.GENERAL, 6 );
 		}
 
-		float seedChance = 0f;
+		float seedChance = 0.5f;
 		for (Char c : Actor.chars()){
 			if (c instanceof WandOfRegrowth.Lotus){
 				WandOfRegrowth.Lotus l = (WandOfRegrowth.Lotus) c;

@@ -51,7 +51,7 @@ import com.watabou.utils.Random;
 public class Goo extends Mob {
 
 	{
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 300 : 150;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 500 : 300;
 		EXP = 10;
 		defenseSkill = 8;
 		spriteClass = GooSprite.class;
@@ -74,7 +74,7 @@ public class Goo extends Mob {
 				Statistics.qualifiedForBossChallengeBadge = false;
 				Statistics.bossScores[0] -= 100;
 			}
-			return Random.NormalIntRange( min*3, max*6 );
+			return Random.NormalIntRange( min*3, max*9 );
 		} else {
 			return Random.NormalIntRange( min, max );
 		}
@@ -95,7 +95,7 @@ public class Goo extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 5);
+		return Random.NormalIntRange(0, 10);
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class Goo extends Mob {
 		} else {
 
 			if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
-				pumpedUp += 2;
+				pumpedUp += 3;
 				//don't want to overly punish players with slow move or attack speed
 				spend(GameMath.gate(attackDelay(), Dungeon.hero.cooldown(), 3*attackDelay()));
 			} else {

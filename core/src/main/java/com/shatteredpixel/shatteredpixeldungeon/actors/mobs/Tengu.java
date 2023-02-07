@@ -85,7 +85,7 @@ public class Tengu extends Mob {
 	{
 		spriteClass = TenguSprite.class;
 		
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 500 : 250;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 1000 : 500;
 		EXP = 20;
 		defenseSkill = 15;
 		
@@ -110,7 +110,7 @@ public class Tengu extends Mob {
 	
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 6, 12 );
+		return Random.NormalIntRange( 6, 36 );
 	}
 	
 	@Override
@@ -124,7 +124,7 @@ public class Tengu extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 5);
+		return Random.NormalIntRange(0, 20);
 	}
 
 	boolean loading = false;
@@ -352,9 +352,7 @@ public class Tengu extends Mob {
 	}
 	
 	{
-		immunities.add( Blindness.class );
 		immunities.add( Dread.class );
-		immunities.add( Terror.class );
 	}
 	
 	private static final String LAST_ABILITY     = "last_ability";
@@ -468,7 +466,7 @@ public class Tengu extends Mob {
 				
 			} else {
 				//standard delay before ability use, 1-4 turns
-				if (abilityCooldown == -1) abilityCooldown = Random.IntRange(1, 4);
+				if (abilityCooldown == -1) abilityCooldown = Random.IntRange(1, 3);
 			}
 			
 			if (abilityCooldown == 0){
@@ -481,7 +479,7 @@ public class Tengu extends Mob {
 	
 	private int targetAbilityUses(){
 		//1 base ability use, plus 2 uses per jump
-		int targetAbilityUses = 1 + 2*arenaJumps;
+		int targetAbilityUses = 3 + 4*arenaJumps;
 		
 		//and ane extra 2 use for jumps 3 and 4
 		targetAbilityUses += Math.max(0, arenaJumps-2);
@@ -500,7 +498,7 @@ public class Tengu extends Mob {
 			} else if (abilitiesUsed == 1){
 				abilityToUse = SHOCKER_ABILITY;
 			} else if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)) {
-				abilityToUse = Random.Int(2)*2; //0 or 2, can't roll fire ability with challenge
+				abilityToUse = Random.Int(2)*4; //0 or 2, can't roll fire ability with challenge
 			} else {
 				abilityToUse = Random.Int(3);
 			}

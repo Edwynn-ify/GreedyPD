@@ -75,7 +75,7 @@ public class YogDzewa extends Mob {
 	{
 		spriteClass = YogSprite.class;
 
-		HP = HT = 3000;
+		HP = HT = 5000;
 
 		EXP = 50;
 
@@ -231,13 +231,13 @@ public class YogDzewa extends Mob {
 
 					if (hit( this, ch, true )) {
 						if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)) {
-							ch.damage(Random.NormalIntRange(30, 50), new Eye.DeathGaze());
+							ch.damage(Random.NormalIntRange(30, 150), new Eye.DeathGaze());
 						} else {
-							ch.damage(Random.NormalIntRange(20, 30), new Eye.DeathGaze());
+							ch.damage(Random.NormalIntRange(20, 90), new Eye.DeathGaze());
 						}
 						if (Dungeon.level.heroFOV[pos]) {
 							ch.sprite.flash();
-							CellEmitter.center(pos).burst(PurpleParticle.BURST, Random.IntRange(1, 2));
+							CellEmitter.center(pos).burst(PurpleParticle.BURST, Random.IntRange(1, 6));
 						}
 						if (!ch.isAlive() && ch == Dungeon.hero) {
 							Badges.validateDeathFromEnemyMagic();
@@ -253,7 +253,7 @@ public class YogDzewa extends Mob {
 
 			if (abilityCooldown <= 0){
 
-				int beams = 1 + (HT - HP)/400;
+				int beams = 1 + (HT - HP)/100;
 				HashSet<Integer> affectedCells = new HashSet<>();
 				for (int i = 0; i < beams; i++){
 
@@ -386,8 +386,8 @@ public class YogDzewa extends Mob {
 		int dmgTaken = preHP - HP;
 
 		if (dmgTaken > 0) {
-			abilityCooldown -= dmgTaken / 10f;
-			summonCooldown -= dmgTaken / 10f;
+			abilityCooldown -= dmgTaken / 2.5f;
+			summonCooldown -= dmgTaken / 2.5f;
 		}
 
 		if (phase < 4 && HP <= HT - 300*phase){

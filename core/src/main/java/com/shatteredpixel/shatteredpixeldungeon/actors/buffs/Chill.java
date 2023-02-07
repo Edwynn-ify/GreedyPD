@@ -44,9 +44,9 @@ public class Chill extends FlavourBuff {
 		return super.attachTo(target);
 	}
 
-	//reduces speed by 5% for every turn remaining, capping at 95% (truly punishing unaware players and make handling enemies like a breeze)
+	//reduces speed by 15% for every turn remaining, capping at 98.5% (truly punishing unaware players and make handling enemies like a breeze)
 	public float speedFactor(){
-		return Math.max(0.95f, 1 - cooldown()*0.05f);
+		return Math.max(0.015f, 1 - cooldown()*0.10f);
 	}
 
 	@Override

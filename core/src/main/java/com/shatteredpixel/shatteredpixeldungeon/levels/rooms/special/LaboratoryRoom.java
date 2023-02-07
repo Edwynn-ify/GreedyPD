@@ -73,7 +73,7 @@ public class LaboratoryRoom extends SpecialRoom {
 						level.heaps.get( pos ) != null);
 		level.drop( new EnergyCrystal().random(), pos );
 
-		int n = Random.NormalIntRange( 1, 2 );
+		int n = Random.NormalIntRange( 2, 10 );
 		for (int i=0; i < n; i++) {
 			do {
 				pos = level.pointToCell(random());

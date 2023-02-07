@@ -681,7 +681,7 @@ public abstract class Char extends Actor {
 		if (HP < 0 && src instanceof Char){
 			if (((Char) src).buff(Kinetic.KineticTracker.class) != null){
 				int dmgToAdd = -HP;
-				dmgToAdd -= ((Char) src).buff(Kinetic.KineticTracker.class).conservedDamage;
+				dmgToAdd -= ((Char) src).buff(Kinetic.KineticTracker.class).conservedDamage*2;
 				dmgToAdd = Math.round(dmgToAdd * RingOfArcana.enchantPowerMultiplier((Char) src));
 				if (dmgToAdd > 0) {
 					Buff.affect((Char) src, Kinetic.ConservedDamage.class).setBonus(dmgToAdd);
