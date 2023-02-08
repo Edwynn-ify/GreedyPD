@@ -36,6 +36,19 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfAntiMagic;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDivination;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDread;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfForesight;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMysticalEnergy;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPassage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPrismaticImage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.SuccubusSprite;
 import com.watabou.noosa.audio.Sample;
@@ -59,8 +72,8 @@ public class Succubus extends Mob {
 		
 		EXP = 12;
 		maxLvl = 25;
-		
-		loot = Generator.Category.SCROLL;
+
+		loot = Random.oneOf(Generator.Category.SCROLL, new ScrollOfAntiMagic(), new ScrollOfChallenge(), new ScrollOfDivination(), new ScrollOfDread(), new ScrollOfEnchantment(), new ScrollOfForesight(), new ScrollOfMetamorphosis(), new ScrollOfMysticalEnergy(), new ScrollOfPassage(), new ScrollOfPrismaticImage(), new ScrollOfPsionicBlast(), new ScrollOfSirensSong(), new ArcaneCatalyst().quantity(3));
 		lootChance = 0.4f;
 
 		properties.add(Property.DEMONIC);

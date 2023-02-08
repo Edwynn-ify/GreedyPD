@@ -25,6 +25,9 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ArcaneBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.MetalShard;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.DM201Sprite;
@@ -37,7 +40,8 @@ public class DM201 extends DM200 {
 		spriteClass = DM201Sprite.class;
 
 		HP = HT = 120;
-
+		loot = Random.oneOf(new PotionOfCorrosiveGas(), new MetalShard().quantity(3), new ArcaneBomb());
+		lootChance = 1f; //initially, see lootChance()
 		properties.add(Property.IMMOVABLE);
 
 		HUNTING = new Mob.Hunting();

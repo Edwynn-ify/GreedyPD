@@ -51,10 +51,10 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 	}
 	private State state = State.NORMAL;
 
-	private static final float LEVEL_RECOVER_START = 2f;
+	private static final float LEVEL_RECOVER_START = 4f;
 	private float levelRecovery;
 
-	private static final int TURN_RECOVERY_START = 100;
+	private static final int TURN_RECOVERY_START = 75;
 	private int turnRecovery;
 
 	public int powerLossBuffer = 0;
@@ -96,8 +96,8 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 		if (state == State.BERSERK){
 			ShieldBuff buff = target.buff(WarriorShield.class);
 			if (target.shielding() > 0) {
-				//lose 2.5% of shielding per turn, but no less than 1
-				int dmg = (int)Math.ceil(target.shielding() * 0.025f);
+				//lose 1.25% of shielding per turn, but no less than 1
+				int dmg = (int)Math.ceil(target.shielding() * 0.0125f);
 				if (buff != null && buff.shielding() > 0) {
 					dmg = buff.absorbDamage(dmg);
 				}
@@ -192,16 +192,16 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 			turnRecovery = TURN_RECOVERY_START;
 			levelRecovery = 0;
 		} else {
-			levelRecovery = LEVEL_RECOVER_START - ((Hero)target).pointsInTalent(Talent.DEATHLESS_FURY)*2 ;
+			levelRecovery = LEVEL_RECOVER_START - 2*((Hero)target).pointsInTalent(Talent.DEATHLESS_FURY);
 			turnRecovery = 0;
 		}
 
 		//base multiplier scales at 2/3/4/5/6x at 100/37/20/9/0% HP
-		float shieldMultiplier = 2f + 8*(float)Math.pow((2f-(target.HP/(float)target.HT/2)), 6);
+		float shieldMultiplier = 2f + 8*(float)Math.pow((1f-(target.HP/(float)target.HT)), 6);
 
 		//Endless rage effect on shield and cooldown
 		if (power > 1f){
-			shieldMultiplier *= 2*power;
+			shieldMultiplier *= power;
 			levelRecovery *= 2f - power;
 			turnRecovery *= 2f - power;
 		}
@@ -212,13 +212,13 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 
 		BuffIndicator.refreshHero();
 	}
-	
+
 	public void damage(int damage){
 		if (state != State.NORMAL) return;
-		float maxPower = 1f + 0.3334f*((Hero)target).pointsInTalent(Talent.ENDLESS_RAGE);
+		float maxPower = 1f + 0.334f*((Hero)target).pointsInTalent(Talent.ENDLESS_RAGE);
 		power = Math.min(maxPower, power + (damage/(float)target.HT)/1.5f );
 		BuffIndicator.refreshHero(); //show new power immediately
-		powerLossBuffer = 2; //2 turns until rage starts dropping
+		powerLossBuffer = 3; //2 turns until rage starts dropping
 		if (power >= 1f){
 			ActionIndicator.setAction(this);
 		}
@@ -262,7 +262,7 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 	public int icon() {
 		return BuffIndicator.BERSERK;
 	}
-	
+
 	@Override
 	public void tintIcon(Image icon) {
 		switch (state){
@@ -278,12 +278,12 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 				break;
 		}
 	}
-	
+
 	@Override
 	public float iconFadePercent() {
 		switch (state){
 			case NORMAL: default:
-				float maxPower = 1f + 0.3334f*((Hero)target).pointsInTalent(Talent.ENDLESS_RAGE);
+				float maxPower = 1f + 0.1667f*((Hero)target).pointsInTalent(Talent.ENDLESS_RAGE);
 				return (maxPower - power)/maxPower;
 			case BERSERK:
 				return 0f;
@@ -336,6 +336,6 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 					return Messages.get(this, "recovering_desc") + "\n\n" + Messages.get(this, "recovering_desc_turns", turnRecovery);
 				}
 		}
-		
+
 	}
 }

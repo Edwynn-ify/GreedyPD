@@ -484,7 +484,7 @@ public class DwarfKing extends Mob {
 					}
 				}
 			}
-		} else if (phase == 2 && shielding() == 0) {
+		} else if (phase == 2 && shielding() <= 689) {
 			properties.remove(Property.IMMOVABLE);
 			phase = 3;
 			summonsMade = 3; //monk/warlock on 3rd summon

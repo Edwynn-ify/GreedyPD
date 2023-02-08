@@ -30,6 +30,9 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ChampionEnemy;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfAntiMagic;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.SpectralNecromancerSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
@@ -66,7 +69,7 @@ public class SpectralNecromancer extends Necromancer {
 		do {
 			ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
 		} while (Dungeon.level.solid[pos + ofs] && !Dungeon.level.passable[pos + ofs]);
-		Dungeon.level.drop( new ScrollOfRemoveCurse(), pos + ofs ).sprite.drop( pos );
+		Dungeon.level.drop( Random.oneOf(new ScrollOfRemoveCurse(), new ScrollOfAntiMagic(), new ScrollOfUpgrade(), new ScrollOfEnchantment()), pos + ofs ).sprite.drop( pos );
 	}
 
 	@Override

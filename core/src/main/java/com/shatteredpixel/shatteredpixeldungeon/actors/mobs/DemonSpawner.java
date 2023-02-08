@@ -32,8 +32,12 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Terror;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.SpawnerSprite;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
@@ -56,7 +60,7 @@ public class DemonSpawner extends Mob {
 
 		state = PASSIVE;
 
-		loot = PotionOfHealing.class;
+		loot = Random.oneOf(new PotionOfHealing().quantity(2), new PotionOfShielding().quantity(2), new ElixirOfAquaticRejuvenation().quantity(2), new Sungrass.Seed().quantity(3), new ElixirOfHoneyedHealing().quantity(2));
 		lootChance = 1f;
 
 		properties.add(Property.IMMOVABLE);

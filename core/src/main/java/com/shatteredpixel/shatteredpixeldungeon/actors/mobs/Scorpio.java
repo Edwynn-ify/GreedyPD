@@ -28,72 +28,93 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Cripple;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Light;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfArcaneArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDragonsBreath;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfEarthenArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMagicalSight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStamina;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStormClouds;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ScorpioSprite;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
 public class Scorpio extends Mob {
-	
+
 	{
 		spriteClass = ScorpioSprite.class;
-		
+
 		HP = HT = 110;
 		defenseSkill = 24;
 		viewDistance = Light.DISTANCE;
-		
+
 		EXP = 14;
 		maxLvl = 27;
-		
-		loot = Generator.Category.POTION;
-		lootChance = 0.5f;
+
+		loot = Random.oneOf(Generator.Category.POTION, new PotionOfStrength(), new PotionOfShielding(), new PotionOfMastery(), new PotionOfDragonsBreath(),
+				new PotionOfCleansing(), new PotionOfEarthenArmor(), new PotionOfStormClouds(), new PotionOfStamina(), new PotionOfMagicalSight(),new PotionOfSnapFreeze(), new PotionOfDivineInspiration(),new PotionOfCorrosiveGas(),
+				new ElixirOfHoneyedHealing(), new ElixirOfAquaticRejuvenation(), new ElixirOfDragonsBlood(), new ElixirOfMight(), new ElixirOfToxicEssence(), new ElixirOfIcyTouch(), new ElixirOfArcaneArmor(), new AlchemicalCatalyst());
+		lootChance = 1f;
 
 		properties.add(Property.DEMONIC);
 	}
-	
+
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 30, 80 );
+		return Random.NormalIntRange(30, 80);
 	}
-	
+
 	@Override
-	public int attackSkill( Char target ) {
+	public int attackSkill(Char target) {
 		return 36;
 	}
-	
+
 	@Override
 	public int drRoll() {
 		return Random.NormalIntRange(0, 32);
 	}
-	
+
 	@Override
-	protected boolean canAttack( Char enemy ) {
-		Ballistica attack = new Ballistica( pos, enemy.pos, Ballistica.PROJECTILE);
-		return !Dungeon.level.adjacent( pos, enemy.pos ) && attack.collisionPos == enemy.pos;
+	protected boolean canAttack(Char enemy) {
+		Ballistica attack = new Ballistica(pos, enemy.pos, Ballistica.PROJECTILE);
+		return !Dungeon.level.adjacent(pos, enemy.pos) && attack.collisionPos == enemy.pos;
 	}
-	
+
 	@Override
-	public int attackProc( Char enemy, int damage ) {
-		damage = super.attackProc( enemy, damage );
-		if (Random.Int( 2 ) == 0) {
-			Buff.prolong( enemy, Cripple.class, Cripple.DURATION );
+	public int attackProc(Char enemy, int damage) {
+		damage = super.attackProc(enemy, damage);
+		if (Random.Int(2) == 0) {
+			Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
 		}
-		
+
 		return damage;
 	}
-	
+
 	@Override
-	protected boolean getCloser( int target ) {
+	protected boolean getCloser(int target) {
 		if (state == HUNTING) {
-			return enemySeen && getFurther( target );
+			return enemySeen && getFurther(target);
 		} else {
-			return super.getCloser( target );
+			return super.getCloser(target);
 		}
 	}
-	
+
 	@Override
 	public void aggro(Char ch) {
 		//cannot be aggroed to something it can't see
@@ -101,15 +122,4 @@ public class Scorpio extends Mob {
 			super.aggro(ch);
 		}
 	}
-
-	@Override
-	public Item createLoot() {
-		Class<?extends Potion> loot;
-		do{
-			loot = (Class<? extends Potion>) Random.oneOf(Generator.Category.POTION.classes);
-		} while (loot == PotionOfHealing.class || loot == PotionOfStrength.class);
-
-		return Reflection.newInstance(loot);
-	}
-	
 }

@@ -47,111 +47,101 @@ public class Swarm extends Mob {
 
 	{
 		spriteClass = SwarmSprite.class;
-		
+
 		HP = HT = 75;
 		defenseSkill = 5;
 
 		EXP = 3;
 		maxLvl = 9;
-		
+
 		flying = true;
 
 		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
 		lootChance = 0.4f; //by default, see lootChance()
 	}
-	
-	private static final float SPLIT_DELAY	= 1f;
-	
-	int generation	= 0;
-	
-	private static final String GENERATION	= "generation";
-	
+
+	private static final float SPLIT_DELAY = 1f;
+
+	int generation = 0;
+
+	private static final String GENERATION = "generation";
+
 	@Override
-	public void storeInBundle( Bundle bundle ) {
-		super.storeInBundle( bundle );
-		bundle.put( GENERATION, generation );
+	public void storeInBundle(Bundle bundle) {
+		super.storeInBundle(bundle);
+		bundle.put(GENERATION, generation);
 	}
-	
+
 	@Override
-	public void restoreFromBundle( Bundle bundle ) {
-		super.restoreFromBundle( bundle );
-		generation = bundle.getInt( GENERATION );
+	public void restoreFromBundle(Bundle bundle) {
+		super.restoreFromBundle(bundle);
+		generation = bundle.getInt(GENERATION);
 		if (generation > 0) EXP = 0;
 	}
-	
+
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 1, 8 );
+		return Random.NormalIntRange(1, 8);
 	}
-	
+
 	@Override
-	public int defenseProc( Char enemy, int damage ) {
+	public int defenseProc(Char enemy, int damage) {
 
 		if (HP >= damage + 2) {
 			ArrayList<Integer> candidates = new ArrayList<>();
-			
+
 			int[] neighbours = {pos + 1, pos - 1, pos + Dungeon.level.width(), pos - Dungeon.level.width()};
 			for (int n : neighbours) {
 				if (!Dungeon.level.solid[n]
-						&& Actor.findChar( n ) == null
+						&& Actor.findChar(n) == null
 						&& (Dungeon.level.passable[n] || Dungeon.level.avoid[n])
 						&& (!properties().contains(Property.LARGE) || Dungeon.level.openSpace[n])) {
-					candidates.add( n );
+					candidates.add(n);
 				}
 			}
-	
+
 			if (candidates.size() > 0) {
-				
+
 				Swarm clone = split();
 				clone.HP = (HP - damage) / 2;
-				clone.pos = Random.element( candidates );
+				clone.pos = Random.element(candidates);
 				clone.state = clone.HUNTING;
 
-				GameScene.add( clone, SPLIT_DELAY );
-				Actor.addDelayed( new Pushing( clone, pos, clone.pos ), -1 );
+				GameScene.add(clone, SPLIT_DELAY);
+				Actor.addDelayed(new Pushing(clone, pos, clone.pos), -1);
 
 				Dungeon.level.occupyCell(clone);
-				
+
 				HP -= clone.HP;
 			}
 		}
-		
+
 		return super.defenseProc(enemy, damage);
 	}
-	
+
 	@Override
-	public int attackSkill( Char target ) {
+	public int attackSkill(Char target) {
 		return 10;
 	}
-	
+
 	private Swarm split() {
 		Swarm clone = new Swarm();
 		clone.generation = generation + 1;
 		clone.EXP = 0;
-		if (buff( Burning.class ) != null) {
-			Buff.affect( clone, Burning.class ).reignite( clone );
+		if (buff(Burning.class) != null) {
+			Buff.affect(clone, Burning.class).reignite(clone);
 		}
-		if (buff( Poison.class ) != null) {
-			Buff.affect( clone, Poison.class ).set(2);
+		if (buff(Poison.class) != null) {
+			Buff.affect(clone, Poison.class).set(2);
 		}
-		for (Buff b : buffs(AllyBuff.class)){
-			Buff.affect( clone, b.getClass());
+		for (Buff b : buffs(AllyBuff.class)) {
+			Buff.affect(clone, b.getClass());
 		}
-		for (Buff b : buffs(ChampionEnemy.class)){
-			Buff.affect( clone, b.getClass());
+		for (Buff b : buffs(ChampionEnemy.class)) {
+			Buff.affect(clone, b.getClass());
 		}
 		return clone;
 	}
 
-	@Override
-	public float lootChance() {
-		lootChance = 1f/(3 * (generation+1) );
-		return super.lootChance() * (2.5f - Dungeon.LimitedDrops.SWARM_HP.count) / 2.5f;
-	}
-	
-	@Override
-	public Item createLoot(){
-		Dungeon.LimitedDrops.SWARM_HP.count++;
-		return super.createLoot();
-	}
+
 }

@@ -27,6 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.quest.MetalShard;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.ConeAOE;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -47,7 +48,7 @@ public class DM200 extends Mob {
 		EXP = 9;
 		maxLvl = 17;
 
-		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
+		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR, new MetalShard());
 		lootChance = 0.4f; //initially, see lootChance()
 
 		properties.add(Property.INORGANIC);

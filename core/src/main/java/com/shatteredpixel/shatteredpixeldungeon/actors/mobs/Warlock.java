@@ -34,6 +34,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfArcaneArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
@@ -75,7 +76,7 @@ public class Warlock extends Mob implements Callback {
 		EXP = 11;
 		maxLvl = 21;
 
-		loot = Random.oneOf(Generator.Category.POTION, new PotionOfShielding(), new PotionOfMastery(), new PotionOfDragonsBreath(),
+		loot = Random.oneOf(Generator.Category.POTION, new PotionOfStrength(), new PotionOfShielding(), new PotionOfMastery(), new PotionOfDragonsBreath(),
 		new PotionOfCleansing(), new PotionOfEarthenArmor(), new PotionOfStormClouds(), new PotionOfStamina(), new PotionOfMagicalSight(),new PotionOfSnapFreeze(), new PotionOfDivineInspiration(),new PotionOfCorrosiveGas(),
 				new ElixirOfHoneyedHealing(), new ElixirOfAquaticRejuvenation(), new ElixirOfDragonsBlood(), new ElixirOfMight(), new ElixirOfToxicEssence(), new ElixirOfIcyTouch(), new ElixirOfArcaneArmor(), new AlchemicalCatalyst());
 		lootChance = 0.4f;

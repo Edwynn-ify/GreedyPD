@@ -36,12 +36,24 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Splash;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.BlizzardBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.InfernalBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.ShockingBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDragonsBreath;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Embers;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMysticalEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.CursedWand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Shocking;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Firebloom;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ElementalSprite;
@@ -205,7 +217,7 @@ public abstract class Elemental extends Mob {
 		{
 			spriteClass = ElementalSprite.Fire.class;
 			
-			loot = new PotionOfLiquidFlame();
+			loot = Random.oneOf(new Embers(), new PotionOfLiquidFlame(), new PotionOfDragonsBreath(), new ElixirOfDragonsBlood(), new InfernalBrew());
 			lootChance = 0.4f;
 			
 			properties.add( Property.FIERY );
@@ -286,8 +298,8 @@ public abstract class Elemental extends Mob {
 		{
 			spriteClass = ElementalSprite.Frost.class;
 			
-			loot = new PotionOfFrost();
-			lootChance = 2/5;
+			loot = Random.oneOf(new Embers(), new PotionOfFrost(), new PotionOfSnapFreeze(), new BlizzardBrew(), new ElixirOfIcyTouch());
+			lootChance = 0.4f;
 			
 			properties.add( Property.ICY );
 			
@@ -314,8 +326,8 @@ public abstract class Elemental extends Mob {
 		{
 			spriteClass = ElementalSprite.Shock.class;
 			
-			loot = new ScrollOfRecharging();
-			lootChance = 2/5f;
+			loot = Random.oneOf(new ScrollOfRecharging(), new ScrollOfMysticalEnergy(), new ShockingBrew(), new Embers());
+			lootChance = 0.4f;
 			
 			properties.add( Property.ELECTRIC );
 		}
@@ -359,10 +371,9 @@ public abstract class Elemental extends Mob {
 		{
 			spriteClass = ElementalSprite.Chaos.class;
 			
-			loot = new ScrollOfTransmutation();
+			loot = Random.oneOf(new Embers(), new ScrollOfTransmutation(), new ScrollOfUpgrade(), new ScrollOfEnchantment(), new ScrollOfMetamorphosis());
 			lootChance = 1f;
 		}
-		
 		@Override
 		protected void meleeProc( Char enemy, int damage ) {
 			CursedWand.cursedEffect(null, this, enemy);
@@ -380,9 +391,9 @@ public abstract class Elemental extends Mob {
 		}
 		
 		float roll = Random.Float();
-		if (roll < 0.4f){
+		if (roll < 0.5f){
 			return FireElemental.class;
-		} else if (roll < 0.8f){
+		} else if (roll < 0.5f){
 			return FrostElemental.class;
 		} else {
 			return ShockElemental.class;

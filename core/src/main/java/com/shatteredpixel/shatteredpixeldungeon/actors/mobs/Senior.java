@@ -21,7 +21,13 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import com.shatteredpixel.shatteredpixeldungeon.items.food.ChargrilledMeat;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.FrozenCarpaccio;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.MeatPie;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Pasty;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.StewedMeat;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.SeniorSprite;
 import com.watabou.utils.Random;
 
@@ -30,7 +36,7 @@ public class Senior extends Monk {
 	{
 		spriteClass = SeniorSprite.class;
 
-		loot = new Pasty();
+		loot = Random.oneOf(new Food(), new Pasty(), new FrozenCarpaccio().quantity(2), new ChargrilledMeat().quantity(2), new StewedMeat().quantity(2), new MeatPie(), new PotionOfHealing());
 		lootChance = 1f;
 	}
 	

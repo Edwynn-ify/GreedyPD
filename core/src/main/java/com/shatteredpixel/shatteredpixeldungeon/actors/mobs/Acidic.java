@@ -27,34 +27,34 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.AcidicSprite;
+import com.watabou.utils.Random;
 
 public class Acidic extends Scorpio {
 
 	{
 		spriteClass = AcidicSprite.class;
-		
+
 		properties.add(Property.ACIDIC);
 
-		loot = new PotionOfExperience();
+		loot = Random.oneOf(new PotionOfExperience(), new PotionOfDivineInspiration(), new ScrollOfUpgrade(), new ScrollOfEnchantment());
 		lootChance = 1f;
 	}
+
 	@Override
 	public int attackProc(Char enemy, int damage) {
-		Buff.affect(enemy, Ooze.class).set( Ooze.DURATION );
+		Buff.affect(enemy, Ooze.class).set(Ooze.DURATION);
 		return super.attackProc(enemy, damage);
 	}
 
 	@Override
-	public int defenseProc( Char enemy, int damage ) {
-		if (Dungeon.level.adjacent(pos, enemy.pos)){
-			Buff.affect(enemy, Ooze.class).set( Ooze.DURATION );
+	public int defenseProc(Char enemy, int damage) {
+		if (Dungeon.level.adjacent(pos, enemy.pos)) {
+			Buff.affect(enemy, Ooze.class).set(Ooze.DURATION);
 		}
-		return super.defenseProc( enemy, damage );
-	}
-
-	@Override
-	public Item createLoot() {
-		return new PotionOfExperience();
+		return super.defenseProc(enemy, damage);
 	}
 }
