@@ -52,11 +52,15 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAq
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfArcaneArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
@@ -245,7 +249,7 @@ public class RingOfWealth extends Ring {
 	}
 
 	private static Item genMidValueConsumable(){
-		switch (Random.Int(8)){
+		switch (Random.Int(9)){
 			case 0: default:
 				Item i = genLowValueConsumable();
 				return i.quantity(i.quantity()*3);
@@ -264,12 +268,14 @@ public class RingOfWealth extends Ring {
 			case 6:
 				return new Honeypot();
 			case 7:
-					return Random.oneOf(new ElixirOfIcyTouch(), new ElixirOfDragonsBlood(), new ElixirOfArcaneArmor(), new ElixirOfAquaticRejuvenation(), new ElixirOfToxicEssence(), new BlizzardBrew(), new CausticBrew(), new InfernalBrew(), new ShockingBrew());
+				return Random.oneOf(new BlizzardBrew(), new ShockingBrew(), new CausticBrew(), new InfernalBrew());
+			case 8:
+					return Random.oneOf(new ElixirOfIcyTouch(), new ElixirOfDragonsBlood(), new ElixirOfArcaneArmor(), new ElixirOfAquaticRejuvenation(), new ElixirOfToxicEssence());
 		}
 	}
 
 	private static Item genHighValueConsumable(){
-		switch (Random.Int(4)){
+		switch (Random.Int(11)){
 			case 0: default:
 				Item i = genMidValueConsumable();
 				if (i instanceof Bomb){
@@ -282,12 +288,20 @@ public class RingOfWealth extends Ring {
 			case 2:
 				return new PotionOfExperience();
 			case 3:
-				return new ScrollOfTransmutation();
+				return new PotionOfDivineInspiration();
 			case 4:
-				return new ScrollOfUpgrade();
+				return new ScrollOfEnchantment();
 			case 5:
-				return new PotionOfStrength();
+				return new ElixirOfMight();
 			case 6:
+				return new ScrollOfMetamorphosis();
+			case 7:
+				return new ScrollOfTransmutation();
+			case 8:
+				return new ScrollOfUpgrade();
+			case 9:
+				return new PotionOfStrength();
+			case 10:
 				return new MeatPie();
 		}
 	}

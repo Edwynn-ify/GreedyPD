@@ -43,6 +43,6 @@ public class Quarterstaff extends MeleeWeapon {
 
 	@Override
 	public int defenseFactor( Char owner ) {
-		return 2*(tier+1);	//2 extra defence (scales with weapon upgrades)
+		return 3+buffedLvl();	//2 extra defence (scales with weapon upgrades)
 	}
 }

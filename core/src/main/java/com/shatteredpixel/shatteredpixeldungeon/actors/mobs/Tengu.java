@@ -124,7 +124,7 @@ public class Tengu extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 20);
+		return Random.NormalIntRange(0, 30);
 	}
 
 	boolean loading = false;
@@ -453,7 +453,7 @@ public class Tengu extends Mob {
 			return false;
 		} else {
 			
-			abilityCooldown--;
+			abilityCooldown-= 2 ;
 			
 			if (targetAbilityUses() - abilitiesUsed >= 4 && !Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
 				//Very behind in ability uses, use one right away!

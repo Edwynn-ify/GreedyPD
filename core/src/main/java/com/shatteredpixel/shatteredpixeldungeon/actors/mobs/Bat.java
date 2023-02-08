@@ -50,7 +50,7 @@ public class Bat extends Mob {
 		flying = true;
 
 		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
-		lootChance = 0.4f; //by default, see lootChance()
+		lootChance = 0.125f; //by default, see lootChance()
 	}
 
 	@Override

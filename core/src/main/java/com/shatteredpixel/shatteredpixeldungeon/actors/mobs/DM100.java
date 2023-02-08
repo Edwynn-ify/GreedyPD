@@ -65,7 +65,7 @@ public class DM100 extends Mob implements Callback {
 		maxLvl = 13;
 		
 		loot = Random.oneOf(Generator.Category.SCROLL, new ScrollOfAntiMagic(), new ScrollOfChallenge(), new ScrollOfDivination(), new ScrollOfDread(), new ScrollOfEnchantment(), new ScrollOfForesight(), new ScrollOfMetamorphosis(), new ScrollOfMysticalEnergy(), new ScrollOfPassage(), new ScrollOfPrismaticImage(), new ScrollOfPsionicBlast(), new ScrollOfSirensSong(), new ArcaneCatalyst().quantity(2));
-		lootChance = 0.4f;
+		lootChance = 0.125f;
 		
 		properties.add(Property.ELECTRIC);
 		properties.add(Property.INORGANIC);

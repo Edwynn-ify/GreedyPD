@@ -141,6 +141,7 @@ public class YogDzewa extends Mob {
 					regularSummons.add(Larva.class);
 				} else {
 					regularSummons.add( i % 2 == 0 ? YogEye.class : YogScorpio.class);
+					regularSummons.add( i % 2 == 0 ? Succubus.class : Acidic.class);
 				}
 			}
 		} else {
@@ -149,6 +150,8 @@ public class YogDzewa extends Mob {
 					regularSummons.add(Larva.class);
 				} else {
 					regularSummons.add(YogRipper.class);
+					regularSummons.add( i % 2 == 0 ? YogEye.class : YogScorpio.class);
+					regularSummons.add( i % 2 == 0 ? Succubus.class : Acidic.class);
 				}
 			}
 		}

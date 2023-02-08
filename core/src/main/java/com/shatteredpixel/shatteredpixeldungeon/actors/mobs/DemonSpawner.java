@@ -108,7 +108,7 @@ public class DemonSpawner extends Mob {
 			}
 
 			if (!candidates.isEmpty()) {
-				RipperDemon spawn = new RipperDemon();
+				Mob spawn = Random.oneOf(new RipperDemon(), new Succubus(), new Eye(), new Scorpio(), new Acidic());
 
 				spawn.pos = Random.element( candidates );
 				spawn.state = spawn.HUNTING;

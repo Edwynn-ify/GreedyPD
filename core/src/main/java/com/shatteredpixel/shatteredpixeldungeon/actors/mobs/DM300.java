@@ -102,7 +102,7 @@ public class DM300 extends Mob {
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 20);
+		return Random.NormalIntRange(0, 30);
 	}
 
 	public int pylonsActivated = 0;
