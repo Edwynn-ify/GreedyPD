@@ -178,9 +178,9 @@ public class Burning extends Buff implements Hero.Doom {
 			if (ch instanceof Hero
 					&& ((Hero) ch).belongings.armor() != null
 					&& ((Hero) ch).belongings.armor().hasGlyph(Brimstone.class, ch)){
-				//has a 2*boost/50% chance to generate 1 shield per turn, to a max of 4x boost
-				float shieldChance = 2*(RingOfArcana.enchantPowerMultiplier(ch) - 1f);
-				int shieldCap = Math.round(shieldChance*4f);
+				//has a 8*boost/100% chance to generate 1 shield per turn, to a max of 8x boost
+				float shieldChance = 4*(RingOfArcana.enchantPowerMultiplier(ch));
+				int shieldCap = Math.round(shieldChance*8f);
 				if (shieldCap > 0 && Random.Float() < shieldChance){
 					Barrier barrier = Buff.affect(ch, Barrier.class);
 					if (barrier.shielding() < shieldCap){
