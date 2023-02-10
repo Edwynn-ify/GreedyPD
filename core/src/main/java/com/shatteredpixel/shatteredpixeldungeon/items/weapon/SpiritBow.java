@@ -259,14 +259,14 @@ public class SpiritBow extends Weapon {
 		float speed = super.speedMultiplier(owner);
 		if (owner.buff(NaturesPower.naturesPowerTracker.class) != null){
 			// +33% speed to +50% speed, depending on talent points
-			speed += ((16 + ((Hero)owner).pointsInTalent(Talent.GROWING_POWER)) / 12f);
+			speed += ((32 + ((Hero)owner).pointsInTalent(Talent.GROWING_POWER)) / 6f);
 		}
 		return speed;
 	}
 
 	@Override
 	public int level() {
-		int level = Dungeon.hero == null ? 0 : Dungeon.hero.lvl/5;
+		int level = Dungeon.hero == null ? 0 : Dungeon.hero.lvl/3;
 		if (curseInfusionBonus) level += 1 + level/6;
 		return level;
 	}

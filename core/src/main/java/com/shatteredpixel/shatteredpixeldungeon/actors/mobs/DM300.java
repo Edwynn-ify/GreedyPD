@@ -81,7 +81,7 @@ public class DM300 extends Mob {
 	{
 		spriteClass = DM300Sprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 2000 : 1200;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 2000 : 1500;
 		EXP = 30;
 		defenseSkill = 15;
 
@@ -337,7 +337,7 @@ public class DM300 extends Mob {
 				sprite.emitter().start(SparkParticle.STATIC, 0.05f, 20);
 			}
 
-			Buff.affect(this, Barrier.class).setShield( 90 + (HT - HP));
+			Buff.affect(this, Barrier.class).setShield( 100 + (HT - HP));
 
 		}
 	}
@@ -545,7 +545,7 @@ public class DM300 extends Mob {
 		Dungeon.level.unseal();
 
 		//60% chance of 2 shards, 30% chance of 3, 10% chance for 4. Average of 2.5
-		int shards = Random.chances(new float[]{0, 0, 6, 3, 1});
+		int shards = Random.chances(new float[]{0, 0, 6, 3, 2});
 		for (int i = 0; i < shards; i++){
 			int ofs;
 			do {
@@ -639,6 +639,7 @@ public class DM300 extends Mob {
 		immunities.add(Sleep.class);
 		resistances.add(Terror.class);
 		resistances.add(Roots.class);
+		resistances.add(Chill.class);
 
 	}
 

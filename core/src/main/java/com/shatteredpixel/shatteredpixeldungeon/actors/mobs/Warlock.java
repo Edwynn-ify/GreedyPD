@@ -76,10 +76,7 @@ public class Warlock extends Mob implements Callback {
 		EXP = 11;
 		maxLvl = 21;
 
-		loot = Random.oneOf(Generator.Category.POTION, new PotionOfStrength(), new PotionOfShielding(), new PotionOfMastery(), new PotionOfDragonsBreath(),
-		new PotionOfCleansing(), new PotionOfEarthenArmor(), new PotionOfStormClouds(), new PotionOfStamina(), new PotionOfMagicalSight(),new PotionOfSnapFreeze(), new PotionOfDivineInspiration(),new PotionOfCorrosiveGas(),
-				new ElixirOfHoneyedHealing(), new ElixirOfAquaticRejuvenation(), new ElixirOfDragonsBlood(), new ElixirOfMight(), new ElixirOfToxicEssence(), new ElixirOfIcyTouch(), new ElixirOfArcaneArmor(), new AlchemicalCatalyst());
-		lootChance = 0.4f;
+		loot = Random.oneOf(Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL);
 
 		properties.add(Property.UNDEAD);
 	}

@@ -38,19 +38,19 @@ public class RingOfForce extends Ring {
 	protected RingBuff buff( ) {
 		return new Force();
 	}
-	
+
 	public static int armedDamageBonus( Char ch ){
 		return getBuffedBonus( ch, Force.class);
 	}
-	
-	
+
+
 	// *** Weapon-like properties ***
 
 	private static float tier(int str){
 		float tier = Math.max(1, (str - 8)/2f);
 		//each str point after 18 is half as effective
 		if (tier > 5){
-			tier = 5 + (tier - 5);
+			tier = 5 + (tier - 5) / 2f;
 		}
 		return tier;
 	}
@@ -72,7 +72,7 @@ public class RingOfForce extends Ring {
 
 		return Math.max( 0, Math.round(
 				tier +  //base
-				lvl     //level scaling
+						lvl     //level scaling
 		));
 	}
 
@@ -82,7 +82,7 @@ public class RingOfForce extends Ring {
 
 		return Math.max( 0, Math.round(
 				6*(tier+1) +    //base
-				lvl*(tier+2)    //level scaling
+						lvl*(tier+3)    //level scaling
 		));
 	}
 
@@ -100,4 +100,3 @@ public class RingOfForce extends Ring {
 	public class Force extends RingBuff {
 	}
 }
-

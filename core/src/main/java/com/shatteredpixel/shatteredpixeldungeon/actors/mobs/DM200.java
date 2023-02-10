@@ -48,7 +48,7 @@ public class DM200 extends Mob {
 		EXP = 9;
 		maxLvl = 17;
 
-		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR, new MetalShard());
+		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR, new MetalShard().quantity(2));
 		lootChance = 0.4f; //initially, see lootChance()
 
 		properties.add(Property.INORGANIC);

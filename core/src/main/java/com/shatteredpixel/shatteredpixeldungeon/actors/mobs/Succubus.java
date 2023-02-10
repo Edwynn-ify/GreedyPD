@@ -73,7 +73,7 @@ public class Succubus extends Mob {
 		EXP = 12;
 		maxLvl = 25;
 
-		loot = Random.oneOf(Generator.Category.SCROLL, new ScrollOfAntiMagic(), new ScrollOfChallenge(), new ScrollOfDivination(), new ScrollOfDread(), new ScrollOfEnchantment(), new ScrollOfForesight(), new ScrollOfMetamorphosis(), new ScrollOfMysticalEnergy(), new ScrollOfPassage(), new ScrollOfPrismaticImage(), new ScrollOfPsionicBlast(), new ScrollOfSirensSong(), new ArcaneCatalyst().quantity(3));
+		loot = Random.oneOf(Generator.Category.SCROLL, Generator.Category.SPELL, Generator.Category.EXOTIC_SCROLL, new ArcaneCatalyst().quantity(3));
 		lootChance = 0.4f;
 
 		properties.add(Property.DEMONIC);

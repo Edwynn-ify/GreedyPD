@@ -41,7 +41,7 @@ public class Slime extends Mob {
 		EXP = 4;
 		maxLvl = 9;
 		
-		lootChance = 0.2f; //by default, see lootChance()
+		lootChance = 0.4f; //by default, see lootChance()
 	}
 	
 	@Override

@@ -28,9 +28,11 @@ import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Chill;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.LockedFloor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Roots;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.DriedRose;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.SkeletonKey;
@@ -59,10 +61,13 @@ public class Goo extends Mob {
 		properties.add(Property.BOSS);
 		properties.add(Property.DEMONIC);
 		properties.add(Property.ACIDIC);
+
+		//added chill because idw to overly cheese him if u have chilling enchantment or other chill inducing items.
+		resistances.add(Chill.class);
 	}
 
 	private int pumpedUp = 0;
-	private int healInc = 1;
+	private int healInc = 5;
 
 	@Override
 	public int damageRoll() {
@@ -115,7 +120,7 @@ public class Goo extends Mob {
 			if (Dungeon.level.heroFOV[pos] ){
 				sprite.emitter().burst( Speck.factory( Speck.HEALING ), healInc );
 			}
-			if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES) && healInc < 3) {
+			if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES) && healInc < 5) {
 				healInc++;
 			}
 			if (HP*2 > HT) {
@@ -124,7 +129,7 @@ public class Goo extends Mob {
 				HP = Math.min(HP, HT);
 			}
 		} else {
-			healInc = 1;
+			healInc = 5;
 		}
 		
 		if (state != SLEEPING){
