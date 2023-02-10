@@ -77,7 +77,7 @@ public class Warlock extends Mob implements Callback {
 		maxLvl = 21;
 
 		loot = Random.oneOf(Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL);
-
+        lootChance = 0.175f;
 		properties.add(Property.UNDEAD);
 	}
 	
