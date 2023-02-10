@@ -15,7 +15,7 @@ allprojects {
         appPackageName = 'com.hahhujanapi.greedypd'
 
         appVersionCode = 669
-        appVersionName = '1.0.1'
+        appVersionName = '1.3.0'
 
         appJavaCompatibility = JavaVersion.VERSION_1_8
 

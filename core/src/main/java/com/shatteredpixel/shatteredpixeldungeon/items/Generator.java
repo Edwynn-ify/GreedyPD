@@ -349,10 +349,10 @@ public class Generator {
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
 					PotionOfExperience.class,
-					AlchemicalCatalyst.class
+
 			};
 
-			POTION.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			POTION.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 			POTION.probs = POTION.defaultProbs.clone();
 
 			EXOTIC_POTION.classes = new Class<?>[]{
@@ -390,10 +390,11 @@ public class Generator {
 					ElixirOfDragonsBlood.class,
 					ElixirOfHoneyedHealing.class,
 					ElixirOfToxicEssence.class,
-					ElixirOfMight.class
+					ElixirOfMight.class,
+					AlchemicalCatalyst.class
 			};
 
-			ELIXIR.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5};
+			ELIXIR.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5};
 			ELIXIR.probs = ELIXIR.defaultProbs.clone();
 
 			BOMB.classes = new Class<?>[]{
