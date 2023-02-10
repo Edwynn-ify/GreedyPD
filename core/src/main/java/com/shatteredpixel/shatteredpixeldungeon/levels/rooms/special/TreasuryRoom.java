@@ -41,8 +41,8 @@ public class TreasuryRoom extends SpecialRoom {
 		Painter.set( level, center(), Terrain.STATUE );
 		
 		Heap.Type heapType = Random.Int( 2 ) == 0 ? Heap.Type.CHEST : Heap.Type.HEAP;
-		
-		int n = Random.IntRange( 2, 15 );
+		//apparently current cap is 12
+		int n = Random.IntRange( 2, 12 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {

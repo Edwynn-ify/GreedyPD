@@ -51,7 +51,7 @@ public class GardenRoom extends SpecialRoom {
 		
 		entrance().set( Door.Type.REGULAR );
 
-		int bushes = Random.Int(3);
+		int bushes = Random.Int(15);
 		if (bushes == 0) {
 			level.plant(new WandOfRegrowth.Dewcatcher.Seed(), plantPos( level ));
 		} else if (bushes == 1) {

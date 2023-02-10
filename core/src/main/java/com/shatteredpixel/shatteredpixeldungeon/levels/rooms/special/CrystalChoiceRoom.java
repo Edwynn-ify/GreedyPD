@@ -111,7 +111,13 @@ public class CrystalChoiceRoom extends SpecialRoom {
 					Generator.Category.SCROLL,
 					Generator.Category.SEED,
 					Generator.Category.FOOD,
-					Generator.Category.STONE));
+					Generator.Category.STONE,
+					Generator.Category.EXOTIC_POTION,
+			        Generator.Category.EXOTIC_SCROLL,
+					Generator.Category.BOMB,
+					Generator.Category.SPELL,
+					Generator.Category.ELIXIR,
+					Generator.Category.BREW));
 			int pos;
 			do {
 				if (room1.square() >= 16){

@@ -670,7 +670,7 @@ public abstract class Level implements Bundlable {
 
 		Mob mob = createMob();
 		mob.state = mob.WANDERING;
-		int tries = 30;
+		int tries = 9999;
 		do {
 			mob.pos = randomRespawnCell(mob);
 			tries--;

@@ -46,9 +46,26 @@ import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.SandalsOfNature;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.UnstableSpellbook;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ArcaneBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Firebomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Flashbang;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.FrostBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.HolyBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Noisemaker;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.RegrowthBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ShockBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ShrapnelBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.WoollyBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.Berry;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.FrozenCarpaccio;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.MeatPie;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.MysteryMeat;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Pasty;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.SmallRation;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.StewedMeat;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
@@ -62,6 +79,32 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfParalyticG
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfPurity;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfToxicGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.BlizzardBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.Brew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.CausticBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.InfernalBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.ShockingBrew;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.Elixir;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfArcaneArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDragonsBreath;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfEarthenArmor;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMagicalSight;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShroudingFog;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStamina;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStormClouds;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfAccuracy;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfArcana;
@@ -88,6 +131,34 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportat
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTerror;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfAntiMagic;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDivination;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDread;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfForesight;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMysticalEnergy;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPassage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPrismaticImage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Alchemize;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.AquaBlast;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.BeaconOfReturning;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.CurseInfusion;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.FeatherFall;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicalInfusion;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicalPorter;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.PhaseShift;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.ReclaimTrap;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Recycle;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Spell;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.SummonElemental;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.WildEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.Runestone;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfFear;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfAggression;
@@ -158,6 +229,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.ThrowingSp
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.ThrowingStone;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.Tomahawk;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.Trident;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.MagicalFireRoom;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Blindweed;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Mageroyal;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Earthroot;
@@ -205,9 +277,19 @@ public class Generator {
 		FOOD	( 0, 0, Food.class ),
 		
 		POTION	( 8, 8, Potion.class ),
+		EXOTIC_POTION	( 8, 8, ExoticPotion.class ),
+		BREW	( 8, 8, Brew.class ),
+		ELIXIR	( 8, 8, Elixir.class ),
+		SPELL	( 8, 8, Spell.class ),
+		BOMB	( 8, 8, Bomb.class ),
+
+
+
+
 		SEED	( 1, 1, Plant.Seed.class ),
 		
 		SCROLL	( 8, 8, Scroll.class ),
+		EXOTIC_SCROLL	( 8, 8, ExoticScroll.class ),
 		STONE   ( 1, 1, Runestone.class),
 		
 		GOLD	( 10, 10,   Gold.class );
@@ -266,10 +348,92 @@ public class Generator {
 					PotionOfLevitation.class,
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
-					PotionOfExperience.class};
-			POTION.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+					PotionOfExperience.class,
+					AlchemicalCatalyst.class
+			};
+
+			POTION.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 			POTION.probs = POTION.defaultProbs.clone();
-			
+
+			EXOTIC_POTION.classes = new Class<?>[]{
+					PotionOfMastery.class, //2 drop every chapter, see Dungeon.posNeeded()
+					PotionOfShielding.class,
+					PotionOfMagicalSight.class,
+					PotionOfSnapFreeze.class,
+					PotionOfDragonsBreath.class,
+					PotionOfCorrosiveGas.class,
+					PotionOfStamina.class,
+					PotionOfShroudingFog.class,
+					PotionOfStormClouds.class,
+					PotionOfEarthenArmor.class,
+					PotionOfCleansing.class,
+					PotionOfDivineInspiration.class,
+			};
+
+			EXOTIC_POTION.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			EXOTIC_POTION.probs = EXOTIC_POTION.defaultProbs.clone();
+
+			BREW.classes = new Class<?>[]{
+					InfernalBrew.class,
+					ShockingBrew.class,
+					BlizzardBrew.class,
+					CausticBrew.class
+			};
+
+			BREW.defaultProbs = new float[]{ 5, 5, 5, 5};
+			BREW.probs = BREW.defaultProbs.clone();
+
+			ELIXIR.classes = new Class<?>[]{
+					ElixirOfArcaneArmor.class,
+					ElixirOfIcyTouch.class,
+					ElixirOfAquaticRejuvenation.class,
+					ElixirOfDragonsBlood.class,
+					ElixirOfHoneyedHealing.class,
+					ElixirOfToxicEssence.class,
+					ElixirOfMight.class
+			};
+
+			ELIXIR.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5};
+			ELIXIR.probs = ELIXIR.defaultProbs.clone();
+
+			BOMB.classes = new Class<?>[]{
+					Bomb.class,
+					Bomb.DoubleBomb.class,
+					ArcaneBomb.class,
+					Firebomb.class,
+					Flashbang.class,
+					FrostBomb.class,
+					HolyBomb.class,
+					Noisemaker.class,
+					RegrowthBomb.class,
+					ShockBomb.class,
+					ShrapnelBomb.class,
+					WoollyBomb.class,
+			};
+
+			BOMB.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
+			BOMB.probs = BOMB.defaultProbs.clone();
+
+			SPELL.classes = new Class<?>[]{
+					Alchemize.class,
+					AquaBlast.class,
+					ArcaneCatalyst.class,
+					BeaconOfReturning.class,
+					CurseInfusion.class,
+					FeatherFall.class,
+					MagicalPorter.class,
+					PhaseShift.class,
+					ReclaimTrap.class,
+					Recycle.class,
+					SummonElemental.class,
+					TelekineticGrab.class,
+					WildEnergy.class
+			};
+
+			SPELL.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
+			SPELL.probs = SPELL.defaultProbs.clone();
+
+
 			SEED.classes = new Class<?>[]{
 					Rotberry.Seed.class, //quest item
 					Sungrass.Seed.class,
@@ -298,10 +462,29 @@ public class Generator {
 					ScrollOfRage.class,
 					ScrollOfRetribution.class,
 					ScrollOfTerror.class,
-					ScrollOfTransmutation.class
+					ScrollOfTransmutation.class,
 			};
-			SCROLL.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+			SCROLL.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
 			SCROLL.probs = SCROLL.defaultProbs.clone();
+
+			EXOTIC_SCROLL.classes = new Class<?>[]{
+					ScrollOfEnchantment.class, //3 drop every chapter, see Dungeon.souNeeded()
+					ScrollOfDivination.class,
+					ScrollOfAntiMagic.class,
+					ScrollOfPrismaticImage.class,
+					ScrollOfMysticalEnergy.class,
+					ScrollOfPassage.class,
+					ScrollOfSirensSong.class,
+					ScrollOfForesight.class,
+					ScrollOfChallenge.class,
+					ScrollOfPsionicBlast.class,
+					ScrollOfDread.class,
+					ScrollOfMetamorphosis.class,
+			};
+			EXOTIC_SCROLL.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
+			EXOTIC_SCROLL.probs = EXOTIC_SCROLL.defaultProbs.clone();
+
+
 			
 			STONE.classes = new Class<?>[]{
 					StoneOfEnchantment.class,   //1 is guaranteed to drop on floors 6-19
@@ -441,8 +624,13 @@ public class Generator {
 			FOOD.classes = new Class<?>[]{
 					Food.class,
 					Pasty.class,
-					MysteryMeat.class };
-			FOOD.probs = new float[]{ 5, 5, 5 };
+					MysteryMeat.class,
+			        MeatPie.class,
+					SmallRation.class,
+					Berry.class,
+			};
+
+			FOOD.probs = new float[]{ 5, 5, 5, 3, 5, 5 };
 			
 			RING.classes = new Class<?>[]{
 					RingOfAccuracy.class,

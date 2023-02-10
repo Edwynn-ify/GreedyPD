@@ -64,7 +64,7 @@ public class RotGardenRoom extends SpecialRoom {
 		}
 
 		placePlant(level, heartX + heartY * level.width(), new RotHeart());
-//lashers wip
+
 
 		int lashers = ((width()-2)*(height()-2))/8;
 

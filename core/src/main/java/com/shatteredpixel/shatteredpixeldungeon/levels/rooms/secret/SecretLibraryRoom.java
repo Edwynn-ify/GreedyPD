@@ -110,7 +110,7 @@ public class SecretLibraryRoom extends SecretRoom {
 		}
 		entrance.set( Door.Type.HIDDEN );
 		
-		int n = Random.IntRange( 2, 10 );
+		int n = Random.IntRange( 2, 12 );
 		HashMap<Class<? extends Scroll>, Float> chances = new HashMap<>(scrollChances);
 		for (int i=0; i < n; i++) {
 			int pos;

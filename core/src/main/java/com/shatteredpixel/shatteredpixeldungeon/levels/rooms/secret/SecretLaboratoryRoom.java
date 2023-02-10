@@ -136,7 +136,7 @@ public class SecretLaboratoryRoom extends SecretRoom {
 		} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
 		level.drop( new EnergyCrystal().random(), pos );
 
-		int n = Random.IntRange( 2, 10 );
+		int n = Random.IntRange( 2, 12 );
 		HashMap<Class<? extends Potion>, Float> chances = new HashMap<>(potionChances);
 		for (int i=0; i < n; i++) {
 			do {

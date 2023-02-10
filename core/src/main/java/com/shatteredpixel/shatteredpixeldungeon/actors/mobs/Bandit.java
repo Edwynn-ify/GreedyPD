@@ -38,7 +38,7 @@ public class Bandit extends Thief {
 	{
 		spriteClass = BanditSprite.class;
 
-		//guaranteed first drop, then 1/3, 1/9, etc.
+		//guaranteed first drop, then 1/3, 1/9, etc. (now always guaranteed)
 		lootChance = 999999f;
 	}
 	

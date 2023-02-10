@@ -36,6 +36,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bombs.WoollyBomb;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
+import com.watabou.utils.Random;
 
 public class SecretArtilleryRoom extends SecretRoom {
 	
@@ -54,33 +55,33 @@ public class SecretArtilleryRoom extends SecretRoom {
 					|| level.heaps.get(itemPos) != null);
 			
 			if( i == 0 ){
-				level.drop(new Bomb.DoubleBomb(), itemPos);
-				level.drop(new ArcaneBomb(), itemPos);
-				level.drop(new ArcaneBomb(), itemPos);
-				level.drop(new Firebomb(), itemPos);
-				level.drop(new Flashbang(), itemPos);
-				level.drop(new FrostBomb(), itemPos);
-				level.drop(new HolyBomb(), itemPos);
-				level.drop(new Noisemaker(), itemPos);
-				level.drop(new RegrowthBomb(), itemPos);
-				level.drop(new ShockBomb(), itemPos);
-				level.drop(new ShrapnelBomb(), itemPos);
-				level.drop(new WoollyBomb(), itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
 
 			} else {
 				level.drop(Generator.randomMissile(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
-				level.drop( new Bomb().random(), itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
+				level.drop(Generator.random(Random.oneOf(Generator.Category.BOMB)),itemPos);
 			}
 		}
 		

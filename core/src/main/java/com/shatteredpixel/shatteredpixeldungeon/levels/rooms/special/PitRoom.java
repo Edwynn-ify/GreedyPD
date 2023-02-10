@@ -68,7 +68,7 @@ public class PitRoom extends SpecialRoom {
 		
 		Item mainLoot = null;
 		do {
-			switch (Random.Int(3)){
+			switch (Random.Int(4)){
 				case 0:
 					mainLoot = Generator.random(Generator.Category.RING);
 					break;
@@ -87,7 +87,7 @@ public class PitRoom extends SpecialRoom {
 		} while ( mainLoot == null || Challenges.isItemBlocked(mainLoot));
 		level.drop(mainLoot, remains).setHauntedIfCursed().type = Heap.Type.SKELETON;
 		
-		int n = Random.IntRange( 1, 6 );
+		int n = Random.IntRange( 1, 12 );
 		for (int i=0; i < n; i++) {
 			level.drop( prize( level ), remains ).setHauntedIfCursed();
 		}

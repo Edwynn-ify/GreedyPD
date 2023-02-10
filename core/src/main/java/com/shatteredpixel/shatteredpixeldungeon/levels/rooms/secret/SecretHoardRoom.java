@@ -56,7 +56,7 @@ public class SecretHoardRoom extends SecretRoom {
 		int totalGold = ((width()-2)*(height()-2))/2;
 		
 		//no matter how much gold it drops, roughly equals 8 gold stacks.
-		float goldRatio = 10 / (float)totalGold;
+		float goldRatio = 8 / (float)totalGold;
 		for (int i = 0; i < totalGold; i++) {
 			do {
 				goldPos = level.pointToCell(random());

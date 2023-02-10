@@ -86,17 +86,17 @@ public class MassGraveRoom extends SpecialRoom {
 		items.add(new Gold(1));
 		if (Random.Float() <= 0.3f) items.add(new Gold());
 		if (Random.Float() <= 0.3f) items.add(new Gold());
-		if (Random.Float() <= 0.6f) items.add(Generator.random());
-		if (Random.Float() <= 0.6f) items.add(Generator.randomArmor());
-		if (Random.Float() <= 0.6f) items.add(Generator.randomWeapon());
-		if (Random.Float() <= 0.6f) items.add(Generator.randomArtifact());
-		if (Random.Float() <= 0.6f) items.add(Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND, Generator.Category.SCROLL, Generator.Category.POTION,Generator.Category.FOOD, Generator.Category.MISSILE)));
-		if (Random.Float() <= 0.6f) items.add(new WandOfCorruption());
-		if (Random.Float() <= 0.6f) items.add(new ScrollOfTerror());
-		if (Random.Float() <= 0.6f) items.add(new ScrollOfDread());
-		if (Random.Float() <= 0.6f) items.add(new StoneOfFear());
-		if (Random.Float() <= 0.6f) items.add(new WandOfCorruption());
-		if (Random.Float() <= 0.6f) items.add(new ScrollOfRage());
+		if (Random.Float() <= 0.3f) items.add(Generator.random());
+		if (Random.Float() <= 0.3f) items.add(Generator.randomArmor());
+		if (Random.Float() <= 0.3f) items.add(Generator.randomWeapon());
+		if (Random.Float() <= 0.3) items.add(Generator.randomArtifact());
+		if (Random.Float() <= 0.3f) items.add(Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND, Generator.Category.SCROLL, Generator.Category.POTION,Generator.Category.FOOD, Generator.Category.MISSILE, Generator.Category.BOMB, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.EXOTIC_POTION, Generator.Category.EXOTIC_SCROLL, Generator.Category.SPELL)));
+		if (Random.Float() <= 0.3f) items.add(Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND, Generator.Category.SCROLL, Generator.Category.POTION,Generator.Category.FOOD, Generator.Category.MISSILE, Generator.Category.BOMB, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.EXOTIC_POTION, Generator.Category.EXOTIC_SCROLL, Generator.Category.SPELL)));
+		if (Random.Float() <= 0.3f) items.add(Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND, Generator.Category.SCROLL, Generator.Category.POTION,Generator.Category.FOOD, Generator.Category.MISSILE, Generator.Category.BOMB, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.EXOTIC_POTION, Generator.Category.EXOTIC_SCROLL, Generator.Category.SPELL)));
+		if (Random.Float() <= 0.3f) items.add(new WandOfCorruption());
+		if (Random.Float() <= 0.3f) items.add(Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND, Generator.Category.SCROLL, Generator.Category.POTION,Generator.Category.FOOD, Generator.Category.MISSILE, Generator.Category.BOMB, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.EXOTIC_POTION, Generator.Category.EXOTIC_SCROLL, Generator.Category.SPELL)));
+		if (Random.Float() <= 0.3f) items.add(Generator.random(Random.oneOf(Generator.Category.RING,Generator.Category.WAND, Generator.Category.SCROLL, Generator.Category.POTION,Generator.Category.FOOD, Generator.Category.MISSILE, Generator.Category.BOMB, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.EXOTIC_POTION, Generator.Category.EXOTIC_SCROLL, Generator.Category.SPELL)));
+
 		for (Item item : items){
 			int pos;
 			do {

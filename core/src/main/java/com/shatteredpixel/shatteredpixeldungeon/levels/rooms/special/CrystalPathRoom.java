@@ -27,15 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.CrystalKey;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.IronKey;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDragonsBlood;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -130,11 +122,12 @@ public class CrystalPathRoom extends SpecialRoom {
 			rooms[i].set(rooms[i].shrink(2));
 		}
 
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 16; i++){
 			int pos = level.pointToCell(rooms[idx].center());
 			Item item;
-			switch (i){
-				case 0: default:
+			switch (i) {
+				case 0:
+				default:
 					item = new Gold().random();
 					break;
 				case 1:
@@ -165,33 +158,24 @@ public class CrystalPathRoom extends SpecialRoom {
 					item = Generator.random(Generator.Category.SEED);
 					break;
 				case 10:
-					item = new ScrollOfUpgrade();
+					item = Generator.random(Generator.Category.EXOTIC_POTION);
 					break;
 				case 11:
-					item = new ScrollOfEnchantment();
+					item = Generator.random(Generator.Category.EXOTIC_SCROLL);
 					break;
 				case 12:
-					item = new PotionOfDivineInspiration();
+					item = Generator.random(Generator.Category.BREW);
 					break;
 				case 13:
-					item = new ElixirOfMight();
+					item = Generator.random(Generator.Category.ELIXIR);
+					break;
 				case 14:
-					item = new ElixirOfDragonsBlood();
+					item = Generator.random(Generator.Category.SPELL);
 					break;
 				case 15:
-					item = new ElixirOfToxicEssence();
+					item = Generator.random(Generator.Category.BOMB);
 					break;
-				case 16:
-					item = new ElixirOfIcyTouch();
-					break;
-				case 17:
-					if (Random.Int(2) == 0){
-						item = Generator.random(Random.oneOf(Generator.Category.POTION, Generator.Category.SCROLL));
-					} else if (Random.Int(2) == 0) {
-						item = new PotionOfExperience();
-					} else {
-						item = new ScrollOfTransmutation();
-					}
+
 			}
 			level.drop(item, pos);
 			if (clockwise){
