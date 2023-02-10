@@ -59,7 +59,7 @@ public class Necromancer extends Mob {
 		maxLvl = 14;
 		
 		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
-		lootChance = 0.4f; //see lootChance()
+		lootChance = 0.175f; //see lootChance()
 		
 		properties.add(Property.UNDEAD);
 		
@@ -87,17 +87,7 @@ public class Necromancer extends Mob {
 	public int drRoll() {
 		return Random.NormalIntRange(0, 10);
 	}
-	
-	@Override
-	public float lootChance() {
-		return super.lootChance() * ((6f - Dungeon.LimitedDrops.NECRO_HP.count) / 1.5f);
-	}
-	
-	@Override
-	public Item createLoot(){
-		Dungeon.LimitedDrops.NECRO_HP.count++;
-		return super.createLoot();
-	}
+
 	
 	@Override
 	public void die(Object cause) {

@@ -32,25 +32,25 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Random;
 
 public class RunestoneRoom extends SpecialRoom {
-	
+
 	@Override
-	public int minWidth() { return 6; }
-	
+	public int minWidth() { return 9; }
+
 	@Override
 	public int minHeight() {
-		return 6;
+		return 9;
 	}
-	
+
 	@Override
 	public void paint( Level level) {
-		
+
 		Painter.fill( level, this, Terrain.WALL );
 		Painter.fill( level, this, 1, Terrain.CHASM );
-		
+
 		Painter.drawInside( level, this, entrance(), 2, Terrain.EMPTY_SP);
 		Painter.fill( level, this, 2, Terrain.EMPTY );
-		
-		int n = Random.NormalIntRange(2, 12);
+
+		int n = Random.NormalIntRange(2, 15);
 		int dropPos;
 		for (int i = 0; i < n; i++) {
 			do {
@@ -58,17 +58,17 @@ public class RunestoneRoom extends SpecialRoom {
 			} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get( dropPos ) != null);
 			level.drop(prize(level), dropPos);
 		}
-		
+
 		entrance().set( Door.Type.LOCKED );
 		level.addItemToSpawn( new IronKey( Dungeon.depth ) );
 	}
-	
+
 	private static Item prize( Level level ) {
-		
+
 		Item prize = level.findPrizeItem( Runestone.class );
 		if (prize == null)
-			prize = Generator.random(Random.oneOf( Generator.Category.STONE, Generator.Category.SCROLL, Generator.Category.FOOD, Generator.Category.RING ));
-		
+			prize = Generator.random(Random.oneOf(Generator.Category.STONE, Generator.Category.GOLD, Generator.Category.WAND, Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.FOOD, Generator.Category.SEED));
+
 		return prize;
 	}
 }

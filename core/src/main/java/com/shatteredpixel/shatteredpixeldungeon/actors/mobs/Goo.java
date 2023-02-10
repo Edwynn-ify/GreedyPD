@@ -27,6 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Adrenaline;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Chill;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
@@ -42,6 +43,7 @@ import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.GooSprite;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.MobSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BossHealthBar;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.Camera;
@@ -53,7 +55,7 @@ import com.watabou.utils.Random;
 public class Goo extends Mob {
 
 	{
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 500 : 300;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 750 : 375;
 		EXP = 10;
 		defenseSkill = 8;
 		spriteClass = GooSprite.class;
@@ -79,7 +81,7 @@ public class Goo extends Mob {
 				Statistics.qualifiedForBossChallengeBadge = false;
 				Statistics.bossScores[0] -= 100;
 			}
-			return Random.NormalIntRange( min*3, max*9 );
+			return Random.NormalIntRange( min*3, max*18 );
 		} else {
 			return Random.NormalIntRange( min, max );
 		}

@@ -271,6 +271,12 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new PotionOfHealing() );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.POTION ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXOTIC_POTION ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXOTIC_POTION ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.ELIXIR) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.BREW ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.ELIXIR) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.BREW ) );
 
 		itemsToSpawn.add( new ScrollOfIdentify() );
 		itemsToSpawn.add( new ScrollOfRemoveCurse() );
@@ -278,6 +284,15 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( new ScrollOfIdentify() );
 		itemsToSpawn.add( new ScrollOfRemoveCurse() );
 		itemsToSpawn.add( new ScrollOfMagicMapping() );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXOTIC_SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXOTIC_SCROLL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SPELL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.SPELL ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.BOMB ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.BOMB ) );
+
 
 		for (int i=0; i < 2; i++)
 			itemsToSpawn.add( Random.Int(2) == 0 ?
