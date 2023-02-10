@@ -83,6 +83,8 @@ public class Item implements Bundlable {
 	
 	public boolean cursed;
 	public boolean cursedKnown;
+
+	public boolean collected;
 	
 	// Unique items persist through revival
 	public boolean unique = false;

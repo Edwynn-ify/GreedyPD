@@ -478,10 +478,15 @@ public enum Talent {
 	}
 
 	public static void onItemCollected( Hero hero, Item item ){
+		if(item.isIdentified()) return;
 		if (hero.pointsInTalent(THIEFS_INTUITION) == 2){
 			if (item instanceof Ring) ((Ring) item).setKnown();
-		}
+
+			}
+
 	}
+
+
 
 	//note that IDing can happen in alchemy scene, so be careful with VFX here
 	public static void onItemIdentified( Hero hero, Item item ){
@@ -729,5 +734,4 @@ public enum Talent {
 			}
 		}
 	}
-
 }
