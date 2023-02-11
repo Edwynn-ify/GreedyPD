@@ -69,7 +69,7 @@ public class FrozenCarpaccio extends Food {
 	}
 
 	public static void effect(Hero hero){
-		switch (Random.Int( 17 )) {
+		switch (Random.Int( 19 )) {
 			case 0:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "invis") );
 				Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
@@ -145,9 +145,19 @@ public class FrozenCarpaccio extends Food {
 			case 15:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION );
+				Buff.affect(hero, FireImbue.class).set(FireImbue.DURATION);
 				break;
 			case 16:
+				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
+				PotionOfHealing.cure(hero) ;
+				Buff.affect(hero, ToxicImbue.class).set(ToxicImbue.DURATION);
+				break;
+			case 17:
+				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
+				PotionOfHealing.cure(hero) ;
+				Buff.affect( hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION );
+				break;
+			case 18:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "better") );
 				if (hero.HP < hero.HT) {
 					hero.HP = Math.min( hero.HP + hero.HT / 2, hero.HT );
