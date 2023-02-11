@@ -21,18 +21,26 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.buffs;
 
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blizzard;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ConfusionGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.GooWarn;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Inferno;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ParalyticGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
+import com.shatteredpixel.shatteredpixeldungeon.effects.particles.PoisonParticle;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
 
-public class ToxicImbue extends FlavourBuff {
+public class ToxicImbue extends Buff {
 	
 	{
 		type = buffType.POSITIVE;
@@ -74,7 +82,12 @@ public class ToxicImbue extends FlavourBuff {
 
 		return true;
 	}
+	public void proc(Char enemy){
+		if (Random.Int(2) == 0)
+			Buff.affect( enemy, Poison.class ).set( 5 + Math.round(4*Dungeon.scalingDepth()) );
 
+		enemy.sprite.emitter().burst( PoisonParticle.SPLASH, 2 );
+	}
 	@Override
 	public int icon() {
 		return BuffIndicator.IMBUE;
@@ -107,6 +120,10 @@ public class ToxicImbue extends FlavourBuff {
 		immunities.add( Corrosion.class );
 		immunities.add( ConfusionGas.class );
 		immunities.add( ParalyticGas.class );
+		immunities.add( StenchGas.class );
+		immunities.add( Blizzard.class );
+		immunities.add( Inferno.class );
+		immunities.add( GooWarn.class );
 
 	}
 }

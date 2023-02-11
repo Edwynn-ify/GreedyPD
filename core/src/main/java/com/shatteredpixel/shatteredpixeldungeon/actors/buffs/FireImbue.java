@@ -32,7 +32,7 @@ import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-public class FireImbue extends FlavourBuff {
+public class FireImbue extends Buff {
 	
 	{
 		type = buffType.POSITIVE;

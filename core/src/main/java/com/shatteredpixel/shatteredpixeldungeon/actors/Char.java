@@ -62,12 +62,15 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Preparation;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Slow;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.SnipersMark;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.SoulMark;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Speed;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Stamina;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Terror;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ToxicImbue;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.WellFed;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
@@ -360,8 +363,10 @@ public abstract class Char extends Actor {
 			if (berserk != null) dmg = berserk.damageFactor(dmg);
 
 			if (buff( Fury.class ) != null) {
-				dmg *= 1.5f;
+				dmg *= 2f;
 			}
+
+
 
 			for (ChampionEnemy buff : buffs(ChampionEnemy.class)){
 				dmg *= buff.meleeDamageFactor();
@@ -389,7 +394,21 @@ public abstract class Char extends Actor {
 			if ( buff(Weakness.class) != null ){
 				dmg *= 0.5f;
 			}
-			
+			if ( buff(Bless.class) != null ) {
+				dmg *= 1.25f;
+			}
+			if ( buff(WellFed.class) != null ) {
+				dmg *= 1.2f;
+			}
+			if (buff( FireImbue.class ) != null) {
+				dmg *= 1.2f;
+			}
+			if (buff( FrostImbue.class ) != null) {
+				dmg *= 1.2f;
+			}
+			if (buff( ToxicImbue.class ) != null) {
+				dmg *= 1.2f;
+			}
 			int effectiveDamage = enemy.defenseProc( this, Math.round(dmg) );
 			effectiveDamage = Math.max( effectiveDamage - dr, 0 );
 
@@ -399,8 +418,11 @@ public abstract class Char extends Actor {
 			}
 
 			//vulnerable specifically applies after armor reductions
-			if ( enemy.buff( Vulnerable.class ) != null){
+			if ( enemy.buff( Vulnerable.class ) != null) {
 				effectiveDamage *= 1.5f;
+			}
+				if ( enemy.buff( SoulMark.class ) != null){
+					effectiveDamage *= 1.33f;
 			}
 			
 			effectiveDamage = attackProc( enemy, effectiveDamage );
@@ -421,6 +443,7 @@ public abstract class Char extends Actor {
 
 			if (buff(FireImbue.class) != null)  buff(FireImbue.class).proc(enemy);
 			if (buff(FrostImbue.class) != null) buff(FrostImbue.class).proc(enemy);
+			if (buff(ToxicImbue.class) != null) buff(ToxicImbue.class).proc(enemy);
 
 			if (enemy.isAlive() && enemy.alignment != alignment && prep != null && prep.canKO(enemy)){
 				enemy.HP = 0;

@@ -180,9 +180,9 @@ public abstract class Shaman extends Mob {
 	
 	public static Class<? extends Shaman> random(){
 		float roll = Random.Float();
-		if (roll < 0.4f){
+		if (roll < 0.5f){
 			return RedShaman.class;
-		} else if (roll < 0.8f){
+		} else if (roll < 0.5f){
 			return BlueShaman.class;
 		} else {
 			return PurpleShaman.class;

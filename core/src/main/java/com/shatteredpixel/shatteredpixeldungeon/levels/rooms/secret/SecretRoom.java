@@ -91,7 +91,7 @@ public abstract class SecretRoom extends SpecialRoom {
 		
 		SecretRoom r = null;
 		int index = runSecrets.size();
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 10; i++){
 			int newidx = Random.Int( runSecrets.size() );
 			if (newidx < index) index = newidx;
 		}

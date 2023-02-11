@@ -26,6 +26,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.particles.SnowParticle;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Image;
+import com.watabou.utils.Bundle;
 
 public class FrostImbue extends FlavourBuff {
 	
@@ -35,6 +36,27 @@ public class FrostImbue extends FlavourBuff {
 	}
 	
 	public static final float DURATION	= 200f;
+
+	protected float left;
+
+	private static final String LEFT	= "left";
+
+	@Override
+	public void storeInBundle( Bundle bundle ) {
+		super.storeInBundle( bundle );
+		bundle.put( LEFT, left );
+
+	}
+
+	@Override
+	public void restoreFromBundle( Bundle bundle ) {
+		super.restoreFromBundle( bundle );
+		left = bundle.getFloat( LEFT );
+	}
+
+	public void set( float duration ) {
+		this.left = duration;
+	}
 	
 	public void proc(Char enemy){
 		Buff.affect(enemy, Chill.class, 2f);
@@ -54,6 +76,11 @@ public class FrostImbue extends FlavourBuff {
 	@Override
 	public float iconFadePercent() {
 		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns(left));
 	}
 	
 	{

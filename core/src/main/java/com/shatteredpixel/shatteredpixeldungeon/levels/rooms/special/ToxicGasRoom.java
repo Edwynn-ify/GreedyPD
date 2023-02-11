@@ -22,7 +22,11 @@
 package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blizzard;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ConfusionGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
+import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Inferno;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
@@ -56,8 +60,12 @@ public class ToxicGasRoom extends SpecialRoom {
 			int cell = level.pointToCell(p);
 			if (level.map[cell] == Terrain.EMPTY) {
 				//as if gas has been spreading in the room for a while
-				Blob.seed(cell, 30, ToxicGas.class, level);
-				Blob.seed(cell, 30, StenchGas.class, level);
+				Blob.seed(cell, 150, ToxicGas.class, level);
+				Blob.seed(cell, 150, StenchGas.class, level);
+				Blob.seed(cell, 150, ConfusionGas.class, level);
+				Blob.seed(cell, 150, CorrosiveGas.class, level);
+				Blob.seed(cell, 150, Inferno.class, level);
+				Blob.seed(cell, 150, Blizzard.class, level);
 			}
 		}
 
@@ -69,8 +77,11 @@ public class ToxicGasRoom extends SpecialRoom {
 				cell = level.pointToCell(random(2));
 			} while (level.map[cell] != Terrain.EMPTY);
 			level.setTrap(new ToxicVent().reveal(), cell);
-			Blob.seed(cell, 12, ToxicGasSeed.class, level);
-			Blob.seed(cell, 12, StenchGas.class, level);
+			Blob.seed(cell, 150, ToxicGasSeed.class, level);
+			Blob.seed(cell, 150, StenchGas.class, level);
+			Blob.seed(cell, 150, CorrosiveGas.class, level);
+			Blob.seed(cell, 150, Inferno.class, level);
+			Blob.seed(cell, 150, Blizzard.class, level);
 			Painter.set(level, cell, Terrain.INACTIVE_TRAP);
 		}
 
@@ -96,10 +107,10 @@ public class ToxicGasRoom extends SpecialRoom {
 
 		goldPositions.remove((Integer) furthestPos);
 		Item mainGold = new Gold().random();
-		mainGold.quantity(mainGold.quantity()*2);
+		mainGold.quantity(mainGold.quantity()*3);
 		level.drop(mainGold, furthestPos).type = Heap.Type.SKELETON;
 
-		for (int i = 0; i < 2; i++){
+		for (int i = 0; i < 5; i++){
 			level.drop(new Gold().random(), goldPositions.remove(0)).type = Heap.Type.CHEST;
 		}
 

@@ -260,12 +260,13 @@ public class HornOfPlenty extends Artifact {
 				//This means that a standard ration will be recovered in ~5.333 hero levels
 				float chargeGain = Hunger.STARVING * levelPortion * (0.5f + (0.25f*level()));
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
+
 				partialCharge += chargeGain;
 
 				//charge is in increments of 1/5 max hunger value.
-				while (partialCharge >= Hunger.STARVING/3) {
+				while (partialCharge >= Hunger.STARVING/2.5) {
 					charge++;
-					partialCharge -= Hunger.STARVING/3;
+					partialCharge -= Hunger.STARVING/2.5;
 
 					int oldImage = image;
 					if (charge >= 8)        image = ItemSpriteSheet.ARTIFACT_HORN4;

@@ -451,7 +451,7 @@ public enum Talent {
 					SpellSprite.show(hero, SpellSprite.CHARGE, 0, 1, 1);
 				}
 			} else {
-				Buff.affect(hero, ArtifactRecharge.class).set( 4 + 8*hero.pointsInTalent(MYSTICAL_UPGRADE) ).ignoreHornOfPlenty = false;
+				Buff.affect(hero, ArtifactRecharge.class).set( 4 + 8*hero.pointsInTalent(MYSTICAL_UPGRADE) );
 				ScrollOfRecharging.charge(Dungeon.hero);
 				SpellSprite.show(hero, SpellSprite.CHARGE, 0, 1, 1);
 			}

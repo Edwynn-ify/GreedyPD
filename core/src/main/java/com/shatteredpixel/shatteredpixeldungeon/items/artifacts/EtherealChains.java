@@ -332,10 +332,10 @@ public class EtherealChains extends Artifact {
 			exp += Math.round(levelPortion*100);
 
 			//past the soft charge cap, gaining  charge from leveling is slowed.
-			if (charge > 5+(level()*2)){
-				levelPortion *= (10+((float)level()*4))/charge;
+			if (charge > 10+(level()*2)){
+				levelPortion *= (10+((float)level()*2))/charge;
 			}
-			partialCharge += levelPortion*20f;
+			partialCharge += levelPortion*10f;
 
 			if (exp > 100+level()*100 && level() < levelCap){
 				exp -= 100+level()*100;
@@ -346,3 +346,4 @@ public class EtherealChains extends Artifact {
 		}
 	}
 }
+

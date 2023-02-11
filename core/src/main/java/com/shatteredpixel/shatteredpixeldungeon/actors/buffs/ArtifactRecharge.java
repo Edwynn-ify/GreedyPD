@@ -46,16 +46,12 @@ public class ArtifactRecharge extends Buff {
 		if (target instanceof Hero) {
 			float chargeAmount = Math.min(1, left);
 			for (Buff b : target.buffs()) {
-				if (b instanceof Artifact.ArtifactBuff) {
-					if (b instanceof HornOfPlenty.hornRecharge && ignoreHornOfPlenty){
-						continue;
-					}
 					if (!((Artifact.ArtifactBuff) b).isCursed()) {
 						((Artifact.ArtifactBuff) b).charge((Hero) target, chargeAmount);
 					}
 				}
 			}
-		}
+
 
 		left--;
 		if (left <= 0){

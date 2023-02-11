@@ -195,7 +195,7 @@ public abstract class RegularLevel extends Level {
 			else                            return 10;
 		}
 
-		int mobs = 6 + Dungeon.depth % 5 + Random.Int(6);
+		int mobs = 15 + Dungeon.depth % 5 + Random.Int(6);
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 10f);
 		}
@@ -227,7 +227,7 @@ public abstract class RegularLevel extends Level {
 			}
 			roomToSpawn = stdRoomIter.next();
 
-			int tries = 30;
+			int tries = 9999999;
 			do {
 				mob.pos = pointToCell(roomToSpawn.random());
 				tries--;
@@ -243,10 +243,10 @@ public abstract class RegularLevel extends Level {
 				mobs.add(mob);
 
 				//chance to add a second mob to this room, except on floor 1
-				if (Dungeon.depth > 1 && mobsToSpawn > 0 && Random.Int(4) == 0){
+				if (Dungeon.depth > 1 && mobsToSpawn > 0 && Random.Int(2) == 0){
 					mob = createMob();
 
-					tries = 30;
+					tries = 9999999;
 					do {
 						mob.pos = pointToCell(roomToSpawn.random());
 						tries--;

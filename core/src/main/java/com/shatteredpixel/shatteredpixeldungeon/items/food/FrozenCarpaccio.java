@@ -69,7 +69,7 @@ public class FrozenCarpaccio extends Food {
 	}
 
 	public static void effect(Hero hero){
-		switch (Random.Int( 19 )) {
+		switch (Random.Int( 17 )) {
 			case 0:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "invis") );
 				Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
@@ -90,74 +90,64 @@ public class FrozenCarpaccio extends Food {
 			case 4:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, FireImbue.class, FireImbue.DURATION );
+				Buff.affect(hero, ElixirOfAquaticRejuvenation.AquaHealing.class).set(Math.round(hero.HT * 3f));
 				break;
 			case 5:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, ToxicImbue.class, ToxicImbue.DURATION );
+				Buff.affect(hero, ArcaneArmor.class).set(10 + hero.lvl, 160);
 				break;
 			case 6:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect(hero, ElixirOfAquaticRejuvenation.AquaHealing.class).set(Math.round(hero.HT * 3f));
+				Buff.affect(hero, Barkskin.class).set( 8 + hero.lvl, 200 );
 				break;
 			case 7:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect(hero, ArcaneArmor.class).set(10 + hero.lvl, 160);
+				Buff.affect( hero, Bless.class, Bless.DURATION );;
 				break;
 			case 8:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect(hero, Barkskin.class).set( 8 + hero.lvl, 200 );
+				Buff.affect( hero, MindVision.class, MindVision.DURATION);
 				break;
 			case 9:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, Bless.class, Bless.DURATION );;
+				Buff.affect( hero, MagicalSight.class, MagicalSight.DURATION );
 				break;
 			case 10:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, MindVision.class, MindVision.DURATION);
+				Buff.affect( hero, Haste.class, Haste.DURATION );
 				break;
 			case 11:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, MagicalSight.class, MagicalSight.DURATION );
+				Buff.affect( hero, Adrenaline.class, Adrenaline.DURATION );
 				break;
 			case 12:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, Haste.class, Haste.DURATION );
+				Buff.affect(hero, Barrier.class).setShield((int) (1.2f * hero.HT + 20));
 				break;
 			case 13:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, Adrenaline.class, Adrenaline.DURATION );
+				Buff.affect( hero, BlobImmunity.class, BlobImmunity.DURATION );;
 				break;
 			case 14:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect(hero, Barrier.class).setShield((int) (1.2f * hero.HT + 20));
+				Buff.affect( hero, PotionOfCleansing.Cleanse.class, PotionOfCleansing.Cleanse.DURATION);
 				break;
 			case 15:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
 				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, BlobImmunity.class, BlobImmunity.DURATION );;
+				Buff.affect( hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION );
 				break;
 			case 16:
-				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
-				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, PotionOfCleansing.Cleanse.class, PotionOfCleansing.Cleanse.DURATION);
-				break;
-			case 17:
-				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
-				PotionOfHealing.cure(hero) ;
-				Buff.affect( hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION );;
-				break;
-			case 18:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "better") );
 				if (hero.HP < hero.HT) {
 					hero.HP = Math.min( hero.HP + hero.HT / 2, hero.HT );
