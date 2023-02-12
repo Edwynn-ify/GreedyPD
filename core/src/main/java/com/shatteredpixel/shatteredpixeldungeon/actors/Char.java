@@ -28,6 +28,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Electricity;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Adrenaline;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AllyBuff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AnkhInvulnerability;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ArcaneArmor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AscensionChallenge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barkskin;
@@ -402,6 +403,9 @@ public abstract class Char extends Actor {
 			}
 			if (buff( FireImbue.class ) != null) {
 				dmg *= 1.2f;
+			}
+			if (buff( AnkhInvulnerability.class ) != null) {
+				dmg *= 1.5f;
 			}
 			if (buff( FrostImbue.class ) != null) {
 				dmg *= 1.2f;

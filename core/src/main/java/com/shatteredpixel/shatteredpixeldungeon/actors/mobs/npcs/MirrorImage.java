@@ -47,7 +47,7 @@ public class MirrorImage extends NPC {
 		spriteClass = MirrorSprite.class;
 		
 		HP = HT = Dungeon.hero.HT/4;
-		defenseSkill = Dungeon.hero.HT/8;
+		defenseSkill = 4 + Dungeon.hero.lvl/2;
 		
 		alignment = Alignment.ALLY;
 		state = HUNTING;
@@ -108,7 +108,7 @@ public class MirrorImage extends NPC {
 		} else {
 			damage = hero.damageRoll(); //handles ring of force
 		}
-		return (damage+1)/2; //half hero damage, rounded up
+		return (damage+1); //half hero damage, rounded up
 	}
 	
 	@Override
