@@ -278,15 +278,6 @@ public class Bestiary {
 				
 			// Caves
 			case 13:
-				if (Random.Float() < 0.5f) rotation.add(Ghoul.class);
-				if (Random.Float() < 0.5f) rotation.add(Elemental.FrostElemental.class);
-				if (Random.Float() < 0.5f) rotation.add(Elemental.FireElemental.class);
-				if (Random.Float() < 0.5f) rotation.add(Elemental.ShockElemental.class);
-				if (Random.Float() < 0.5f) rotation.add(Monk.class);
-				if (Random.Float() < 0.5f) rotation.add(Warlock.class);
-				if (Random.Float() < 0.5f) rotation.add(Golem.class);
-				return;
-			case 14:
 				if (Random.Float() < 0.33f) rotation.add(Ghoul.class);
 				if (Random.Float() < 0.33f) rotation.add(Elemental.FrostElemental.class);
 				if (Random.Float() < 0.33f) rotation.add(Elemental.FireElemental.class);
@@ -294,6 +285,15 @@ public class Bestiary {
 				if (Random.Float() < 0.33f) rotation.add(Monk.class);
 				if (Random.Float() < 0.33f) rotation.add(Warlock.class);
 				if (Random.Float() < 0.33f) rotation.add(Golem.class);
+				return;
+			case 14:
+				if (Random.Float() < 0.5f) rotation.add(Ghoul.class);
+				if (Random.Float() < 0.5f) rotation.add(Elemental.FrostElemental.class);
+				if (Random.Float() < 0.5f) rotation.add(Elemental.FireElemental.class);
+				if (Random.Float() < 0.5f) rotation.add(Elemental.ShockElemental.class);
+				if (Random.Float() < 0.5f) rotation.add(Monk.class);
+				if (Random.Float() < 0.5f) rotation.add(Warlock.class);
+				if (Random.Float() < 0.5f) rotation.add(Golem.class);
 				return;
 				
 			// City

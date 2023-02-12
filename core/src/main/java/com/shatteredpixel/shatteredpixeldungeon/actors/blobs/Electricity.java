@@ -74,7 +74,7 @@ public class Electricity extends Blob {
 							Buff.prolong( ch, Paralysis.class, cur[cell]);
 						}
 						if (cur[cell] % 2 == 1) {
-							ch.damage(Math.round(Random.Float(2 + Dungeon.scalingDepth() / 5f)), this);
+							ch.damage(Math.round(Random.Float(4 + Dungeon.scalingDepth() / 2.5f)), this);
 							if (!ch.isAlive() && ch == Dungeon.hero){
 								Dungeon.fail( getClass() );
 								GLog.n( Messages.get(this, "ondeath") );
@@ -86,9 +86,9 @@ public class Electricity extends Blob {
 					if (h != null){
 						Item toShock = h.peek();
 						if (toShock instanceof Wand){
-							((Wand) toShock).gainCharge(0.333f);
+							((Wand) toShock).gainCharge(0.5f);
 						} else if (toShock instanceof MagesStaff){
-							((MagesStaff) toShock).gainCharge(0.333f);
+							((MagesStaff) toShock).gainCharge(0.5f);
 						}
 					}
 					

@@ -69,7 +69,7 @@ public class FrozenCarpaccio extends Food {
 	}
 
 	public static void effect(Hero hero){
-		switch (Random.Int( 19 )) {
+		switch (Random.Int( 21 )) {
 			case 0:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "invis") );
 				Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
@@ -158,6 +158,16 @@ public class FrozenCarpaccio extends Food {
 				Buff.affect( hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION );
 				break;
 			case 18:
+				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
+				PotionOfHealing.cure(hero) ;
+				Buff.affect(curUser, ArtifactRecharge.class).set( 60 ).ignoreHornOfPlenty = false;
+				break;
+			case 19:
+				GLog.i( Messages.get(FrozenCarpaccio.class, "refresh") );
+				PotionOfHealing.cure(hero) ;
+				Buff.affect( hero,Foresight.class, Foresight.DURATION );
+				break;
+			case 20:
 				GLog.i( Messages.get(FrozenCarpaccio.class, "better") );
 				if (hero.HP < hero.HT) {
 					hero.HP = Math.min( hero.HP + hero.HT / 2, hero.HT );
