@@ -74,7 +74,7 @@ public class WandOfRegrowth extends Wand {
 		//only used for targeting, actual projectile logic is Ballistica.STOP_SOLID
 		collisionProperties = Ballistica.WONT_STOP;
 	}
-	
+
 	private int totChrgUsed = 0;
 	private int chargesOverLimit = 0;
 
@@ -98,7 +98,7 @@ public class WandOfRegrowth extends Wand {
 
 		float furrowedChance = 0;
 		if (totChrgUsed >= chargeLimit(Dungeon.hero.lvl)){
-			furrowedChance = (chargesOverLimit+2)/2.5f;
+			furrowedChance = (chargesOverLimit+1)/5f;
 		}
 
 		int chrgUsed = chargesPerCast();
@@ -207,7 +207,7 @@ public class WandOfRegrowth extends Wand {
 		}
 
 	}
-	
+
 	private int chargeLimit( int heroLvl ){
 		if (level() >= 10){
 			return Integer.MAX_VALUE;
@@ -215,7 +215,7 @@ public class WandOfRegrowth extends Wand {
 			//8 charges at base, plus:
 			//2/3.33/5/7/10/14/20/30/50/110/infinite charges per hero level, based on wand level
 			float lvl = level();
-			return Math.round(16 + heroLvl * (4+lvl) * (2f + (lvl/(5 - lvl))));
+			return Math.round(16 + heroLvl * (6+lvl) * (3f + (lvl/(10 - lvl))));
 		}
 	}
 
@@ -238,7 +238,7 @@ public class WandOfRegrowth extends Wand {
 			// lvl 0 - 16%
 			// lvl 1 - 21%
 			// lvl 2 - 25%
-			int healing = Math.round(damage * (level + 4f) / (level + 3f));
+			int healing = Math.round(damage * (level + 2f) / (level + 5f));
 			healing = Math.round(healing * procChanceMultiplier(attacker));
 			Buff.affect(attacker, Sungrass.Health.class).boost(healing);
 		}
@@ -253,7 +253,7 @@ public class WandOfRegrowth extends Wand {
 
 		cone = new ConeAOE( bolt,
 				maxDist,
-				30 + 20*chargesPerCast(),
+				40 + 20*chargesPerCast(),
 				Ballistica.STOP_SOLID | Ballistica.STOP_TARGET);
 
 		//cast to cells at the tip, rather than all cells, better performance.
@@ -280,8 +280,8 @@ public class WandOfRegrowth extends Wand {
 		if (charger != null && charger.target.buff(WildMagic.WildMagicTracker.class) != null){
 			return 1;
 		}
-		//consumes 30% of current charges, rounded up, with a min of 1 and a max of 3.
-		return (int) GameMath.gate(1, (int)Math.ceil(curCharges*0.15f),3);
+		//consumes 15% of current charges, rounded up, with a min of 1 and a max of 3.
+		return (int) GameMath.gate(1, (int)Math.ceil(curCharges*0.15f), 3);
 	}
 
 	@Override
@@ -305,24 +305,24 @@ public class WandOfRegrowth extends Wand {
 		particle.x -= dst;
 		particle.y += dst;
 	}
-	
+
 	private static final String TOTAL = "totChrgUsed";
 	private static final String OVER = "chargesOverLimit";
-	
+
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put( TOTAL, totChrgUsed );
 		bundle.put( OVER, chargesOverLimit);
 	}
-	
+
 	@Override
 	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		totChrgUsed = bundle.getInt(TOTAL);
 		chargesOverLimit = bundle.getInt(OVER);
 	}
-	
+
 	public static class Dewcatcher extends Plant{
 
 		{
@@ -332,7 +332,7 @@ public class WandOfRegrowth extends Wand {
 		@Override
 		public void activate( Char ch ) {
 
-			int nDrops = Random.NormalIntRange(3, 6);
+			int nDrops = Random.NormalIntRange(3, 12);
 
 			ArrayList<Integer> candidates = new ArrayList<>();
 			for (int i : PathFinder.NEIGHBOURS8){
@@ -415,7 +415,7 @@ public class WandOfRegrowth extends Wand {
 
 		private void setLevel( int lvl ){
 			wandLvl = lvl;
-			HP = HT = 75 + 6*lvl;
+			HP = HT = 25 + 3*lvl;
 		}
 
 		public boolean inRange(int pos){
