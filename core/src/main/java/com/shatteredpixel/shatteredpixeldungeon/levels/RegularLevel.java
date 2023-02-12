@@ -227,7 +227,7 @@ public abstract class RegularLevel extends Level {
 			}
 			roomToSpawn = stdRoomIter.next();
 
-			int tries = 9999999;
+			int tries = 30;
 			do {
 				mob.pos = pointToCell(roomToSpawn.random());
 				tries--;
