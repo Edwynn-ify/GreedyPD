@@ -39,19 +39,23 @@ public class ArtifactRecharge extends Buff {
 
 	private float left;
 	public boolean ignoreHornOfPlenty;
-	
+
 	@Override
 	public boolean act() {
 
 		if (target instanceof Hero) {
-			float chargeAmount = Math.min(1, left);
+			float chargeAmount = Math.min(5, left);
 			for (Buff b : target.buffs()) {
+				if (b instanceof Artifact.ArtifactBuff) {
+					if (b instanceof HornOfPlenty.hornRecharge && ignoreHornOfPlenty){
+						continue;
+					}
 					if (!((Artifact.ArtifactBuff) b).isCursed()) {
 						((Artifact.ArtifactBuff) b).charge((Hero) target, chargeAmount);
 					}
 				}
 			}
-
+		}
 
 		left--;
 		if (left <= 0){
@@ -59,15 +63,15 @@ public class ArtifactRecharge extends Buff {
 		} else {
 			spend(TICK);
 		}
-		
+
 		return true;
 	}
-	
+
 	public ArtifactRecharge set( float amount ){
 		if (left < amount) left = amount;
 		return this;
 	}
-	
+
 	public ArtifactRecharge prolong( float amount ){
 		left += amount;
 		return this;
@@ -76,12 +80,12 @@ public class ArtifactRecharge extends Buff {
 	public float left(){
 		return left;
 	}
-	
+
 	@Override
 	public int icon() {
 		return BuffIndicator.RECHARGING;
 	}
-	
+
 	@Override
 	public void tintIcon(Image icon) {
 		icon.hardlight(0, 1f, 0);
@@ -96,22 +100,22 @@ public class ArtifactRecharge extends Buff {
 	public String iconTextDisplay() {
 		return Integer.toString((int)left);
 	}
-	
+
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns(left+1));
 	}
-	
+
 	private static final String LEFT = "left";
 	private static final String IGNORE_HORN = "ignore_horn";
-	
+
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put( LEFT, left );
 		bundle.put( IGNORE_HORN, ignoreHornOfPlenty );
 	}
-	
+
 	@Override
 	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
