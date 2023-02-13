@@ -82,7 +82,7 @@ public class ArcaneBomb extends Bomb.MagicalBomb {
 		for (Char ch : affected){
 			// 100%/83%/67% bomb damage based on distance, but pierces armor.
 			int damage = Math.round(Random.NormalIntRange( Dungeon.scalingDepth()+5, 20 + Dungeon.scalingDepth() * 4 ));
-			float multiplier = 1f - (.16667f*Dungeon.level.distance(cell, ch.pos));
+			float multiplier = 1f - (.083335f*Dungeon.level.distance(cell, ch.pos));
 			ch.damage(Math.round(damage*multiplier), this);
 			if (ch == Dungeon.hero && !ch.isAlive()){
 				Badges.validateDeathFromFriendlyMagic();
