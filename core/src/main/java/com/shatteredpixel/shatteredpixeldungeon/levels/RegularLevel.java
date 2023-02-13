@@ -227,7 +227,7 @@ public abstract class RegularLevel extends Level {
 			}
 			roomToSpawn = stdRoomIter.next();
 
-			int tries = 30;
+			int tries = 300;
 			do {
 				mob.pos = pointToCell(roomToSpawn.random());
 				tries--;
@@ -246,7 +246,7 @@ public abstract class RegularLevel extends Level {
 				if (Dungeon.depth > 1 && mobsToSpawn > 0 && Random.Int(2) == 0){
 					mob = createMob();
 
-					tries = 9999999;
+					tries = 30;
 					do {
 						mob.pos = pointToCell(roomToSpawn.random());
 						tries--;

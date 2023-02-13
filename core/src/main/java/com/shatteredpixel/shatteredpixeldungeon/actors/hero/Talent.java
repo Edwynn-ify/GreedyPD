@@ -46,11 +46,15 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.LeafParticle;
 import com.shatteredpixel.shatteredpixeldungeon.items.BrokenSeal;
+import com.shatteredpixel.shatteredpixeldungeon.items.EquipableItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
+import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.HornOfPlenty;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
@@ -62,6 +66,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
+import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
@@ -479,13 +484,26 @@ public enum Talent {
 
 	public static void onItemCollected( Hero hero, Item item ){
 		if(item.isIdentified()) return;
-		if (hero.pointsInTalent(THIEFS_INTUITION) == 2){
-			if (item instanceof Ring) ((Ring) item).setKnown();
-
+		if (hero.pointsInTalent(THIEFS_INTUITION) == 2 && (item instanceof Ring || item instanceof Artifact)) {
+			item.identify();
+		}
+		else if(hero.hasTalent(THIEFS_INTUITION)
+				&& !item.collected && item.cursed && !item.cursedKnown
+				&& Random.Int(3) == 0) {
+			     item.cursedKnown = true;
+		}
+		if(!item.collected && !item.cursedKnown && (item instanceof EquipableItem && !(item instanceof MissileWeapon) || item instanceof Wand) && Random.Int(4) < hero.pointsInTalent(SURVIVALISTS_INTUITION)){
+			item.cursedKnown = true;
+		}
+		if (hero.pointsInTalent(ARMSMASTERS_INTUITION) == 2 && Random.Int(2) == 0 && (item instanceof Weapon || item instanceof Armor)) {
+			item.identify();
+		}
+		if( (item instanceof Scroll || item instanceof Potion) && !item.isIdentified() && hero.hasTalent(SCHOLARS_INTUITION) ) {
+			if(!item.collected && Random.Int(4-hero.pointsInTalent(SCHOLARS_INTUITION)) == 0) {
+				item.identify();
 			}
-
+		}
 	}
-
 
 
 	//note that IDing can happen in alchemy scene, so be careful with VFX here
