@@ -210,7 +210,7 @@ abstract public class Weapon extends KindOfWeapon {
 	@Override
 	public int reachFactor(Char owner) {
 		if (hasEnchant(Projecting.class, owner)){
-			return 2*RCH + Math.round(RingOfArcana.enchantPowerMultiplier(owner));
+			return RCH + 1 + Math.round(RingOfArcana.enchantPowerMultiplier(owner));
 		} else {
 			return RCH;
 		}
@@ -236,7 +236,7 @@ abstract public class Weapon extends KindOfWeapon {
 	@Override
 	public int level() {
 		int level = super.level();
-		if (curseInfusionBonus) level += 1 + level/6;
+		if (curseInfusionBonus) level += 2 + level/6;
 		return level;
 	}
 	
