@@ -510,7 +510,7 @@ public enum Talent {
 	public static void onItemIdentified( Hero hero, Item item ){
 		if (hero.hasTalent(TEST_SUBJECT)){
 			//heal for 2/3 HP
-			hero.HP = Math.min(hero.HP + 2 + hero.pointsInTalent(TEST_SUBJECT), hero.HT);
+			hero.HP = Math.min(hero.HP + 2 + 2* hero.pointsInTalent(TEST_SUBJECT), hero.HT);
 			if (hero.sprite != null) {
 				Emitter e = hero.sprite.emitter();
 				if (e != null) e.burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(TEST_SUBJECT));

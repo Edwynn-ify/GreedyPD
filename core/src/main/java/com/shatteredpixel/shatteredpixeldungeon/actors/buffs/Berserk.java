@@ -54,7 +54,7 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 	private static final float LEVEL_RECOVER_START = 4f;
 	private float levelRecovery;
 
-	private static final int TURN_RECOVERY_START = 75;
+	private static final int TURN_RECOVERY_START = 100;
 	private int turnRecovery;
 
 	public int powerLossBuffer = 0;
@@ -192,7 +192,7 @@ public class Berserk extends Buff implements ActionIndicator.Action {
 			turnRecovery = TURN_RECOVERY_START;
 			levelRecovery = 0;
 		} else {
-			levelRecovery = LEVEL_RECOVER_START - 2*((Hero)target).pointsInTalent(Talent.DEATHLESS_FURY);
+			levelRecovery = LEVEL_RECOVER_START - ((Hero)target).pointsInTalent(Talent.DEATHLESS_FURY)-1;
 			turnRecovery = 0;
 		}
 
