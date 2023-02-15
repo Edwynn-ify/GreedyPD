@@ -64,16 +64,17 @@ SHOP sells :
 
 
 NEGATIVE Changes :
-Massively buffed bosses
-Enemies deal double damage and takes even lesser damage.
-Chilled reduces your speed up to 98.5%. That being said this could be used to your advantage to cheese enemies/minibosses.
-Traps are spawned with equal chances. They can also deal tons of damage as well
-Enemies can spawn up to 100+ in large floors.
-Poison, Burning deal lots of damage
-Increased damage dealt by caustic ooze.
-Grim trap leaves you with 1% hp
-Rare mobs can now spawn in two floors before boss. (33% and 50%)
-Piranhas spawn in 6 instead of 3.
-Enemies have 50% to spawn as their rare counterparts instead of 12.5%
+- Massively buffed bosses
+- Enemies deal double damage and takes even lesser damage.
+- Chilled reduces your speed up to 98.5%. That being said this could be used to your advantage to cheese enemies/minibosses.
+- Traps are spawned with equal chances. They can also deal tons of damage as well
+- Enemies can spawn up to 100+ in large floors.
+- Poison, Burning deal lots of damage
+- Increased damage dealt by caustic ooze.
+- Grim trap leaves you with 1% hp
+- Rare mobs can now spawn in two floors before boss. (33% and 50%)
+- Piranhas spawn in 6 instead of 3.
+- Enemies have 50% to spawn as their rare counterparts instead of 12.5%
+- Enemies from lower depths now creeps into upper levels.
 
 Do note that this mod is imbalanced and is intended for non-serious gameplay.

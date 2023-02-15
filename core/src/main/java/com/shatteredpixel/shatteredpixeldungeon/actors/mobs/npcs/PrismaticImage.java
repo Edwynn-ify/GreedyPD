@@ -143,14 +143,16 @@ public class PrismaticImage extends NPC {
 		this.HP = HP;
 		HT = PrismaticGuard.maxHP( hero );
 	}
-	
+
 	@Override
 	public int damageRoll() {
-		if (hero != null) {
-			return Random.NormalIntRange( 2 + hero.lvl/4, 8 + hero.lvl );
+		int damage;
+		if (hero.belongings.weapon() != null){
+			damage = hero.belongings.weapon().damageRoll(this);
 		} else {
-			return Random.NormalIntRange( 2, 8 );
+			damage = hero.damageRoll(); //handles ring of force
 		}
+		return (damage+1); //half hero damage, rounded up
 	}
 	
 	@Override

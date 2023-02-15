@@ -59,7 +59,7 @@ public class StorageRoom extends SpecialRoom {
 	
 	private static Item prize( Level level ) {
 
-		if (Random.Int(3) != 0){
+		if (Random.Int(2) != 0){
 			Item prize = level.findPrizeItem();
 			if (prize != null)
 				return prize;
@@ -69,6 +69,8 @@ public class StorageRoom extends SpecialRoom {
 			Generator.Category.POTION,
 			Generator.Category.SCROLL,
 			Generator.Category.FOOD,
+			Generator.Category.STONE,
+				Generator.Category.SEED,
 			Generator.Category.GOLD,
 				Generator.Category.ARMOR,
 				Generator.Category.WAND,

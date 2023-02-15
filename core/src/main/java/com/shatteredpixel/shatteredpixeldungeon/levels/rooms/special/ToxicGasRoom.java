@@ -29,6 +29,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Inferno;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.ToxicGas;
+import com.shatteredpixel.shatteredpixeldungeon.items.Ankh;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -39,6 +41,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.Trap;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.watabou.utils.Point;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -80,8 +83,7 @@ public class ToxicGasRoom extends SpecialRoom {
 			Blob.seed(cell, 150, ToxicGasSeed.class, level);
 			Blob.seed(cell, 150, StenchGas.class, level);
 			Blob.seed(cell, 150, CorrosiveGas.class, level);
-			Blob.seed(cell, 150, Inferno.class, level);
-			Blob.seed(cell, 150, Blizzard.class, level);
+			Blob.seed(cell, 150, ConfusionGas.class, level);
 			Painter.set(level, cell, Terrain.INACTIVE_TRAP);
 		}
 
@@ -112,6 +114,11 @@ public class ToxicGasRoom extends SpecialRoom {
 
 		for (int i = 0; i < 5; i++){
 			level.drop(new Gold().random(), goldPositions.remove(0)).type = Heap.Type.CHEST;
+			level.drop(Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.ARTIFACT, Generator.Category.RING, Generator.Category.WEAPON, Generator.Category.ARMOR)), furthestPos).type = Heap.Type.CHEST;
+			level.drop(Generator.random(Random.oneOf(Generator.Category.SEED, Generator.Category.STONE, Generator.Category.SPELL)), furthestPos).type = Heap.Type.CHEST;
+			level.drop(Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.POTION, Generator.Category.EXOTIC_POTION)), furthestPos).type = Heap.Type.CHEST;
+			level.drop(Generator.random(Random.oneOf(Generator.Category.FOOD, Generator.Category.BOMB, Generator.Category.GOLD)), furthestPos).type = Heap.Type.CHEST;
+			level.drop(Generator.random(Random.oneOf(Generator.Category.BREW, Generator.Category.ELIXIR)), furthestPos).type = Heap.Type.CHEST;
 		}
 
 		level.addItemToSpawn(new PotionOfPurity());
@@ -146,8 +153,14 @@ public class ToxicGasRoom extends SpecialRoom {
 
 						if (gas == null || gas.volume == 0){
 							GameScene.add(Blob.seed(cell, off[cell], ToxicGas.class));
+							GameScene.add(Blob.seed(cell, off[cell], ConfusionGas.class));
+							GameScene.add(Blob.seed(cell, off[cell], CorrosiveGas.class));
+							GameScene.add(Blob.seed(cell, off[cell], StenchGas.class));
 						} else if (gas.cur[cell] <= 9*off[cell]){
 							GameScene.add(Blob.seed(cell, off[cell], ToxicGas.class));
+							GameScene.add(Blob.seed(cell, off[cell], ConfusionGas.class));
+							GameScene.add(Blob.seed(cell, off[cell], CorrosiveGas.class));
+							GameScene.add(Blob.seed(cell, off[cell], StenchGas.class));
 						}
 					}
 				}

@@ -122,7 +122,7 @@ public class CrystalPathRoom extends SpecialRoom {
 			rooms[i].set(rooms[i].shrink(2));
 		}
 
-		for (int i = 0; i < 16; i++){
+		for (int i = 0; i < 17; i++){
 			int pos = level.pointToCell(rooms[idx].center());
 			Item item;
 			switch (i) {
@@ -174,6 +174,9 @@ public class CrystalPathRoom extends SpecialRoom {
 					break;
 				case 15:
 					item = Generator.random(Generator.Category.BOMB);
+					break;
+				case 16:
+					item = Generator.random(Generator.Category.WAND);
 					break;
 
 			}

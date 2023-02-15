@@ -23,6 +23,7 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.IronKey;
@@ -48,10 +49,15 @@ public class TreasuryRoom extends SpecialRoom {
 			do {
 				pos = level.pointToCell(random());
 			} while (level.map[pos] != Terrain.EMPTY || level.heaps.get( pos ) != null || level.findMob(pos) != null);
-			if (heapType == Heap.Type.CHEST && Dungeon.depth > 1 && Random.Int( 3 ) == 0){
+			if (heapType == Heap.Type.CHEST && Dungeon.depth > 1 && Random.Int( 2 ) == 0){
 				level.mobs.add(Mimic.spawnAt(pos, new Gold().random()));
 			} else {
-				level.drop( new Gold().random(), pos ).type = heapType;
+				level.drop(new Gold().random(), pos).type = heapType;
+				level.drop(Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.RING, Generator.Category.ARTIFACT, Generator.Category.ARMOR, Generator.Category.WEAPON, Generator.Category.STONE, Generator.Category.SEED, Generator.Category.FOOD, Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.SCROLL, Generator.Category.EXOTIC_SCROLL, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL)), pos).type = heapType;
+				level.drop(Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.RING, Generator.Category.ARTIFACT, Generator.Category.ARMOR, Generator.Category.WEAPON, Generator.Category.STONE, Generator.Category.SEED, Generator.Category.FOOD, Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.SCROLL, Generator.Category.EXOTIC_SCROLL, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL)), pos).type = heapType;
+				level.drop(Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.RING, Generator.Category.ARTIFACT, Generator.Category.ARMOR, Generator.Category.WEAPON, Generator.Category.STONE, Generator.Category.SEED, Generator.Category.FOOD, Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.SCROLL, Generator.Category.EXOTIC_SCROLL, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL)), pos).type = heapType;
+				level.drop(Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.RING, Generator.Category.ARTIFACT, Generator.Category.ARMOR, Generator.Category.WEAPON, Generator.Category.STONE, Generator.Category.SEED, Generator.Category.FOOD, Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.SCROLL, Generator.Category.EXOTIC_SCROLL, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL)), pos).type = heapType;
+				level.drop(Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.RING, Generator.Category.ARTIFACT, Generator.Category.ARMOR, Generator.Category.WEAPON, Generator.Category.STONE, Generator.Category.SEED, Generator.Category.FOOD, Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.SCROLL, Generator.Category.EXOTIC_SCROLL, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL)), pos).type = heapType;
 			}
 		}
 		
