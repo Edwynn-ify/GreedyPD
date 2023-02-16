@@ -36,12 +36,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.ScrollHolder;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfLullaby;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -67,9 +63,9 @@ public class UnstableSpellbook extends Artifact {
 
 		levelCap = 10;
 
-		charge = (int)(level()*1.2f)+4;
+		charge = (int)(level()*1.5f)+4;
 		partialCharge = 0;
-		chargeCap = (int)(level()*1.2f)+4;
+		chargeCap = (int)(level()*1.5f)+4;
 
 		defaultAction = AC_READ;
 	}
@@ -92,6 +88,7 @@ public class UnstableSpellbook extends Artifact {
 
 			i = Random.chances(probs);
 		}
+		scrolls.remove(ScrollOfTransmutation.class);
 	}
 
 	@Override
@@ -125,8 +122,11 @@ public class UnstableSpellbook extends Artifact {
 				Scroll scroll;
 				do {
 					scroll = (Scroll) Generator.randomUsingDefaults(Generator.Category.SCROLL);
-				} while (scroll == null);
-				
+				} while (scroll == null
+						//cannot roll transmutation
+						|| (scroll instanceof ScrollOfTransmutation || scroll instanceof ScrollOfUpgrade ));
+
+
 				scroll.anonymize();
 				curItem = scroll;
 				curUser = hero;
@@ -158,7 +158,7 @@ public class UnstableSpellbook extends Artifact {
 							}
 							updateQuickslot();
 						}
-						
+
 						@Override
 						public void onBackPressed() {
 							//do nothing
@@ -215,7 +215,7 @@ public class UnstableSpellbook extends Artifact {
 	protected ArtifactBuff passiveBuff() {
 		return new bookRecharge();
 	}
-	
+
 	@Override
 	public void charge(Hero target, float amount) {
 		if (charge < chargeCap && !cursed && target.buff(MagicImmune.class) == null){
@@ -230,7 +230,7 @@ public class UnstableSpellbook extends Artifact {
 
 	@Override
 	public Item upgrade() {
-		chargeCap = (int)((level()+2)*1.2f)+4;
+		chargeCap = (int)((level()+2)*1.5f)+4;
 
 		//for artifact transmutation.
 		while (!scrolls.isEmpty() && scrolls.size() > (levelCap-1-level()))
@@ -247,7 +247,7 @@ public class UnstableSpellbook extends Artifact {
 			if (cursed) {
 				desc += "\n\n" + Messages.get(this, "desc_cursed");
 			}
-			
+
 			if (level() < levelCap && scrolls.size() > 0) {
 				desc += "\n\n" + Messages.get(this, "desc_index");
 				desc += "\n" + "_" + Messages.get(scrolls.get(0), "name") + "_";
@@ -255,7 +255,7 @@ public class UnstableSpellbook extends Artifact {
 					desc += "\n" + "_" + Messages.get(scrolls.get(1), "name") + "_";
 			}
 		}
-		
+
 		if (level() > 0) {
 			desc += "\n\n" + Messages.get(this, "desc_empowered");
 		}
