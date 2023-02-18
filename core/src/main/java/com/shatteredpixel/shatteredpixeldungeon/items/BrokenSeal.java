@@ -188,20 +188,20 @@ public class BrokenSeal extends Item {
 			if (shielding() < maxShield()) {
 				partialShield += 2/15f;
 			}
-			
+
 			while (partialShield >= 1){
 				incShield();
 				partialShield--;
 			}
-			
+
 			if (shielding() <= 0 && maxShield() <= 0){
 				detach();
 			}
-			
+
 			spend(TICK);
 			return true;
 		}
-		
+
 		public synchronized void supercharge(int maxShield){
 			if (maxShield > shielding()){
 				setShield(maxShield);
@@ -224,7 +224,6 @@ public class BrokenSeal extends Item {
 				return 0;
 			}
 		}
-		
 		@Override
 		//logic edited slightly as buff should not detach
 		public int absorbDamage(int dmg) {

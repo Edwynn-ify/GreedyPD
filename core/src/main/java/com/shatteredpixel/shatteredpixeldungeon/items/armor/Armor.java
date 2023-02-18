@@ -57,7 +57,6 @@ import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.Swiftness;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.Thorns;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.Viscosity;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfArcana;
-import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.HeroSprite;
@@ -179,8 +178,9 @@ public class Armor extends EquipableItem {
 			BrokenSeal detaching = seal;
 			seal = null;
 
-			if (detaching.level() > 0){
-				degrade();
+			//if (detaching.level() > 0) we dont use this
+			{
+				degrade(seal.level());
 			}
 			if (detaching.getGlyph() != null){
 				if (hero.hasTalent(Talent.RUNIC_TRANSFERENCE)
