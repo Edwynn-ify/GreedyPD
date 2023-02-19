@@ -178,9 +178,9 @@ public class Armor extends EquipableItem {
 			BrokenSeal detaching = seal;
 			seal = null;
 
-			//if (detaching.level() > 0) we dont use this
+			if (detaching.level() > 0)
 			{
-				degrade(seal.level());
+				degrade(detaching.level());
 			}
 			if (detaching.getGlyph() != null){
 				if (hero.hasTalent(Talent.RUNIC_TRANSFERENCE)
@@ -521,7 +521,7 @@ public class Armor extends EquipableItem {
 		//+0: 75% (3/4)
 		//+1: 20% (4/20)
 		//+2: 5%  (1/20)
-		int n = Random.Int(7);;
+		int n = Random.Int(7);
 
 		level(n);
 		
