@@ -70,10 +70,10 @@ public class SecretLarderRoom extends SecretRoom {
 		while (extraFood > 0){
 			Food food;
 			if (extraFood >= Hunger.STARVING){
-				food = Random.oneOf(new MeatPie(), new Pasty(), new Food(), new FrozenCarpaccio());
+				food = Random.oneOf(new MeatPie(), new Pasty(), new Food(), new FrozenCarpaccio(), new MysteryMeat(), new StewedMeat(), new SmallRation(), new Berry(), new ChargrilledMeat());
 				extraFood -= Hunger.STARVING;
 			} else {
-				food = Random.oneOf(new MysteryMeat(), new StewedMeat(), new SmallRation(), new Berry());
+				food = Random.oneOf(new MeatPie(), new Pasty(), new Food(), new FrozenCarpaccio(), new MysteryMeat(), new StewedMeat(), new SmallRation(), new Berry(), new ChargrilledMeat());;
 				extraFood -= (Hunger.STARVING - Hunger.HUNGRY);
 			}
 			int foodPos;

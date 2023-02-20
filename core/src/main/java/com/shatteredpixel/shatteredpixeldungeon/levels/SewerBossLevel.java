@@ -36,6 +36,14 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.SewerPainter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.RatKingRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretArtilleryRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretGardenRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretHoardRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretHoneypotRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretLaboratoryRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretLibraryRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretMazeRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretRunestoneRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.sewerboss.GooBossRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.sewerboss.SewerBossEntranceRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.sewerboss.SewerBossExitRoom;
@@ -103,6 +111,7 @@ public class SewerBossLevel extends SewerLevel {
 		initRooms.add(gooRoom);
 		((FigureEightBuilder)builder).setLandmarkRoom(gooRoom);
 		initRooms.add(new RatKingRoom());
+		initRooms.add(Random.oneOf(new SecretRunestoneRoom(), new SecretArtilleryRoom(), new SecretGardenRoom(), new SecretRunestoneRoom(), new SecretHoardRoom(), new SecretHoneypotRoom(), new SecretLaboratoryRoom(), new SecretLibraryRoom(), new SecretMazeRoom()));
 		return initRooms;
 	}
 	

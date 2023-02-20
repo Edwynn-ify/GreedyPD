@@ -73,7 +73,7 @@ public class LaboratoryRoom extends SpecialRoom {
 						level.heaps.get( pos ) != null);
 		level.drop( new EnergyCrystal().random(), pos );
 
-		int n = Random.NormalIntRange( 2, 12 );
+		int n = Random.NormalIntRange( 2, 15 );
 		for (int i=0; i < n; i++) {
 			do {
 				pos = level.pointToCell(random());
@@ -126,7 +126,7 @@ public class LaboratoryRoom extends SpecialRoom {
 
 		Item prize = level.findPrizeItem( Potion.class );
 		if (prize == null)
-			prize = Generator.random( Random.oneOf( Generator.Category.POTION, Generator.Category.STONE, Generator.Category.FOOD, Generator.Category.SCROLL, Generator.Category.SEED, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL, Generator.Category.EXOTIC_SCROLL, Generator.Category.EXOTIC_POTION, Generator.Category.BOMB));
+			prize = Generator.random( Random.oneOf( Generator.Category.POTION, Generator.Category.STONE, Generator.Category.FOOD, Generator.Category.SCROLL, Generator.Category.SEED, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL, Generator.Category.EXOTIC_SCROLL, Generator.Category.EXOTIC_POTION, Generator.Category.BOMB, Generator.Category.OP_ITEM));
 
 		return prize;
 	}

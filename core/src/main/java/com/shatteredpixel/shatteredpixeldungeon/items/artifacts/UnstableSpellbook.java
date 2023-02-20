@@ -287,7 +287,7 @@ public class UnstableSpellbook extends Artifact {
 					&& target.buff(MagicImmune.class) == null
 					&& (lock == null || lock.regenOn())) {
 				//120 turns to charge at full, 80 turns to charge at 0/8
-				float chargeGain = 2 / (60f - (chargeCap - charge)*10f);
+				float chargeGain = 1 / (60f - (chargeCap - charge)*10f);
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 

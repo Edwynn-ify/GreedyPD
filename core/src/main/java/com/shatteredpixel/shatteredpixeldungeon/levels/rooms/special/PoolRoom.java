@@ -41,10 +41,15 @@ public class PoolRoom extends SpecialRoom {
 	public int minWidth() {
 		return 6;
 	}
-	
+	public int maxWidth() {
+		return 10;
+	}
 	@Override
 	public int minHeight() {
 		return 6;
+	}
+	public int maxHeight() {
+		return 10;
 	}
 	
 	public void paint(Level level ) {

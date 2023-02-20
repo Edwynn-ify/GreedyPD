@@ -273,10 +273,10 @@ public class Generator {
 		WAND	( 1, 1, Wand.class ),
 		RING	( 1, 0, Ring.class ),
 		ARTIFACT( 0, 1, Artifact.class),
-		
 		FOOD	( 0, 0, Food.class ),
 		
 		POTION	( 8, 8, Potion.class ),
+		OP_ITEM	( 8, 8, Item.class ),
 		EXOTIC_POTION	( 8, 8, ExoticPotion.class ),
 		BREW	( 8, 8, Brew.class ),
 		ELIXIR	( 8, 8, Elixir.class ),
@@ -354,6 +354,27 @@ public class Generator {
 
 			POTION.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 			POTION.probs = POTION.defaultProbs.clone();
+
+				OP_ITEM.classes = new Class<?>[]{
+					PotionOfStrength.class, //2 drop every chapter, see Dungeon.posNeeded()
+					PotionOfHealing.class,
+					PotionOfExperience.class,
+                    ElixirOfMight.class,
+						PotionOfMastery.class,
+						PotionOfShielding.class,
+						PotionOfDivineInspiration.class,
+						MeatPie.class,
+						Ankh.class,
+						ElixirOfToxicEssence.class,
+						ElixirOfIcyTouch.class,
+						ElixirOfDragonsBlood.class,
+						StoneOfEnchantment.class,
+
+
+				};
+
+			OP_ITEM.defaultProbs = new float[]{ 5, 5, 5, 5, 5, 5, 5 };
+			OP_ITEM.probs = OP_ITEM.defaultProbs.clone();
 
 			EXOTIC_POTION.classes = new Class<?>[]{
 					PotionOfMastery.class, //2 drop every chapter, see Dungeon.posNeeded()

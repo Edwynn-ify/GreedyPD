@@ -45,7 +45,7 @@ public class LibraryRoom extends SpecialRoom {
 		Painter.fill( level, left + 1, top+1, width() - 2, 1 , Terrain.BOOKSHELF );
 		Painter.drawInside(level, this, entrance, 1, Terrain.EMPTY_SP );
 		
-		int n = Random.NormalIntRange( 1, 12 );
+		int n = Random.NormalIntRange( 2, 15 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {
@@ -68,7 +68,7 @@ public class LibraryRoom extends SpecialRoom {
 		
 		Item prize = level.findPrizeItem( Scroll.class );
 		if (prize == null)
-			prize = Generator.random(Random.oneOf(Generator.Category.SCROLL, Generator.Category.SEED, Generator.Category.STONE, Generator.Category.WAND, Generator.Category.POTION, Generator.Category.EXOTIC_SCROLL, Generator.Category.EXOTIC_POTION, Generator.Category.SPELL, Generator.Category.EXOTIC_POTION, Generator.Category.ELIXIR, Generator.Category.BREW));
+			prize = Generator.random(Random.oneOf(Generator.Category.SCROLL, Generator.Category.SEED, Generator.Category.STONE, Generator.Category.WAND, Generator.Category.POTION, Generator.Category.EXOTIC_SCROLL, Generator.Category.EXOTIC_POTION, Generator.Category.SPELL, Generator.Category.EXOTIC_POTION, Generator.Category.ELIXIR, Generator.Category.BREW, Generator.Category.OP_ITEM));
 		
 		return prize;
 	}

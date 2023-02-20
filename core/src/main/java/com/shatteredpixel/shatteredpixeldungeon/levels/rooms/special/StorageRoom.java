@@ -39,7 +39,7 @@ public class StorageRoom extends SpecialRoom {
 
 		boolean honeyPot = Random.Int( 3 ) == 0;
 		
-		int n = Random.IntRange( 3, 10 );
+		int n = Random.IntRange( 3, 15 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {
@@ -72,12 +72,19 @@ public class StorageRoom extends SpecialRoom {
 			Generator.Category.STONE,
 				Generator.Category.SEED,
 			Generator.Category.GOLD,
+				Generator.Category.BOMB,
 				Generator.Category.ARMOR,
 				Generator.Category.WAND,
 				Generator.Category.WEAPON,
 				Generator.Category.MISSILE,
 				Generator.Category.ARTIFACT,
-				Generator.Category.RING
+				Generator.Category.RING,
+				Generator.Category.EXOTIC_SCROLL,
+				Generator.Category.EXOTIC_POTION,
+				Generator.Category.BREW,
+				Generator.Category.ELIXIR,
+				Generator.Category.SPELL,
+				Generator.Category.OP_ITEM
 		) );
 	}
 }

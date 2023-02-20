@@ -131,7 +131,14 @@ public class MagicalFireRoom extends SpecialRoom {
 				Generator.Category.GOLD,
 				Generator.Category.ARTIFACT,
 				Generator.Category.WAND,
-				Generator.Category.RING
+				Generator.Category.RING,
+				Generator.Category.EXOTIC_SCROLL,
+				Generator.Category.EXOTIC_POTION,
+				Generator.Category.BREW,
+				Generator.Category.SPELL,
+				Generator.Category.BOMB,
+				Generator.Category.ELIXIR,
+				Generator.Category.OP_ITEM
 
 		) );
 	}

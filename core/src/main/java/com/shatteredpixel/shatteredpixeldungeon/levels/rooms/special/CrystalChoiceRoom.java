@@ -109,6 +109,7 @@ public class CrystalChoiceRoom extends SpecialRoom {
 			Item reward = Generator.random(Random.oneOf(
 					Generator.Category.POTION,
 					Generator.Category.SCROLL,
+					Generator.Category.MISSILE,
 					Generator.Category.SEED,
 					Generator.Category.FOOD,
 					Generator.Category.STONE,
@@ -117,7 +118,8 @@ public class CrystalChoiceRoom extends SpecialRoom {
 					Generator.Category.BOMB,
 					Generator.Category.SPELL,
 					Generator.Category.ELIXIR,
-					Generator.Category.BREW));
+					Generator.Category.BREW,
+					Generator.Category.OP_ITEM));
 			int pos;
 			do {
 				if (room1.square() >= 16){

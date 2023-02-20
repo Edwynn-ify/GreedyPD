@@ -37,7 +37,7 @@ public class SecretArtilleryRoom extends SecretRoom {
 
 		Painter.set(level, center(), Terrain.STATUE_SP);
 
-		for (int i = 0; i < 3; i++){
+		for (int i = 0; i < 6; i++){
 			int itemPos;
 			do{
 				itemPos = level.pointToCell(random());

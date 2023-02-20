@@ -102,7 +102,13 @@ public class PitRoom extends SpecialRoom {
 			Generator.Category.FOOD,
 			Generator.Category.GOLD,
 				Generator.Category.SEED,
-				Generator.Category.STONE
+				Generator.Category.STONE,
+				Generator.Category.EXOTIC_POTION,
+				Generator.Category.EXOTIC_SCROLL,
+				Generator.Category.SPELL,
+				Generator.Category.BREW,
+				Generator.Category.ELIXIR,
+				Generator.Category.OP_ITEM
 		) );
 	}
 	

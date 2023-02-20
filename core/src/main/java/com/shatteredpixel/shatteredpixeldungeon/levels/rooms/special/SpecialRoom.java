@@ -35,13 +35,13 @@ public abstract class SpecialRoom extends Room {
 	
 	@Override
 	public int minWidth() { return 5; }
-	public int maxWidth() { return 14; }
+	public int maxWidth() { return 15; }
 	
 	@Override
 	public int minHeight() {
 		return 5;
 	}
-	public int maxHeight() { return 10; }
+	public int maxHeight() { return 12; }
 	
 	@Override
 	public int maxConnections(int direction) {
