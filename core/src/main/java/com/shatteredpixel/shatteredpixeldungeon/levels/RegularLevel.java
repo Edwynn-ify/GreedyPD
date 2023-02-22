@@ -333,10 +333,10 @@ public abstract class RegularLevel extends Level {
 	protected void createItems() {
 		
 		// drops 3/4/5 items 60%/30%/10% of the time
-		int nItems = 10 + Random.chances(new float[]{10, 8, 6, 3});
+		int nItems = 20 + Random.chances(new float[]{10, 8, 6, 3});
 
 		if (feeling == Feeling.LARGE){
-			nItems += 10;
+			nItems += 20;
 		}
 		
 		for (int i=0; i < nItems; i++) {
