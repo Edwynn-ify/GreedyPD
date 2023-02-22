@@ -50,7 +50,7 @@ public abstract class Shaman extends Mob {
 		EXP = 8;
 		maxLvl = 16;
 		
-		loot = Generator.Category.WAND;
+		loot = Random.oneOf(Generator.Category.WAND, Generator.Category.RANDOM_ITEM);
 		lootChance = 0.4f; //initially, see lootChance()
 	}
 	

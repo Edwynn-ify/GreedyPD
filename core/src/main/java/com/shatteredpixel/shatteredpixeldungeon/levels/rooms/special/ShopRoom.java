@@ -274,6 +274,9 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXOTIC_POTION ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXOTIC_POTION ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.ELIXIR) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.RANDOM_ITEM ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.RANDOM_ITEM ) );
+		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.RANDOM_ITEM) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.BREW ) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.ELIXIR) );
 		itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.BREW ) );

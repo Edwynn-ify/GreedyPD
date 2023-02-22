@@ -29,6 +29,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Imp;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.GolemSprite;
@@ -48,7 +49,7 @@ public class Golem extends Mob {
 		EXP = 12;
 		maxLvl = 22;
 
-		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
+		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR, Generator.Category.RANDOM_ITEM, new DwarfToken(), new DwarfToken().quantity(2));
 		lootChance = 0.4f; //initially, see lootChance()
 
 		properties.add(Property.INORGANIC);

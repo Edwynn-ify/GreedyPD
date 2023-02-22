@@ -25,11 +25,14 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicalInfusion;
+import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.AcidicSprite;
 import com.watabou.utils.Random;
 
@@ -40,7 +43,7 @@ public class Acidic extends Scorpio {
 
 		properties.add(Property.ACIDIC);
 
-		loot = Random.oneOf(new PotionOfExperience(), new PotionOfDivineInspiration(), new ScrollOfUpgrade(), new ScrollOfEnchantment());
+		loot = Random.oneOf(new PotionOfExperience(), new PotionOfDivineInspiration(), new ScrollOfUpgrade(), new ScrollOfEnchantment(), new MagicalInfusion(), new StoneOfEnchantment());
 		lootChance = 1f;
 	}
 

@@ -33,9 +33,22 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.particles.PurpleParticle
 import com.shatteredpixel.shatteredpixeldungeon.items.Dewdrop;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.Swiftness;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfDisintegration;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Blindweed;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Earthroot;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Fadeleaf;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Firebloom;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Icecap;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Mageroyal;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Plant;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Rotberry;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sorrowmoss;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Stormvine;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.EyeSprite;
@@ -60,7 +73,7 @@ public class Eye extends Mob {
 
 		HUNTING = new Hunting();
 		
-		loot = new Dewdrop();
+		loot = Random.oneOf(new Dewdrop(), new Swiftthistle.Seed(), new Fadeleaf.Seed(), new Icecap.Seed(), new Firebloom.Seed(), new Blindweed.Seed(), new Sungrass.Seed(), new Mageroyal.Seed(), new Rotberry.Seed(), new Stormvine.Seed(), new Sorrowmoss.Seed(), new Earthroot.Seed());
 		lootChance = 1f;
 
 		properties.add(Property.DEMONIC);

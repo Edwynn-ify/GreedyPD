@@ -24,6 +24,12 @@ package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.Ratmogrify;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.RatSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
@@ -35,7 +41,8 @@ public class Rat extends Mob {
 		
 		HP = HT = 8;
 		defenseSkill = 2;
-		
+		loot = Generator.Category.RANDOM_ITEM;
+		lootChance = 0.175f; //by default, see lootChance()
 		maxLvl = 5;
 	}
 

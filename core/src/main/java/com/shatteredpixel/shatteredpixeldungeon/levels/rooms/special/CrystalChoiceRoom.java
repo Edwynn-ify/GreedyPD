@@ -119,7 +119,7 @@ public class CrystalChoiceRoom extends SpecialRoom {
 					Generator.Category.SPELL,
 					Generator.Category.ELIXIR,
 					Generator.Category.BREW,
-					Generator.Category.OP_ITEM));
+					Generator.Category.RANDOM_ITEM));
 			int pos;
 			do {
 				if (room1.square() >= 16){

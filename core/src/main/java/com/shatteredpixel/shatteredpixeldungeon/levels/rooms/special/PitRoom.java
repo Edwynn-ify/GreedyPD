@@ -108,7 +108,7 @@ public class PitRoom extends SpecialRoom {
 				Generator.Category.SPELL,
 				Generator.Category.BREW,
 				Generator.Category.ELIXIR,
-				Generator.Category.OP_ITEM
+				Generator.Category.RANDOM_ITEM
 		) );
 	}
 	

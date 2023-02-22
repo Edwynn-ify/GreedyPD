@@ -138,7 +138,7 @@ public class MagicalFireRoom extends SpecialRoom {
 				Generator.Category.SPELL,
 				Generator.Category.BOMB,
 				Generator.Category.ELIXIR,
-				Generator.Category.OP_ITEM
+				Generator.Category.RANDOM_ITEM
 
 		) );
 	}

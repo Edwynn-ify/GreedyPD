@@ -30,6 +30,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.MeatPie;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Pasty;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.StewedMeat;
+import com.shatteredpixel.shatteredpixeldungeon.items.quest.DwarfToken;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.MonkSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
@@ -49,7 +50,7 @@ public class Monk extends Mob {
 		EXP = 11;
 		maxLvl = 21;
 		
-		loot = Random.oneOf(new Food(), new Pasty(), new StewedMeat().quantity(2), new MeatPie());
+		loot = Random.oneOf(new Food(), new Pasty(), new StewedMeat().quantity(2), new MeatPie(), new DwarfToken(), new DwarfToken().quantity(2));
 		lootChance = 0.4f;
 
 		properties.add(Property.UNDEAD);

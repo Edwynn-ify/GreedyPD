@@ -102,16 +102,16 @@ public class SandalsOfNature extends Artifact {
 
 	private static final HashMap<Class<? extends Plant.Seed>, Integer> seedChargeReqs = new HashMap<>();
 	static {
-		seedChargeReqs.put(Rotberry.Seed.class,     8);
+		seedChargeReqs.put(Rotberry.Seed.class,     80);
 		seedChargeReqs.put(Firebloom.Seed.class,    20);
 		seedChargeReqs.put(Swiftthistle.Seed.class, 20);
-		seedChargeReqs.put(Sungrass.Seed.class,     80);
+		seedChargeReqs.put(Sungrass.Seed.class,     40);
 		seedChargeReqs.put(Icecap.Seed.class,       20);
 		seedChargeReqs.put(Stormvine.Seed.class,    20);
 		seedChargeReqs.put(Sorrowmoss.Seed.class,   20);
 		seedChargeReqs.put(Mageroyal.Seed.class,    12);
-		seedChargeReqs.put(Earthroot.Seed.class,    40);
-		seedChargeReqs.put(Starflower.Seed.class,   40);
+		seedChargeReqs.put(Earthroot.Seed.class,    20);
+		seedChargeReqs.put(Starflower.Seed.class,   20);
 		seedChargeReqs.put(Fadeleaf.Seed.class,     12);
 		seedChargeReqs.put(Blindweed.Seed.class,    12);
 	}

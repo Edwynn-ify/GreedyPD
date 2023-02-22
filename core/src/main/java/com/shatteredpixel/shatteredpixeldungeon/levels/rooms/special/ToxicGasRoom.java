@@ -114,7 +114,7 @@ public class ToxicGasRoom extends SpecialRoom {
 			level.drop(new Gold().random(), goldPositions.remove(0)).type = Heap.Type.CHEST;
 			level.drop(Generator.random(Random.oneOf(Generator.Category.WAND, Generator.Category.ARTIFACT, Generator.Category.RING, Generator.Category.WEAPON, Generator.Category.ARMOR)), furthestPos).type = Heap.Type.CHEST;
 			level.drop(Generator.random(Random.oneOf(Generator.Category.SEED, Generator.Category.STONE, Generator.Category.SPELL)), furthestPos).type = Heap.Type.CHEST;
-			level.drop(Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.OP_ITEM)), furthestPos).type = Heap.Type.CHEST;
+			level.drop(Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.POTION, Generator.Category.EXOTIC_POTION, Generator.Category.RANDOM_ITEM)), furthestPos).type = Heap.Type.CHEST;
 			level.drop(Generator.random(Random.oneOf(Generator.Category.FOOD, Generator.Category.BOMB, Generator.Category.GOLD)), furthestPos).type = Heap.Type.CHEST;
 			level.drop(Generator.random(Random.oneOf(Generator.Category.BREW, Generator.Category.ELIXIR)), furthestPos).type = Heap.Type.CHEST;
 		}

@@ -32,6 +32,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ChampionEnemy;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Beam;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
@@ -58,7 +59,7 @@ public class Necromancer extends Mob {
 		EXP = 7;
 		maxLvl = 14;
 		
-		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing());
+		loot = Random.oneOf(new PotionOfHealing(), new PotionOfShielding(), new ElixirOfAquaticRejuvenation(), new Sungrass.Seed(), new ElixirOfHoneyedHealing(), Generator.Category.RANDOM_ITEM);
 		lootChance = 0.175f; //see lootChance()
 		
 		properties.add(Property.UNDEAD);

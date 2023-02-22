@@ -27,6 +27,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.CorrosiveGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ArcaneBomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.ShrapnelBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.MetalShard;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -34,13 +35,15 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.DM201Sprite;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
+import javax.crypto.AEADBadTagException;
+
 public class DM201 extends DM200 {
 
 	{
 		spriteClass = DM201Sprite.class;
 
 		HP = HT = 120;
-		loot = Random.oneOf(new PotionOfCorrosiveGas(), new MetalShard().quantity(3), new ArcaneBomb());
+		loot = Random.oneOf(new PotionOfCorrosiveGas(), new MetalShard().quantity(3), new ShrapnelBomb(), new ArcaneBomb(), Generator.Category.RANDOM_ITEM );
 		lootChance = 1f; //initially, see lootChance()
 		properties.add(Property.IMMOVABLE);
 

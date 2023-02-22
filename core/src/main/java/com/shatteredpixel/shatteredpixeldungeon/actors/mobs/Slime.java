@@ -40,7 +40,7 @@ public class Slime extends Mob {
 		
 		EXP = 4;
 		maxLvl = 9;
-		
+		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.RANDOM_ITEM);
 		lootChance = 0.4f; //by default, see lootChance()
 	}
 	

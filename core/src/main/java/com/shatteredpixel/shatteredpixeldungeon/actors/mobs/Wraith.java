@@ -25,6 +25,12 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.WraithSprite;
 import com.watabou.noosa.tweeners.AlphaTweener;
@@ -37,13 +43,14 @@ public class Wraith extends Mob {
 	private static final float SPAWN_DELAY	= 2f;
 	
 	private int level;
-	
+
 	{
 		spriteClass = WraithSprite.class;
 		
 		HP = HT = 1;
 		EXP = 0;
-
+		loot = Generator.Category.RANDOM_ITEM;
+		lootChance = 0.25f; //by default, see lootChance()
 		maxLvl = -2;
 		
 		flying = true;

@@ -27,6 +27,12 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StenchGas;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Ghost;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShielding;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.FetidRatSprite;
 import com.watabou.utils.Random;
@@ -40,7 +46,8 @@ public class FetidRat extends Rat {
 		defenseSkill = 5;
 
 		EXP = 4;
-
+		loot = Generator.Category.RANDOM_ITEM;
+		lootChance = 0.175f; //by default, see lootChance()
 		state = WANDERING;
 
 		properties.add(Property.MINIBOSS);

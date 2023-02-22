@@ -126,7 +126,7 @@ public class LaboratoryRoom extends SpecialRoom {
 
 		Item prize = level.findPrizeItem( Potion.class );
 		if (prize == null)
-			prize = Generator.random( Random.oneOf( Generator.Category.POTION, Generator.Category.STONE, Generator.Category.FOOD, Generator.Category.SCROLL, Generator.Category.SEED, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL, Generator.Category.EXOTIC_SCROLL, Generator.Category.EXOTIC_POTION, Generator.Category.BOMB, Generator.Category.OP_ITEM));
+			prize = Generator.random( Random.oneOf( Generator.Category.POTION, Generator.Category.STONE, Generator.Category.FOOD, Generator.Category.SCROLL, Generator.Category.SEED, Generator.Category.BREW, Generator.Category.ELIXIR, Generator.Category.SPELL, Generator.Category.EXOTIC_SCROLL, Generator.Category.EXOTIC_POTION, Generator.Category.BOMB, Generator.Category.RANDOM_ITEM));
 
 		return prize;
 	}

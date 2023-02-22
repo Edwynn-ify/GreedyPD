@@ -179,7 +179,7 @@ public class CrystalPathRoom extends SpecialRoom {
 					item = Generator.random(Generator.Category.WAND);
 					break;
 				case 17:
-					item = Generator.random(Generator.Category.OP_ITEM);
+					item = Generator.random(Generator.Category.RANDOM_ITEM);
 					break;
 
 			}

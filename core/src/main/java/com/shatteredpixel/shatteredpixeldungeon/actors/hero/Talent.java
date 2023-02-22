@@ -487,10 +487,8 @@ public enum Talent {
 		if (hero.pointsInTalent(THIEFS_INTUITION) == 2 && (item instanceof Ring || item instanceof Artifact)) {
 			item.identify();
 		}
-		else if(hero.hasTalent(THIEFS_INTUITION)
-				&& !item.collected && item.cursed && !item.cursedKnown
-				&& Random.Int(3) == 0) {
-			     item.cursedKnown = true;
+		else if(!item.collected && !item.cursedKnown && (item instanceof Artifact  || item instanceof Ring)  && Random.Int(3) < hero.pointsInTalent(THIEFS_INTUITION)){
+			item.cursedKnown = true;
 		}
 		if(!item.collected && !item.cursedKnown && (item instanceof EquipableItem && !(item instanceof MissileWeapon) || item instanceof Wand) && Random.Int(4) < hero.pointsInTalent(SURVIVALISTS_INTUITION)){
 			item.cursedKnown = true;
