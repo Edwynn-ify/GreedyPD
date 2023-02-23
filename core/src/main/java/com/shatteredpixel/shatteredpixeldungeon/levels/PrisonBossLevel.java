@@ -32,6 +32,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Regrowth;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.StormCloud;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Doom;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Guard;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Tengu;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
@@ -88,6 +89,7 @@ public class PrisonBossLevel extends Level {
 	
 	private State state;
 	private Tengu tengu;
+
 
 	@Override
 	public void playLevelMusic() {
@@ -567,7 +569,7 @@ public class PrisonBossLevel extends Level {
 	
 	@Override
 	protected void createMobs() {
-		tengu = new Tengu(); //We want to keep track of tengu independently of other mobs, he's not always in the level.
+		tengu = new Tengu();//We want to keep track of tengu independently of other mobs, he's not always in the level.
 	}
 	
 	public Actor addRespawner() {

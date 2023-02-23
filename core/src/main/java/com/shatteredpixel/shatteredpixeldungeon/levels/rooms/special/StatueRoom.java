@@ -30,7 +30,15 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Point;
 
 public class StatueRoom extends SpecialRoom {
+	@Override
+	public int minWidth() { return 5; }
+	public int maxWidth() { return 10; }
 
+	@Override
+	public int minHeight() {
+		return 5;
+	}
+	public int maxHeight() { return 10; }
 	public void paint( Level level ) {
 
 		Painter.fill( level, this, Terrain.WALL );

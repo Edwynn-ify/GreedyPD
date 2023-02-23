@@ -117,8 +117,8 @@ public class PrisonLevel extends RegularLevel {
 	protected float[] trapChances() {
 		return new float[]{
 				4, 4, 4, 4, 4,
-				2, 2, 2,
-				1, 1, 1, 1, 1, 1 };
+				4, 4, 4,
+				4, 4, 4, 4, 4, 4 };
 	}
 
 	@Override
