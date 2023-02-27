@@ -42,6 +42,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class LaboratoryRoom extends SpecialRoom {
+	@Override
+	public int minWidth() { return 5; }
+
+
+	@Override
+	public int minHeight() {
+		return 5;
+	}
 
 	public void paint( Level level ) {
 		
@@ -73,7 +81,7 @@ public class LaboratoryRoom extends SpecialRoom {
 						level.heaps.get( pos ) != null);
 		level.drop( new EnergyCrystal().random(), pos );
 
-		int n = Random.NormalIntRange( 2, 15 );
+		int n = Random.NormalIntRange( 2, 16 );
 		for (int i=0; i < n; i++) {
 			do {
 				pos = level.pointToCell(random());

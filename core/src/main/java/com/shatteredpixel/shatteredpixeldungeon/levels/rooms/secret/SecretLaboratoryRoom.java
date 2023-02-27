@@ -72,7 +72,15 @@ import com.watabou.utils.Reflection;
 import java.util.HashMap;
 
 public class SecretLaboratoryRoom extends SecretRoom {
-	
+	@Override
+	public int minWidth() { return 5; }
+	public int maxWidth() { return 28; }
+
+	@Override
+	public int minHeight() {
+		return 5;
+	}
+	public int maxHeight() { return 28; }
 	private static HashMap<Class<? extends Potion>, Float> potionChances = new HashMap<>();
 	static{
 		potionChances.put(PotionOfHealing.class,        6f);
@@ -136,7 +144,7 @@ public class SecretLaboratoryRoom extends SecretRoom {
 		} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
 		level.drop( new EnergyCrystal().random(), pos );
 
-		int n = Random.IntRange( 2, 12 );
+		int n = Random.IntRange( 2, 16 );
 		HashMap<Class<? extends Potion>, Float> chances = new HashMap<>(potionChances);
 		for (int i=0; i < n; i++) {
 			do {

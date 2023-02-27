@@ -41,7 +41,9 @@ public class CrystalPathRoom extends SpecialRoom {
 	@Override
 	public int minWidth() { return 7; }
 	public int minHeight() { return 7; }
-
+	@Override
+	public int maxWidth() { return 10; }
+	public int maxHeight() { return 10; }
 	@Override
 	public void paint(Level level) {
 

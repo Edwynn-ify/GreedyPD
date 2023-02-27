@@ -64,6 +64,16 @@ public class SecretHoneypotRoom extends SecretRoom {
 		placeItem( new Bomb().random(), level);
 		placeItem( new Bomb().random(), level);
 		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
+		placeItem( new Bomb().random(), level);
 
 		entrance().set(Door.Type.HIDDEN);
 	}

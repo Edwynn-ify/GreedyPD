@@ -98,7 +98,7 @@ public class MagicalFireRoom extends SpecialRoom {
 
 		boolean honeyPot = Random.Int( 2 ) == 0;
 
-		int n = Random.IntRange( 3, 12 );
+		int n = Random.IntRange( 2, 16 );
 
 		for (int i=0; i < n; i++) {
 			int pos;

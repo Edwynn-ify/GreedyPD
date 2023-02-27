@@ -48,12 +48,16 @@ public class SecretLarderRoom extends SecretRoom {
 	public int minHeight() {
 		return 6;
 	}
-	
-	@Override
 	public int minWidth() {
 		return 6;
 	}
-	
+	@Override
+	public int maxWidth() {
+		return 15;
+	}
+	public int maxHeight() {
+		return 15;
+	}
 	@Override
 	public void paint(Level level) {
 		Painter.fill(level, this, Terrain.WALL);

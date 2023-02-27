@@ -31,18 +31,18 @@ import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
 public class SecretWellRoom extends SecretRoom {
-	
+
 	private static final Class<?>[] WATERS =
 			{WaterOfAwareness.class, WaterOfHealth.class};
-	
+
 	@Override
 	public boolean canConnect(Point p) {
 		//refuses connections next to corners
 		return super.canConnect(p) && ((p.x > left+1 && p.x < right-1) || (p.y > top+1 && p.y < bottom-1));
 	}
-	
+
 	public void paint( Level level ) {
-		
+
 		Painter.fill( level, this, Terrain.WALL );
 		Point door = entrance();
 		Point well;
@@ -55,17 +55,17 @@ public class SecretWellRoom extends SecretRoom {
 		} else {
 			well = new Point(door.x, top+2);
 		}
-		
+
 		Painter.fill(level, well.x-1, well.y-1, 3, 3, Terrain.CHASM);
 		Painter.drawLine(level, door, well, Terrain.EMPTY);
-		
+
 		Painter.set( level, well, Terrain.WELL );
-		
+
 		@SuppressWarnings("unchecked")
 		Class<? extends WellWater> waterClass = (Class<? extends WellWater>) Random.element( WATERS );
-		
+
 		WellWater.seed(well.x + level.width() * well.y, 1, waterClass, level);
-		
+
 		entrance().set( Door.Type.HIDDEN );
 	}
 }

@@ -56,15 +56,20 @@ import com.watabou.utils.Reflection;
 import java.util.HashMap;
 
 public class SecretLibraryRoom extends SecretRoom {
-	
+
 	@Override
 	public int minWidth() {
 		return Math.max(7, super.minWidth());
 	}
-	
+	public int maxWidth() {
+		return Math.max(28, super.maxHeight());
+	}
 	@Override
 	public int minHeight() {
 		return Math.max(7, super.minHeight());
+	}
+	public int maxHeight() {
+		return Math.max(28, super.maxHeight());
 	}
 	
 	private static HashMap<Class<? extends Scroll>, Float> scrollChances = new HashMap<>();
@@ -110,7 +115,7 @@ public class SecretLibraryRoom extends SecretRoom {
 		}
 		entrance.set( Door.Type.HIDDEN );
 		
-		int n = Random.IntRange( 2, 12 );
+		int n = Random.IntRange( 2, 16);
 		HashMap<Class<? extends Scroll>, Float> chances = new HashMap<>(scrollChances);
 		for (int i=0; i < n; i++) {
 			int pos;

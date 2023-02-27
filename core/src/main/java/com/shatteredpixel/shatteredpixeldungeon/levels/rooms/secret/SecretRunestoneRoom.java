@@ -22,12 +22,20 @@
 package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret;
 
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
+import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfDivination;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicalInfusion;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Point;
+import com.watabou.utils.Random;
 
 public class SecretRunestoneRoom extends SecretRoom {
 	
@@ -70,18 +78,53 @@ public class SecretRunestoneRoom extends SecretRoom {
 		} while (level.map[dropPos] != Terrain.EMPTY);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+
 
 		do{
 			dropPos = level.pointToCell(random());
 		} while (level.map[dropPos] != Terrain.EMPTY);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+
 
 		do{
 			dropPos = level.pointToCell(random());
 		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
 
 
 		do{
@@ -89,13 +132,50 @@ public class SecretRunestoneRoom extends SecretRoom {
 		} while (level.map[dropPos] != Terrain.EMPTY || level.heaps.get(dropPos) != null);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
 		level.drop( Generator.random(Generator.Category.STONE), dropPos);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
 
 		do{
 			dropPos = level.pointToCell(random());
 		} while (level.map[dropPos] != Terrain.EMPTY_SP);
 		level.drop( new StoneOfEnchantment(), dropPos);
-		
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY_SP);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+		level.drop(Random.oneOf(new ScrollOfUpgrade(), new ScrollOfTransmutation(), new MagicalInfusion(), new ScrollOfMetamorphosis(), new ScrollOfEnchantment(), new ScrollOfDivination()), dropPos);
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY_SP);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+		level.drop(Random.oneOf(new ScrollOfUpgrade(), new ScrollOfTransmutation(), new MagicalInfusion(), new ScrollOfMetamorphosis(), new ScrollOfEnchantment(), new ScrollOfDivination()), dropPos);
 		entrance.set(Door.Type.HIDDEN);
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY_SP);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+		level.drop(Random.oneOf(new ScrollOfUpgrade(), new ScrollOfTransmutation(), new MagicalInfusion(), new ScrollOfMetamorphosis(), new ScrollOfEnchantment(), new ScrollOfDivination()), dropPos);
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY_SP);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+		level.drop(Random.oneOf(new ScrollOfUpgrade(), new ScrollOfTransmutation(), new MagicalInfusion(), new ScrollOfMetamorphosis(), new ScrollOfEnchantment(), new ScrollOfDivination()), dropPos);
+		entrance.set(Door.Type.HIDDEN);
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY_SP);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+		level.drop(Random.oneOf(new ScrollOfUpgrade(), new ScrollOfTransmutation(), new MagicalInfusion(), new ScrollOfMetamorphosis(), new ScrollOfEnchantment(), new ScrollOfDivination()), dropPos);
+
+		do{
+			dropPos = level.pointToCell(random());
+		} while (level.map[dropPos] != Terrain.EMPTY_SP);
+		level.drop( Generator.random(Random.oneOf(Generator.Category.EXOTIC_SCROLL, Generator.Category.SCROLL, Generator.Category.STONE, Generator.Category.SPELL, Generator.Category.RANDOM_ITEM, Generator.Category.BOMB)), dropPos);
+		level.drop(Random.oneOf(new ScrollOfUpgrade(), new ScrollOfTransmutation(), new MagicalInfusion(), new ScrollOfMetamorphosis(), new ScrollOfEnchantment(), new ScrollOfDivination()), dropPos);
 	}
 	
 	@Override

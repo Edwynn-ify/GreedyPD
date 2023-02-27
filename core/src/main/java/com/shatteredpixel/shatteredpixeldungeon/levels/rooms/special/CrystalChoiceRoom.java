@@ -44,6 +44,10 @@ public class CrystalChoiceRoom extends SpecialRoom {
 	public int minHeight() { return 7; }
 
 	@Override
+	public int maxWidth() { return 10; }
+	public int maxHeight() { return 10; }
+
+	@Override
 	public void paint(Level level) {
 
 		Painter.fill( level, this, Terrain.WALL );

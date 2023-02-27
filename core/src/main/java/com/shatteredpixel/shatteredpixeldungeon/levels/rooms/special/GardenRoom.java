@@ -42,7 +42,15 @@ import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
 import com.watabou.utils.Random;
 
 public class GardenRoom extends SpecialRoom {
+	@Override
+	public int minWidth() { return 5; }
+	public int maxWidth() { return 15; }
 
+	@Override
+	public int minHeight() {
+		return 5;
+	}
+	public int maxHeight() { return 15; }
 	public void paint( Level level ) {
 		
 		Painter.fill( level, this, Terrain.WALL );

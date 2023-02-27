@@ -43,7 +43,7 @@ public class TreasuryRoom extends SpecialRoom {
 		
 		Heap.Type heapType = Random.Int( 2 ) == 0 ? Heap.Type.CHEST : Heap.Type.HEAP;
 		//apparently current cap is 12
-		int n = Random.IntRange( 2, 6 );
+		int n = Random.IntRange( 2, 5 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {

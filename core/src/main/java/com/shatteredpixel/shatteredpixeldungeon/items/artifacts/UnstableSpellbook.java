@@ -36,6 +36,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.ScrollHolder;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfLullaby;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
@@ -63,9 +68,9 @@ public class UnstableSpellbook extends Artifact {
 
 		levelCap = 10;
 
-		charge = (int)(level()*1.5f)+4;
+		charge = (int)(level()*0.6f)+2;
 		partialCharge = 0;
-		chargeCap = (int)(level()*1.5f)+4;
+		chargeCap = (int)(level()*1f)+5;
 
 		defaultAction = AC_READ;
 	}
@@ -79,7 +84,7 @@ public class UnstableSpellbook extends Artifact {
 		super();
 
 		Class<?>[] scrollClasses = Generator.Category.SCROLL.classes;
-		float[] probs = Generator.Category.SCROLL.defaultProbs.clone(); //array of primitives, clone gives deep copy.
+		float[] probs = new float[]{ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }; //array of primitives, clone gives deep copy.
 		int i = Random.chances(probs);
 
 		while (i != -1){
@@ -89,6 +94,7 @@ public class UnstableSpellbook extends Artifact {
 			i = Random.chances(probs);
 		}
 		scrolls.remove(ScrollOfTransmutation.class);
+		scrolls.remove(ScrollOfUpgrade.class);
 	}
 
 	@Override
@@ -123,9 +129,12 @@ public class UnstableSpellbook extends Artifact {
 				do {
 					scroll = (Scroll) Generator.randomUsingDefaults(Generator.Category.SCROLL);
 				} while (scroll == null
+						//reduce the frequency of these scrolls by half
+						||((scroll instanceof ScrollOfIdentify ||
+						scroll instanceof ScrollOfRemoveCurse ||
+						scroll instanceof ScrollOfMagicMapping) && Random.Int(1) == 0)
 						//cannot roll transmutation
-						|| (scroll instanceof ScrollOfTransmutation || scroll instanceof ScrollOfUpgrade ));
-
+						|| (scroll instanceof ScrollOfTransmutation || scroll instanceof ScrollOfUpgrade));
 
 				scroll.anonymize();
 				curItem = scroll;
@@ -230,7 +239,7 @@ public class UnstableSpellbook extends Artifact {
 
 	@Override
 	public Item upgrade() {
-		chargeCap = (int)((level()+2)*1.5f)+4;
+		chargeCap = (int)((level()+1)*1f)+5;
 
 		//for artifact transmutation.
 		while (!scrolls.isEmpty() && scrolls.size() > (levelCap-1-level()))
@@ -287,7 +296,7 @@ public class UnstableSpellbook extends Artifact {
 					&& target.buff(MagicImmune.class) == null
 					&& (lock == null || lock.regenOn())) {
 				//120 turns to charge at full, 80 turns to charge at 0/8
-				float chargeGain = 1 / (60f - (chargeCap - charge)*10f);
+				float chargeGain = 2 / (60f - (chargeCap - charge)*10f);
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 

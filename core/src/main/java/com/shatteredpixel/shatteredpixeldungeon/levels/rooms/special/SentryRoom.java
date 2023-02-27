@@ -60,6 +60,10 @@ public class SentryRoom extends SpecialRoom {
 	public int minHeight() { return 7; }
 
 	@Override
+	public int maxWidth() { return 13; }
+	public int maxHeight() { return 13; }
+
+	@Override
 	public void paint(Level level) {
 
 		Painter.fill( level, this, Terrain.WALL );

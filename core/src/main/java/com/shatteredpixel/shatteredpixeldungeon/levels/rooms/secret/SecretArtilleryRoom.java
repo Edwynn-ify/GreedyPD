@@ -29,7 +29,15 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Random;
 
 public class SecretArtilleryRoom extends SecretRoom {
+	@Override
+	public int minWidth() { return 5; }
+	public int maxWidth() { return 13; }
 
+	@Override
+	public int minHeight() {
+		return 5;
+	}
+	public int maxHeight() { return 13; }
 	@Override
 	public void paint(Level level) {
 		Painter.fill(level, this, Terrain.WALL);

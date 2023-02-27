@@ -49,9 +49,10 @@ public class MassGraveRoom extends SpecialRoom {
 	
 	@Override
 	public int minWidth() { return 7; }
-	
+	public int maxWidth() { return 14; }
 	@Override
 	public int minHeight() { return 7; }
+	public int maxHeight() { return 14; }
 	
 	public void paint(Level level){
 

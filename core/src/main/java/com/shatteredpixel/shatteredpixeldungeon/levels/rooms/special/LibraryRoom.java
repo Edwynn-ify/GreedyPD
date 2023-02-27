@@ -34,6 +34,14 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Random;
 
 public class LibraryRoom extends SpecialRoom {
+	@Override
+	public int minWidth() { return 5; }
+
+
+	@Override
+	public int minHeight() {
+		return 5;
+	}
 
 	public void paint( Level level ) {
 		
@@ -45,7 +53,7 @@ public class LibraryRoom extends SpecialRoom {
 		Painter.fill( level, left + 1, top+1, width() - 2, 1 , Terrain.BOOKSHELF );
 		Painter.drawInside(level, this, entrance, 1, Terrain.EMPTY_SP );
 		
-		int n = Random.NormalIntRange( 2, 15 );
+		int n = Random.NormalIntRange( 2, 16 );
 		for (int i=0; i < n; i++) {
 			int pos;
 			do {
